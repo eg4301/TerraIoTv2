@@ -1,26 +1,207 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Amplify } from 'aws-amplify';
+import { Routes, Route } from 'react-router-dom';
+import config from './amplifyconfiguration.json';
+import { ColorModeContext, useMode } from './theme';
+import {
+  Avatar,
+  Box,
+  CssBaseline,
+  Divider,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  ThemeProvider,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import React, { useState } from 'react';
+import Sidebar from './scenes/global/Sidebar';
+import Topbar from './scenes/global/Topbar';
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import NotificationsOffOutlinedIcon from '@mui/icons-material/NotificationsOffOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Logout, PersonAdd, Settings } from '@mui/icons-material';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import Dashboard from './scenes/dashboard';
+import Air_temp from './scenes/air_temp';
+import CO2 from './scenes/co2';
+import O2 from './scenes/o2';
+import Humidity from './scenes/humidity';
+import Water_temp from './scenes/water_temp';
+import Conductivity from './scenes/conductivity';
+import Calendar from './scenes/calendar';
 
-function App() {
+Amplify.configure(config);
+
+function App({ signOut, user }) {
+  const [theme, colorMode] = useMode();
+  const [clicked, setClicked] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className="app">
+            <Sidebar />
+            <main className="content">
+              <Topbar />
+              <Tooltip
+                title="Notifications"
+                style={{ position: 'absolute', top: '27px', right: '230px' }}
+                arrow
+              >
+                <IconButton onClick={() => setClicked((prev) => !prev)}>
+                  {clicked ? (
+                    <NotificationsOffOutlinedIcon />
+                  ) : (
+                    <NotificationsOutlinedIcon />
+                  )}
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip
+                title="Theme Toggling"
+                style={{ position: 'absolute', top: '27px', right: '270px' }}
+                arrow
+              >
+                <IconButton onClick={colorMode.toggleColorMode}>
+                  {theme.palette.mode === 'dark' ? (
+                    <DarkModeOutlinedIcon />
+                  ) : (
+                    <LightModeOutlinedIcon />
+                  )}
+                </IconButton>
+              </Tooltip>
+              <React.Fragment>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                  }}
+                >
+                  <Tooltip title="Account settings">
+                    <IconButton
+                      style={{
+                        position: 'absolute',
+                        top: '20px',
+                        right: '15px',
+                      }}
+                      onClick={handleClick}
+                      size="small"
+                      sx={{ ml: 2 }}
+                      aria-controls={open ? 'account-menu' : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? 'true' : undefined}
+                    >
+                      <img
+                        alt="profile-user"
+                        width="40px"
+                        height="40px"
+                        src={`../../assets/Avatar.png`}
+                        style={{ cursor: 'pointer', borderRadius: '50%' }}
+                      />
+                      <Box width="110px">
+                        <Typography variant="h4">
+                          Hi, {user.username.toUpperCase()}
+                        </Typography>
+                      </Box>
+                      <ArrowDropDownIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Box>
+                <Menu
+                  anchorEl={anchorEl}
+                  id="account-menu"
+                  open={open}
+                  onClose={handleClose}
+                  onClick={handleClose}
+                  PaperProps={{
+                    elevation: 0,
+                    sx: {
+                      overflow: 'visible',
+                      filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                      mt: 1.5,
+                      '& .MuiAvatar-root': {
+                        width: 32,
+                        height: 32,
+                        ml: -0.5,
+                        mr: 1,
+                      },
+                      '&::before': {
+                        content: '""',
+                        display: 'block',
+                        position: 'absolute',
+                        top: 0,
+                        right: 14,
+                        width: 10,
+                        height: 10,
+                        bgcolor: 'background.paper',
+                        transform: 'translateY(-50%) rotate(45deg)',
+                        zIndex: 0,
+                      },
+                    },
+                  }}
+                  transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                  anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <Avatar /> Profile
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <PersonAdd fontSize="small" />
+                    </ListItemIcon>
+                    Add another account
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <Settings fontSize="small" />
+                    </ListItemIcon>
+                    Settings
+                  </MenuItem>
+                  <MenuItem onClick={signOut}>
+                    <ListItemIcon>
+                      <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                  </MenuItem>
+                </Menu>
+              </React.Fragment>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/air_temp" element={<Air_temp />} />
+                <Route path="/co2" element={<CO2 />} />
+                <Route path="/o2" element={<O2 />} />
+                <Route path="/humidity" element={<Humidity />} />
+                <Route path="/water_temp" element={<Water_temp />} />
+                <Route path="/conductivity" element={<Conductivity />} />
+                <Route path="/calendar" element={<Calendar />} />
+                {/*<Route path="/pH" element={<PH />} />
+              <Route path="/google_calendar" element={<Google_Calendar />} /> */}
+              </Routes>
+            </main>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
     </div>
   );
 }
 
-export default App;
+export default withAuthenticator(App);

@@ -1,0 +1,23 @@
+{
+  "production": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-terraiotv2-production-121436-authRole",
+      "UnauthRoleArn": "arn:aws:iam::647724249007:role/amplify-terraiotv2-production-121436-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::647724249007:role/amplify-terraiotv2-production-121436-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-terraiotv2-production-121436-deployment",
+      "UnauthRoleName": "amplify-terraiotv2-production-121436-unauthRole",
+      "StackName": "amplify-terraiotv2-production-121436",
+      "StackId": "arn:aws:cloudformation:us-east-2:647724249007:stack/amplify-terraiotv2-production-121436/62100ea0-d2e4-11ee-87d7-0aba1e3fd7b9",
+      "AmplifyAppId": "d23v5drv5m4u3g"
+    },
+    "categories": {
+      "api": {
+        "TerraIoTV2": {}
+      },
+      "auth": {
+        "terraiotv26eb51bd26eb51bd2": {}
+      }
+    }
+  }
+}

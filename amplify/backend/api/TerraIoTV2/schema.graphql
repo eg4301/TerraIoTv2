@@ -1,0 +1,23 @@
+type Actuation @model @auth(rules: [{ allow: public }]) {
+  Max: Float
+  Min: Float
+  Setup: String!
+  Variable: String!
+}
+
+type RACSensors @model @auth(rules: [{ allow: public }]) {
+  CO2: Float
+  MAC: Int!
+    @index(
+      name: "byMAC"
+      queryField: "getSenesorsDataByMAC"
+      sortKeyFields: ["timestamp"]
+    )
+  O2: Float
+  atm_temperature: Float
+  conductivity: Float
+  humidity: Float
+  pH: Float
+  temperature: Float
+  timestamp: AWSDateTime!
+}
