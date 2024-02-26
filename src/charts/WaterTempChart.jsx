@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { useState } from 'react';
 import {
   Charts,
   ChartContainer,
@@ -52,10 +53,17 @@ const baselineStyleExtraLite = {
   },
 };
 
-const WaterTempChart = ({ series }) => {
+const WaterTempChart = ({ series, height = '150' }) => {
+  const [timerange, setTimeRange] = useState(series.range());
+
+  const handleTimeRange = (timerange) => {
+    setTimeRange(timerange);
+  };
   return (
     <Resizable>
       <ChartContainer
+        showGrid={false}
+        enablePanZoom
         title="Water Temperature"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
@@ -69,11 +77,12 @@ const WaterTempChart = ({ series }) => {
             fontWeight: 400,
           },
         }}
-        timeRange={series.range()}
+        onTimeRangeChanged={handleTimeRange}
+        timeRange={timerange}
         format="%b '%y"
         timeAxisTickCount={5}
       >
-        <ChartRow height="150">
+        <ChartRow height={height}>
           <YAxis
             id="waterTempChart"
             style={{

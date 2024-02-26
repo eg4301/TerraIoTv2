@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { useState } from 'react';
 import {
   Charts,
   ChartContainer,
@@ -52,10 +53,18 @@ const baselineStyleExtraLite = {
   },
 };
 
-const AirTempChart = ({ atmTemperatureSeries }) => {
+const AirTempChart = ({ atmTemperatureSeries, height = '150' }) => {
+  const [timerange, setTimeRange] = useState(atmTemperatureSeries.range());
+
+  const handleTimeRange = (timerange) => {
+    setTimeRange(timerange);
+  };
+
   return (
     <Resizable>
       <ChartContainer
+        showGrid={false}
+        enablePanZoom
         title="Air Temperature"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
@@ -69,11 +78,12 @@ const AirTempChart = ({ atmTemperatureSeries }) => {
             fontWeight: 400,
           },
         }}
-        timeRange={atmTemperatureSeries.range()}
+        onTimeRangeChanged={handleTimeRange}
+        timeRange={timerange}
         format="%b '%y"
         timeAxisTickCount={5}
       >
-        <ChartRow height="150">
+        <ChartRow height={height}>
           <YAxis
             id="airTemperature"
             style={{

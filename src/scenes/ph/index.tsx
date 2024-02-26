@@ -1,15 +1,15 @@
 import { Box, CircularProgress, useTheme } from '@mui/material';
 import Header from '../../components/Header';
 import { useFetchSensorData } from '../dashboard/hooks/useFetchSensorData';
-import AirTempChart from '../../charts/AirTempChart';
+import PHChart from '../../charts/PHChart';
 import { tokens } from '../../theme';
 
-const Air_temp = () => {
-  const { loading, atmTemperatureSeries } = useFetchSensorData();
+const PhChartPage = () => {
+  const { loading, pHSeries } = useFetchSensorData();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  if (loading || !atmTemperatureSeries) {
+  if (loading || !pHSeries) {
     return (
       <Box
         sx={{
@@ -27,15 +27,12 @@ const Air_temp = () => {
   }
   return (
     <Box m="20px">
-      <Header title="Air Temperature" subtitle="Ambient Parameter" />
+      <Header title="PH" subtitle="PH Parameter" />
       <Box height="75vh">
-        <AirTempChart
-          atmTemperatureSeries={atmTemperatureSeries}
-          height="200"
-        />
+        <PHChart series={pHSeries} height="200" />
       </Box>
     </Box>
   );
 };
 
-export default Air_temp;
+export default PhChartPage;

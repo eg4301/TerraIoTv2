@@ -35,6 +35,7 @@ import Humidity from './scenes/humidity';
 import Water_temp from './scenes/water_temp';
 import Conductivity from './scenes/conductivity';
 import Calendar from './scenes/calendar';
+import PhChartPage from './scenes/ph';
 
 Amplify.configure(config);
 
@@ -193,8 +194,8 @@ function App({ signOut, user }) {
                 <Route path="/water_temp" element={<Water_temp />} />
                 <Route path="/conductivity" element={<Conductivity />} />
                 <Route path="/calendar" element={<Calendar />} />
-                {/*<Route path="/pH" element={<PH />} />
-              <Route path="/google_calendar" element={<Google_Calendar />} /> */}
+                <Route path="/pH" element={<PhChartPage />} />
+                {/* <Route path="/google_calendar" element={<Google_Calendar />} /> */}
               </Routes>
             </main>
           </div>

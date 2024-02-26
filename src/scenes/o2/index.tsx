@@ -1,12 +1,36 @@
-import { Box } from '@mui/material';
+import { Box, CircularProgress, useTheme } from '@mui/material';
 import Header from '../../components/Header';
-// import O2_chart from '../../charts/O2Chart';
+import { useFetchSensorData } from '../dashboard/hooks/useFetchSensorData';
+import { tokens } from '../../theme';
+import O2Chart from '../../charts/O2Chart';
 
 const O2 = () => {
+  const { loading, o2Series } = useFetchSensorData();
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  if (loading || !o2Series) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          height: '100%',
+          color: colors.greenAccent[500],
+        }}
+      >
+        <CircularProgress color="inherit" />
+      </Box>
+    );
+  }
   return (
     <Box m="20px">
       <Header title="O2" subtitle="Ambient Parameter" />
-      <Box height="75vh">{/* <O2_chart /> */}</Box>
+      <Box height="75vh">
+        <O2Chart series={o2Series} height="200" />
+      </Box>
     </Box>
   );
 };

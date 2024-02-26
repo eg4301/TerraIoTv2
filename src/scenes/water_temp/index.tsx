@@ -1,12 +1,36 @@
-import { Box } from '@mui/material';
+import { Box, CircularProgress, useTheme } from '@mui/material';
 import Header from '../../components/Header';
-// import WaterTempChart from '../../charts/WaterTempChart';
+import { useFetchSensorData } from '../dashboard/hooks/useFetchSensorData';
+import WaterTempChart from '../../charts/WaterTempChart';
+import { tokens } from '../../theme';
 
 const Water_temp = () => {
+  const { loading, waterSeries } = useFetchSensorData();
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  if (loading || !waterSeries) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          height: '100%',
+          color: colors.greenAccent[500],
+        }}
+      >
+        <CircularProgress color="inherit" />
+      </Box>
+    );
+  }
   return (
     <Box m="20px">
       <Header title="Water Temperature" subtitle="Water Parameter" />
-      <Box height="75vh">{/* <WaterTempChart /> */}</Box>
+      <Box height="75vh">
+        <WaterTempChart series={waterSeries} height="200" />
+      </Box>
     </Box>
   );
 };
