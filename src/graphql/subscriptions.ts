@@ -8,53 +8,101 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
-export const onCreateActuation = /* GraphQL */ `subscription OnCreateActuation($filter: ModelSubscriptionActuationFilterInput) {
-  onCreateActuation(filter: $filter) {
+export const onCreateActuationMax = /* GraphQL */ `subscription OnCreateActuationMax(
+  $filter: ModelSubscriptionActuationMaxFilterInput
+) {
+  onCreateActuationMax(filter: $filter) {
     Max
-    Min
     Setup
     Variable
-    id
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnCreateActuationSubscriptionVariables,
-  APITypes.OnCreateActuationSubscription
+  APITypes.OnCreateActuationMaxSubscriptionVariables,
+  APITypes.OnCreateActuationMaxSubscription
 >;
-export const onUpdateActuation = /* GraphQL */ `subscription OnUpdateActuation($filter: ModelSubscriptionActuationFilterInput) {
-  onUpdateActuation(filter: $filter) {
+export const onUpdateActuationMax = /* GraphQL */ `subscription OnUpdateActuationMax(
+  $filter: ModelSubscriptionActuationMaxFilterInput
+) {
+  onUpdateActuationMax(filter: $filter) {
     Max
-    Min
     Setup
     Variable
-    id
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnUpdateActuationSubscriptionVariables,
-  APITypes.OnUpdateActuationSubscription
+  APITypes.OnUpdateActuationMaxSubscriptionVariables,
+  APITypes.OnUpdateActuationMaxSubscription
 >;
-export const onDeleteActuation = /* GraphQL */ `subscription OnDeleteActuation($filter: ModelSubscriptionActuationFilterInput) {
-  onDeleteActuation(filter: $filter) {
+export const onDeleteActuationMax = /* GraphQL */ `subscription OnDeleteActuationMax(
+  $filter: ModelSubscriptionActuationMaxFilterInput
+) {
+  onDeleteActuationMax(filter: $filter) {
     Max
-    Min
     Setup
     Variable
-    id
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnDeleteActuationSubscriptionVariables,
-  APITypes.OnDeleteActuationSubscription
+  APITypes.OnDeleteActuationMaxSubscriptionVariables,
+  APITypes.OnDeleteActuationMaxSubscription
+>;
+export const onCreateActuationMin = /* GraphQL */ `subscription OnCreateActuationMin(
+  $filter: ModelSubscriptionActuationMinFilterInput
+) {
+  onCreateActuationMin(filter: $filter) {
+    Min
+    Setup
+    Variable
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateActuationMinSubscriptionVariables,
+  APITypes.OnCreateActuationMinSubscription
+>;
+export const onUpdateActuationMin = /* GraphQL */ `subscription OnUpdateActuationMin(
+  $filter: ModelSubscriptionActuationMinFilterInput
+) {
+  onUpdateActuationMin(filter: $filter) {
+    Min
+    Setup
+    Variable
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateActuationMinSubscriptionVariables,
+  APITypes.OnUpdateActuationMinSubscription
+>;
+export const onDeleteActuationMin = /* GraphQL */ `subscription OnDeleteActuationMin(
+  $filter: ModelSubscriptionActuationMinFilterInput
+) {
+  onDeleteActuationMin(filter: $filter) {
+    Min
+    Setup
+    Variable
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteActuationMinSubscriptionVariables,
+  APITypes.OnDeleteActuationMinSubscription
 >;
 export const onCreateRACSensors = /* GraphQL */ `subscription OnCreateRACSensors(
   $filter: ModelSubscriptionRACSensorsFilterInput
@@ -69,9 +117,6 @@ export const onCreateRACSensors = /* GraphQL */ `subscription OnCreateRACSensors
     pH
     temperature
     timestamp
-    id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -92,9 +137,6 @@ export const onUpdateRACSensors = /* GraphQL */ `subscription OnUpdateRACSensors
     pH
     temperature
     timestamp
-    id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -115,9 +157,6 @@ export const onDeleteRACSensors = /* GraphQL */ `subscription OnDeleteRACSensors
     pH
     temperature
     timestamp
-    id
-    createdAt
-    updatedAt
     __typename
   }
 }

@@ -2,22 +2,17 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateActuationInput = {
+export type CreateActuationMaxInput = {
   Max?: number | null,
-  Min?: number | null,
   Setup: string,
   Variable: string,
-  id?: string | null,
 };
 
-export type ModelActuationConditionInput = {
+export type ModelActuationMaxConditionInput = {
   Max?: ModelFloatInput | null,
-  Min?: ModelFloatInput | null,
-  Setup?: ModelStringInput | null,
-  Variable?: ModelStringInput | null,
-  and?: Array< ModelActuationConditionInput | null > | null,
-  or?: Array< ModelActuationConditionInput | null > | null,
-  not?: ModelActuationConditionInput | null,
+  and?: Array< ModelActuationMaxConditionInput | null > | null,
+  or?: Array< ModelActuationMaxConditionInput | null > | null,
+  not?: ModelActuationMaxConditionInput | null,
 };
 
 export type ModelFloatInput = {
@@ -46,6 +41,133 @@ export enum ModelAttributeTypes {
 }
 
 
+export type ActuationMax = {
+  __typename: "ActuationMax",
+  Max?: number | null,
+  Setup: string,
+  Variable: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateActuationMaxInput = {
+  Max?: number | null,
+  Setup: string,
+  Variable: string,
+};
+
+export type DeleteActuationMaxInput = {
+  Setup: string,
+  Variable: string,
+};
+
+export type CreateActuationMinInput = {
+  Min?: number | null,
+  Setup: string,
+  Variable: string,
+};
+
+export type ModelActuationMinConditionInput = {
+  Min?: ModelFloatInput | null,
+  and?: Array< ModelActuationMinConditionInput | null > | null,
+  or?: Array< ModelActuationMinConditionInput | null > | null,
+  not?: ModelActuationMinConditionInput | null,
+};
+
+export type ActuationMin = {
+  __typename: "ActuationMin",
+  Min?: number | null,
+  Setup: string,
+  Variable: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateActuationMinInput = {
+  Min?: number | null,
+  Setup: string,
+  Variable: string,
+};
+
+export type DeleteActuationMinInput = {
+  Setup: string,
+  Variable: string,
+};
+
+export type CreateRACSensorsInput = {
+  CO2?: number | null,
+  MAC: number,
+  O2?: number | null,
+  atm_temperature?: number | null,
+  conductivity?: number | null,
+  humidity?: number | null,
+  pH?: number | null,
+  temperature?: number | null,
+  timestamp: string,
+};
+
+export type ModelRACSensorsConditionInput = {
+  CO2?: ModelFloatInput | null,
+  O2?: ModelFloatInput | null,
+  atm_temperature?: ModelFloatInput | null,
+  conductivity?: ModelFloatInput | null,
+  humidity?: ModelFloatInput | null,
+  pH?: ModelFloatInput | null,
+  temperature?: ModelFloatInput | null,
+  and?: Array< ModelRACSensorsConditionInput | null > | null,
+  or?: Array< ModelRACSensorsConditionInput | null > | null,
+  not?: ModelRACSensorsConditionInput | null,
+};
+
+export type RACSensors = {
+  __typename: "RACSensors",
+  CO2?: number | null,
+  MAC: number,
+  O2?: number | null,
+  atm_temperature?: number | null,
+  conductivity?: number | null,
+  humidity?: number | null,
+  pH?: number | null,
+  temperature?: number | null,
+  timestamp: string,
+};
+
+export type UpdateRACSensorsInput = {
+  CO2?: number | null,
+  MAC: number,
+  O2?: number | null,
+  atm_temperature?: number | null,
+  conductivity?: number | null,
+  humidity?: number | null,
+  pH?: number | null,
+  temperature?: number | null,
+  timestamp: string,
+};
+
+export type DeleteRACSensorsInput = {
+  MAC: number,
+  timestamp: string,
+};
+
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export type ModelActuationMaxFilterInput = {
+  Max?: ModelFloatInput | null,
+  Setup?: ModelStringInput | null,
+  Variable?: ModelStringInput | null,
+  and?: Array< ModelActuationMaxFilterInput | null > | null,
+  or?: Array< ModelActuationMaxFilterInput | null > | null,
+  not?: ModelActuationMaxFilterInput | null,
+};
+
 export type ModelStringInput = {
   ne?: string | null,
   eq?: string | null,
@@ -72,115 +194,30 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type Actuation = {
-  __typename: "Actuation",
-  Max?: number | null,
-  Min?: number | null,
-  Setup: string,
-  Variable: string,
-  id: string,
-  createdAt: string,
-  updatedAt: string,
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
+export type ModelActuationMaxConnection = {
+  __typename: "ModelActuationMaxConnection",
+  items:  Array<ActuationMax | null >,
+  nextToken?: string | null,
 };
 
-export type UpdateActuationInput = {
-  Max?: number | null,
-  Min?: number | null,
-  Setup?: string | null,
-  Variable?: string | null,
-  id: string,
-};
-
-export type DeleteActuationInput = {
-  id: string,
-};
-
-export type CreateRACSensorsInput = {
-  CO2?: number | null,
-  MAC: number,
-  O2?: number | null,
-  atm_temperature?: number | null,
-  conductivity?: number | null,
-  humidity?: number | null,
-  pH?: number | null,
-  temperature?: number | null,
-  timestamp: string,
-  id?: string | null,
-};
-
-export type ModelRACSensorsConditionInput = {
-  CO2?: ModelFloatInput | null,
-  MAC?: ModelIntInput | null,
-  O2?: ModelFloatInput | null,
-  atm_temperature?: ModelFloatInput | null,
-  conductivity?: ModelFloatInput | null,
-  humidity?: ModelFloatInput | null,
-  pH?: ModelFloatInput | null,
-  temperature?: ModelFloatInput | null,
-  timestamp?: ModelStringInput | null,
-  and?: Array< ModelRACSensorsConditionInput | null > | null,
-  or?: Array< ModelRACSensorsConditionInput | null > | null,
-  not?: ModelRACSensorsConditionInput | null,
-};
-
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
-export type RACSensors = {
-  __typename: "RACSensors",
-  CO2?: number | null,
-  MAC: number,
-  O2?: number | null,
-  atm_temperature?: number | null,
-  conductivity?: number | null,
-  humidity?: number | null,
-  pH?: number | null,
-  temperature?: number | null,
-  timestamp: string,
-  id: string,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type UpdateRACSensorsInput = {
-  CO2?: number | null,
-  MAC?: number | null,
-  O2?: number | null,
-  atm_temperature?: number | null,
-  conductivity?: number | null,
-  humidity?: number | null,
-  pH?: number | null,
-  temperature?: number | null,
-  timestamp?: string | null,
-  id: string,
-};
-
-export type DeleteRACSensorsInput = {
-  id: string,
-};
-
-export type ModelActuationFilterInput = {
-  Max?: ModelFloatInput | null,
+export type ModelActuationMinFilterInput = {
   Min?: ModelFloatInput | null,
   Setup?: ModelStringInput | null,
   Variable?: ModelStringInput | null,
-  and?: Array< ModelActuationFilterInput | null > | null,
-  or?: Array< ModelActuationFilterInput | null > | null,
-  not?: ModelActuationFilterInput | null,
+  and?: Array< ModelActuationMinFilterInput | null > | null,
+  or?: Array< ModelActuationMinFilterInput | null > | null,
+  not?: ModelActuationMinFilterInput | null,
 };
 
-export type ModelActuationConnection = {
-  __typename: "ModelActuationConnection",
-  items:  Array<Actuation | null >,
+export type ModelActuationMinConnection = {
+  __typename: "ModelActuationMinConnection",
+  items:  Array<ActuationMin | null >,
   nextToken?: string | null,
 };
 
@@ -199,35 +236,30 @@ export type ModelRACSensorsFilterInput = {
   not?: ModelRACSensorsFilterInput | null,
 };
 
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type ModelRACSensorsConnection = {
   __typename: "ModelRACSensorsConnection",
   items:  Array<RACSensors | null >,
   nextToken?: string | null,
 };
 
-export type ModelStringKeyConditionInput = {
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-};
-
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
-
-export type ModelSubscriptionActuationFilterInput = {
+export type ModelSubscriptionActuationMaxFilterInput = {
   Max?: ModelSubscriptionFloatInput | null,
-  Min?: ModelSubscriptionFloatInput | null,
   Setup?: ModelSubscriptionStringInput | null,
   Variable?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionActuationFilterInput | null > | null,
-  or?: Array< ModelSubscriptionActuationFilterInput | null > | null,
+  and?: Array< ModelSubscriptionActuationMaxFilterInput | null > | null,
+  or?: Array< ModelSubscriptionActuationMaxFilterInput | null > | null,
 };
 
 export type ModelSubscriptionFloatInput = {
@@ -257,6 +289,14 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
+export type ModelSubscriptionActuationMinFilterInput = {
+  Min?: ModelSubscriptionFloatInput | null,
+  Setup?: ModelSubscriptionStringInput | null,
+  Variable?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionActuationMinFilterInput | null > | null,
+  or?: Array< ModelSubscriptionActuationMinFilterInput | null > | null,
+};
+
 export type ModelSubscriptionRACSensorsFilterInput = {
   CO2?: ModelSubscriptionFloatInput | null,
   MAC?: ModelSubscriptionIntInput | null,
@@ -283,55 +323,97 @@ export type ModelSubscriptionIntInput = {
   notIn?: Array< number | null > | null,
 };
 
-export type CreateActuationMutationVariables = {
-  input: CreateActuationInput,
-  condition?: ModelActuationConditionInput | null,
+export type CreateActuationMaxMutationVariables = {
+  input: CreateActuationMaxInput,
+  condition?: ModelActuationMaxConditionInput | null,
 };
 
-export type CreateActuationMutation = {
-  createActuation?:  {
-    __typename: "Actuation",
+export type CreateActuationMaxMutation = {
+  createActuationMax?:  {
+    __typename: "ActuationMax",
     Max?: number | null,
-    Min?: number | null,
     Setup: string,
     Variable: string,
-    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type UpdateActuationMutationVariables = {
-  input: UpdateActuationInput,
-  condition?: ModelActuationConditionInput | null,
+export type UpdateActuationMaxMutationVariables = {
+  input: UpdateActuationMaxInput,
+  condition?: ModelActuationMaxConditionInput | null,
 };
 
-export type UpdateActuationMutation = {
-  updateActuation?:  {
-    __typename: "Actuation",
+export type UpdateActuationMaxMutation = {
+  updateActuationMax?:  {
+    __typename: "ActuationMax",
     Max?: number | null,
-    Min?: number | null,
     Setup: string,
     Variable: string,
-    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type DeleteActuationMutationVariables = {
-  input: DeleteActuationInput,
-  condition?: ModelActuationConditionInput | null,
+export type DeleteActuationMaxMutationVariables = {
+  input: DeleteActuationMaxInput,
+  condition?: ModelActuationMaxConditionInput | null,
 };
 
-export type DeleteActuationMutation = {
-  deleteActuation?:  {
-    __typename: "Actuation",
+export type DeleteActuationMaxMutation = {
+  deleteActuationMax?:  {
+    __typename: "ActuationMax",
     Max?: number | null,
+    Setup: string,
+    Variable: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateActuationMinMutationVariables = {
+  input: CreateActuationMinInput,
+  condition?: ModelActuationMinConditionInput | null,
+};
+
+export type CreateActuationMinMutation = {
+  createActuationMin?:  {
+    __typename: "ActuationMin",
     Min?: number | null,
     Setup: string,
     Variable: string,
-    id: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateActuationMinMutationVariables = {
+  input: UpdateActuationMinInput,
+  condition?: ModelActuationMinConditionInput | null,
+};
+
+export type UpdateActuationMinMutation = {
+  updateActuationMin?:  {
+    __typename: "ActuationMin",
+    Min?: number | null,
+    Setup: string,
+    Variable: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteActuationMinMutationVariables = {
+  input: DeleteActuationMinInput,
+  condition?: ModelActuationMinConditionInput | null,
+};
+
+export type DeleteActuationMinMutation = {
+  deleteActuationMin?:  {
+    __typename: "ActuationMin",
+    Min?: number | null,
+    Setup: string,
+    Variable: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -354,9 +436,6 @@ export type CreateRACSensorsMutation = {
     pH?: number | null,
     temperature?: number | null,
     timestamp: string,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -377,9 +456,6 @@ export type UpdateRACSensorsMutation = {
     pH?: number | null,
     temperature?: number | null,
     timestamp: string,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -400,45 +476,82 @@ export type DeleteRACSensorsMutation = {
     pH?: number | null,
     temperature?: number | null,
     timestamp: string,
-    id: string,
+  } | null,
+};
+
+export type GetActuationMaxQueryVariables = {
+  Setup: string,
+  Variable: string,
+};
+
+export type GetActuationMaxQuery = {
+  getActuationMax?:  {
+    __typename: "ActuationMax",
+    Max?: number | null,
+    Setup: string,
+    Variable: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type GetActuationQueryVariables = {
-  id: string,
+export type ListActuationMaxesQueryVariables = {
+  Setup?: string | null,
+  Variable?: ModelStringKeyConditionInput | null,
+  filter?: ModelActuationMaxFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
-export type GetActuationQuery = {
-  getActuation?:  {
-    __typename: "Actuation",
-    Max?: number | null,
+export type ListActuationMaxesQuery = {
+  listActuationMaxes?:  {
+    __typename: "ModelActuationMaxConnection",
+    items:  Array< {
+      __typename: "ActuationMax",
+      Max?: number | null,
+      Setup: string,
+      Variable: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetActuationMinQueryVariables = {
+  Setup: string,
+  Variable: string,
+};
+
+export type GetActuationMinQuery = {
+  getActuationMin?:  {
+    __typename: "ActuationMin",
     Min?: number | null,
     Setup: string,
     Variable: string,
-    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type ListActuationsQueryVariables = {
-  filter?: ModelActuationFilterInput | null,
+export type ListActuationMinsQueryVariables = {
+  Setup?: string | null,
+  Variable?: ModelStringKeyConditionInput | null,
+  filter?: ModelActuationMinFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
-export type ListActuationsQuery = {
-  listActuations?:  {
-    __typename: "ModelActuationConnection",
+export type ListActuationMinsQuery = {
+  listActuationMins?:  {
+    __typename: "ModelActuationMinConnection",
     items:  Array< {
-      __typename: "Actuation",
-      Max?: number | null,
+      __typename: "ActuationMin",
       Min?: number | null,
       Setup: string,
       Variable: string,
-      id: string,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -447,7 +560,8 @@ export type ListActuationsQuery = {
 };
 
 export type GetRACSensorsQueryVariables = {
-  id: string,
+  MAC: number,
+  timestamp: string,
 };
 
 export type GetRACSensorsQuery = {
@@ -462,16 +576,16 @@ export type GetRACSensorsQuery = {
     pH?: number | null,
     temperature?: number | null,
     timestamp: string,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type ListRACSensorsQueryVariables = {
+  MAC?: number | null,
+  timestamp?: ModelStringKeyConditionInput | null,
   filter?: ModelRACSensorsFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListRACSensorsQuery = {
@@ -488,91 +602,96 @@ export type ListRACSensorsQuery = {
       pH?: number | null,
       temperature?: number | null,
       timestamp: string,
-      id: string,
-      createdAt: string,
-      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   } | null,
 };
 
-export type GetSenesorsDataByMACQueryVariables = {
-  MAC: number,
-  timestamp?: ModelStringKeyConditionInput | null,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelRACSensorsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
+export type OnCreateActuationMaxSubscriptionVariables = {
+  filter?: ModelSubscriptionActuationMaxFilterInput | null,
 };
 
-export type GetSenesorsDataByMACQuery = {
-  getSenesorsDataByMAC?:  {
-    __typename: "ModelRACSensorsConnection",
-    items:  Array< {
-      __typename: "RACSensors",
-      CO2?: number | null,
-      MAC: number,
-      O2?: number | null,
-      atm_temperature?: number | null,
-      conductivity?: number | null,
-      humidity?: number | null,
-      pH?: number | null,
-      temperature?: number | null,
-      timestamp: string,
-      id: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type OnCreateActuationSubscriptionVariables = {
-  filter?: ModelSubscriptionActuationFilterInput | null,
-};
-
-export type OnCreateActuationSubscription = {
-  onCreateActuation?:  {
-    __typename: "Actuation",
+export type OnCreateActuationMaxSubscription = {
+  onCreateActuationMax?:  {
+    __typename: "ActuationMax",
     Max?: number | null,
-    Min?: number | null,
     Setup: string,
     Variable: string,
-    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnUpdateActuationSubscriptionVariables = {
-  filter?: ModelSubscriptionActuationFilterInput | null,
+export type OnUpdateActuationMaxSubscriptionVariables = {
+  filter?: ModelSubscriptionActuationMaxFilterInput | null,
 };
 
-export type OnUpdateActuationSubscription = {
-  onUpdateActuation?:  {
-    __typename: "Actuation",
+export type OnUpdateActuationMaxSubscription = {
+  onUpdateActuationMax?:  {
+    __typename: "ActuationMax",
     Max?: number | null,
-    Min?: number | null,
     Setup: string,
     Variable: string,
-    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnDeleteActuationSubscriptionVariables = {
-  filter?: ModelSubscriptionActuationFilterInput | null,
+export type OnDeleteActuationMaxSubscriptionVariables = {
+  filter?: ModelSubscriptionActuationMaxFilterInput | null,
 };
 
-export type OnDeleteActuationSubscription = {
-  onDeleteActuation?:  {
-    __typename: "Actuation",
+export type OnDeleteActuationMaxSubscription = {
+  onDeleteActuationMax?:  {
+    __typename: "ActuationMax",
     Max?: number | null,
+    Setup: string,
+    Variable: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateActuationMinSubscriptionVariables = {
+  filter?: ModelSubscriptionActuationMinFilterInput | null,
+};
+
+export type OnCreateActuationMinSubscription = {
+  onCreateActuationMin?:  {
+    __typename: "ActuationMin",
     Min?: number | null,
     Setup: string,
     Variable: string,
-    id: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateActuationMinSubscriptionVariables = {
+  filter?: ModelSubscriptionActuationMinFilterInput | null,
+};
+
+export type OnUpdateActuationMinSubscription = {
+  onUpdateActuationMin?:  {
+    __typename: "ActuationMin",
+    Min?: number | null,
+    Setup: string,
+    Variable: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteActuationMinSubscriptionVariables = {
+  filter?: ModelSubscriptionActuationMinFilterInput | null,
+};
+
+export type OnDeleteActuationMinSubscription = {
+  onDeleteActuationMin?:  {
+    __typename: "ActuationMin",
+    Min?: number | null,
+    Setup: string,
+    Variable: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -594,9 +713,6 @@ export type OnCreateRACSensorsSubscription = {
     pH?: number | null,
     temperature?: number | null,
     timestamp: string,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -616,9 +732,6 @@ export type OnUpdateRACSensorsSubscription = {
     pH?: number | null,
     temperature?: number | null,
     timestamp: string,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -638,8 +751,5 @@ export type OnDeleteRACSensorsSubscription = {
     pH?: number | null,
     temperature?: number | null,
     timestamp: string,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };

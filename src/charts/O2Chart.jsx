@@ -52,11 +52,11 @@ const baselineStyleExtraLite = {
   },
 };
 
-const HumidityChar = ({ series }) => {
+const O2Chart = ({ series }) => {
   return (
     <Resizable>
       <ChartContainer
-        title="Humidity"
+        title="O2"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
           axis: {
@@ -75,7 +75,7 @@ const HumidityChar = ({ series }) => {
       >
         <ChartRow height="150">
           <YAxis
-            id="humidity"
+            id="o2"
             style={{
               values: {
                 fill: '#fff',
@@ -95,33 +95,33 @@ const HumidityChar = ({ series }) => {
             format=",.2f"
           />
           <Charts>
-            <LineChart axis="humidity" series={series} style={style} />
+            <LineChart axis="o2" series={series} style={style} />
             <Baseline
-              axis="humidity"
+              axis="o2"
               style={baselineStyleLite}
               value={series.max()}
               label="Max"
               position="right"
             />
             <Baseline
-              axis="humidity"
+              axis="o2"
               style={baselineStyleLite}
               value={series.min()}
               label="Min"
               position="right"
             />
             <Baseline
-              axis="humidity"
+              axis="o2"
               style={baselineStyleExtraLite}
               value={series.avg() - series.stdev()}
             />
             <Baseline
-              axis="humidity"
+              axis="o2"
               style={baselineStyleExtraLite}
               value={series.avg() + series.stdev()}
             />
             <Baseline
-              axis="humidity"
+              axis="o2"
               style={baselineStyle}
               value={series.avg()}
               label="Avg"
@@ -134,4 +134,4 @@ const HumidityChar = ({ series }) => {
   );
 };
 
-export default HumidityChar;
+export default O2Chart;

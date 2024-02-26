@@ -8,62 +8,107 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
-export const createActuation = /* GraphQL */ `mutation CreateActuation(
-  $input: CreateActuationInput!
-  $condition: ModelActuationConditionInput
+export const createActuationMax = /* GraphQL */ `mutation CreateActuationMax(
+  $input: CreateActuationMaxInput!
+  $condition: ModelActuationMaxConditionInput
 ) {
-  createActuation(input: $input, condition: $condition) {
+  createActuationMax(input: $input, condition: $condition) {
     Max
-    Min
     Setup
     Variable
-    id
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateActuationMutationVariables,
-  APITypes.CreateActuationMutation
+  APITypes.CreateActuationMaxMutationVariables,
+  APITypes.CreateActuationMaxMutation
 >;
-export const updateActuation = /* GraphQL */ `mutation UpdateActuation(
-  $input: UpdateActuationInput!
-  $condition: ModelActuationConditionInput
+export const updateActuationMax = /* GraphQL */ `mutation UpdateActuationMax(
+  $input: UpdateActuationMaxInput!
+  $condition: ModelActuationMaxConditionInput
 ) {
-  updateActuation(input: $input, condition: $condition) {
+  updateActuationMax(input: $input, condition: $condition) {
     Max
-    Min
     Setup
     Variable
-    id
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateActuationMutationVariables,
-  APITypes.UpdateActuationMutation
+  APITypes.UpdateActuationMaxMutationVariables,
+  APITypes.UpdateActuationMaxMutation
 >;
-export const deleteActuation = /* GraphQL */ `mutation DeleteActuation(
-  $input: DeleteActuationInput!
-  $condition: ModelActuationConditionInput
+export const deleteActuationMax = /* GraphQL */ `mutation DeleteActuationMax(
+  $input: DeleteActuationMaxInput!
+  $condition: ModelActuationMaxConditionInput
 ) {
-  deleteActuation(input: $input, condition: $condition) {
+  deleteActuationMax(input: $input, condition: $condition) {
     Max
-    Min
     Setup
     Variable
-    id
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteActuationMutationVariables,
-  APITypes.DeleteActuationMutation
+  APITypes.DeleteActuationMaxMutationVariables,
+  APITypes.DeleteActuationMaxMutation
+>;
+export const createActuationMin = /* GraphQL */ `mutation CreateActuationMin(
+  $input: CreateActuationMinInput!
+  $condition: ModelActuationMinConditionInput
+) {
+  createActuationMin(input: $input, condition: $condition) {
+    Min
+    Setup
+    Variable
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateActuationMinMutationVariables,
+  APITypes.CreateActuationMinMutation
+>;
+export const updateActuationMin = /* GraphQL */ `mutation UpdateActuationMin(
+  $input: UpdateActuationMinInput!
+  $condition: ModelActuationMinConditionInput
+) {
+  updateActuationMin(input: $input, condition: $condition) {
+    Min
+    Setup
+    Variable
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateActuationMinMutationVariables,
+  APITypes.UpdateActuationMinMutation
+>;
+export const deleteActuationMin = /* GraphQL */ `mutation DeleteActuationMin(
+  $input: DeleteActuationMinInput!
+  $condition: ModelActuationMinConditionInput
+) {
+  deleteActuationMin(input: $input, condition: $condition) {
+    Min
+    Setup
+    Variable
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteActuationMinMutationVariables,
+  APITypes.DeleteActuationMinMutation
 >;
 export const createRACSensors = /* GraphQL */ `mutation CreateRACSensors(
   $input: CreateRACSensorsInput!
@@ -79,9 +124,6 @@ export const createRACSensors = /* GraphQL */ `mutation CreateRACSensors(
     pH
     temperature
     timestamp
-    id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -103,9 +145,6 @@ export const updateRACSensors = /* GraphQL */ `mutation UpdateRACSensors(
     pH
     temperature
     timestamp
-    id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -127,9 +166,6 @@ export const deleteRACSensors = /* GraphQL */ `mutation DeleteRACSensors(
     pH
     temperature
     timestamp
-    id
-    createdAt
-    updatedAt
     __typename
   }
 }

@@ -8,34 +8,40 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const getActuation = /* GraphQL */ `query GetActuation($id: ID!) {
-  getActuation(id: $id) {
+export const getActuationMax = /* GraphQL */ `query GetActuationMax($Setup: String!, $Variable: String!) {
+  getActuationMax(Setup: $Setup, Variable: $Variable) {
     Max
-    Min
     Setup
     Variable
-    id
     createdAt
     updatedAt
     __typename
   }
 }
 ` as GeneratedQuery<
-  APITypes.GetActuationQueryVariables,
-  APITypes.GetActuationQuery
+  APITypes.GetActuationMaxQueryVariables,
+  APITypes.GetActuationMaxQuery
 >;
-export const listActuations = /* GraphQL */ `query ListActuations(
-  $filter: ModelActuationFilterInput
+export const listActuationMaxes = /* GraphQL */ `query ListActuationMaxes(
+  $Setup: String
+  $Variable: ModelStringKeyConditionInput
+  $filter: ModelActuationMaxFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listActuations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listActuationMaxes(
+    Setup: $Setup
+    Variable: $Variable
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
       Max
-      Min
       Setup
       Variable
-      id
       createdAt
       updatedAt
       __typename
@@ -45,11 +51,57 @@ export const listActuations = /* GraphQL */ `query ListActuations(
   }
 }
 ` as GeneratedQuery<
-  APITypes.ListActuationsQueryVariables,
-  APITypes.ListActuationsQuery
+  APITypes.ListActuationMaxesQueryVariables,
+  APITypes.ListActuationMaxesQuery
 >;
-export const getRACSensors = /* GraphQL */ `query GetRACSensors($id: ID!) {
-  getRACSensors(id: $id) {
+export const getActuationMin = /* GraphQL */ `query GetActuationMin($Setup: String!, $Variable: String!) {
+  getActuationMin(Setup: $Setup, Variable: $Variable) {
+    Min
+    Setup
+    Variable
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetActuationMinQueryVariables,
+  APITypes.GetActuationMinQuery
+>;
+export const listActuationMins = /* GraphQL */ `query ListActuationMins(
+  $Setup: String
+  $Variable: ModelStringKeyConditionInput
+  $filter: ModelActuationMinFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listActuationMins(
+    Setup: $Setup
+    Variable: $Variable
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      Min
+      Setup
+      Variable
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListActuationMinsQueryVariables,
+  APITypes.ListActuationMinsQuery
+>;
+export const getRACSensors = /* GraphQL */ `query GetRACSensors($MAC: Int!, $timestamp: String!) {
+  getRACSensors(MAC: $MAC, timestamp: $timestamp) {
     CO2
     MAC
     O2
@@ -59,9 +111,6 @@ export const getRACSensors = /* GraphQL */ `query GetRACSensors($id: ID!) {
     pH
     temperature
     timestamp
-    id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -70,49 +119,20 @@ export const getRACSensors = /* GraphQL */ `query GetRACSensors($id: ID!) {
   APITypes.GetRACSensorsQuery
 >;
 export const listRACSensors = /* GraphQL */ `query ListRACSensors(
-  $filter: ModelRACSensorsFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listRACSensors(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      CO2
-      MAC
-      O2
-      atm_temperature
-      conductivity
-      humidity
-      pH
-      temperature
-      timestamp
-      id
-      createdAt
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListRACSensorsQueryVariables,
-  APITypes.ListRACSensorsQuery
->;
-export const getSenesorsDataByMAC = /* GraphQL */ `query GetSenesorsDataByMAC(
-  $MAC: Int!
+  $MAC: Int
   $timestamp: ModelStringKeyConditionInput
-  $sortDirection: ModelSortDirection
   $filter: ModelRACSensorsFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  getSenesorsDataByMAC(
+  listRACSensors(
     MAC: $MAC
     timestamp: $timestamp
-    sortDirection: $sortDirection
     filter: $filter
     limit: $limit
     nextToken: $nextToken
+    sortDirection: $sortDirection
   ) {
     items {
       CO2
@@ -124,9 +144,6 @@ export const getSenesorsDataByMAC = /* GraphQL */ `query GetSenesorsDataByMAC(
       pH
       temperature
       timestamp
-      id
-      createdAt
-      updatedAt
       __typename
     }
     nextToken
@@ -134,6 +151,6 @@ export const getSenesorsDataByMAC = /* GraphQL */ `query GetSenesorsDataByMAC(
   }
 }
 ` as GeneratedQuery<
-  APITypes.GetSenesorsDataByMACQueryVariables,
-  APITypes.GetSenesorsDataByMACQuery
+  APITypes.ListRACSensorsQueryVariables,
+  APITypes.ListRACSensorsQuery
 >;

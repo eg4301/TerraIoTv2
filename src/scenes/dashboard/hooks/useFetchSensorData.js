@@ -5,9 +5,16 @@ export const useFetchSensorData = () => {
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const atmTemperatureSeries =
+    sensorService.generateAtmTemperatureSeries(records);
+  const co2Series = sensorService.generateCO2Series(records);
+  const o2Series = sensorService.generateO2Series(records);
+  const humiditySeries = sensorService.generateHumiditySeries(records);
+  const waterSeries = sensorService.generateWaterSeries(records);
+  const conductivitySeries = sensorService.generateConductivitySeries(records);
+  const pHSeries = sensorService.generatePHSeries(records);
 
   useEffect(() => {
-    console.log('jjjjjjjj');
     setLoading(true);
     sensorService
       .getSensorsData()
@@ -28,5 +35,12 @@ export const useFetchSensorData = () => {
     loading,
     records,
     error,
+    atmTemperatureSeries,
+    co2Series,
+    o2Series,
+    humiditySeries,
+    waterSeries,
+    conductivitySeries,
+    pHSeries,
   };
 };

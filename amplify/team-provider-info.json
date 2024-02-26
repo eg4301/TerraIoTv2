@@ -12,11 +12,11 @@
       "AmplifyAppId": "d23v5drv5m4u3g"
     },
     "categories": {
-      "api": {
-        "TerraIoTV2": {}
-      },
       "auth": {
         "terraiotv26eb51bd26eb51bd2": {}
+      },
+      "api": {
+        "TerraIoTV2": {}
       }
     }
   }
