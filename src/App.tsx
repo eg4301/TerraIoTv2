@@ -28,14 +28,15 @@ import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import Dashboard from './scenes/dashboard';
-import Air_temp from './scenes/air_temp';
+import AirTemp from './scenes/air_temp';
 import CO2 from './scenes/co2';
 import O2 from './scenes/o2';
 import Humidity from './scenes/humidity';
-import Water_temp from './scenes/water_temp';
+import WaterTemp from './scenes/water_temp';
 import Conductivity from './scenes/conductivity';
 import Calendar from './scenes/calendar';
 import PhChartPage from './scenes/ph';
+import GoogleCalendar from './scenes/google_calendar';
 
 Amplify.configure(config);
 
@@ -187,15 +188,15 @@ function App({ signOut, user }) {
               </React.Fragment>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/air_temp" element={<Air_temp />} />
+                <Route path="/air_temp" element={<AirTemp />} />
                 <Route path="/co2" element={<CO2 />} />
                 <Route path="/o2" element={<O2 />} />
                 <Route path="/humidity" element={<Humidity />} />
-                <Route path="/water_temp" element={<Water_temp />} />
+                <Route path="/water_temp" element={<WaterTemp />} />
                 <Route path="/conductivity" element={<Conductivity />} />
                 <Route path="/calendar" element={<Calendar />} />
                 <Route path="/pH" element={<PhChartPage />} />
-                {/* <Route path="/google_calendar" element={<Google_Calendar />} /> */}
+                <Route path="/google_calendar" element={<GoogleCalendar />} />
               </Routes>
             </main>
           </div>

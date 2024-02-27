@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Box, CircularProgress, useTheme } from '@mui/material';
 import Header from '../../components/Header';
 import { useFetchSensorData } from '../dashboard/hooks/useFetchSensorData';
@@ -29,7 +30,9 @@ const O2 = () => {
     <Box m="20px">
       <Header title="O2" subtitle="Ambient Parameter" />
       <Box height="75vh">
-        <O2Chart series={o2Series} height="200" />
+        <Box backgroundColor={colors.primary[450]}>
+          <O2Chart series={o2Series} height="300" />
+        </Box>
       </Box>
     </Box>
   );

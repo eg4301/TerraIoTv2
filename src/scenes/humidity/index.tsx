@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Box, CircularProgress, useTheme } from '@mui/material';
 import Header from '../../components/Header';
 import { useFetchSensorData } from '../dashboard/hooks/useFetchSensorData';
@@ -29,7 +31,9 @@ const Humidity = () => {
     <Box m="20px">
       <Header title="Humidity" subtitle="Ambient Parameter" />
       <Box height="75vh">
-        <HumidityChart series={humiditySeries} height="200" />{' '}
+        <Box backgroundColor={colors.primary[450]}>
+          <HumidityChart series={humiditySeries} height="300" />
+        </Box>
       </Box>
     </Box>
   );

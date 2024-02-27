@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Box, CircularProgress, useTheme } from '@mui/material';
 import Header from '../../components/Header';
 import { useFetchSensorData } from '../dashboard/hooks/useFetchSensorData';
@@ -29,7 +31,9 @@ const Water_temp = () => {
     <Box m="20px">
       <Header title="Water Temperature" subtitle="Water Parameter" />
       <Box height="75vh">
-        <WaterTempChart series={waterSeries} height="200" />
+        <Box backgroundColor={colors.primary[450]}>
+          <WaterTempChart series={waterSeries} height="300" />
+        </Box>
       </Box>
     </Box>
   );

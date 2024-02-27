@@ -69,7 +69,7 @@ const Dashboard = () => {
       <Grid container spacing={2}>
         {/* ROW 2 */}
         <Grid item xs={12} md={6}>
-          <Box backgroundColor={colors.primary[400]}>
+          <Box backgroundColor={colors.primary[450]}>
             <Box
               p="7px 30px"
               display="flex "
@@ -80,7 +80,7 @@ const Dashboard = () => {
                 <Typography
                   variant="h3"
                   fontWeight="600"
-                  color={colors.grey[100]}
+                  color={colors.grey[150]}
                 >
                   Air Temperature
                 </Typography>
@@ -102,7 +102,7 @@ const Dashboard = () => {
 
         {/* ROW 2 */}
         <Grid item xs={12} md={6}>
-          <Box backgroundColor={colors.primary[400]}>
+          <Box backgroundColor={colors.primary[450]}>
             <Box
               p="7px 30px"
               display="flex "
@@ -113,7 +113,7 @@ const Dashboard = () => {
                 <Typography
                   variant="h3"
                   fontWeight="600"
-                  color={colors.grey[100]}
+                  color={colors.grey[150]}
                 >
                   CO2
                 </Typography>
@@ -136,7 +136,7 @@ const Dashboard = () => {
 
         {/* ROW 3 */}
         <Grid item xs={12} md={6}>
-          <Box backgroundColor={colors.primary[400]}>
+          <Box backgroundColor={colors.primary[450]}>
             <Box
               p="7px 30px"
               display="flex "
@@ -147,7 +147,7 @@ const Dashboard = () => {
                 <Typography
                   variant="h3"
                   fontWeight="600"
-                  color={colors.grey[100]}
+                  color={colors.grey[150]}
                 >
                   O2
                 </Typography>
@@ -170,7 +170,7 @@ const Dashboard = () => {
 
         {/* ROW 3 */}
         <Grid item xs={12} md={6}>
-          <Box backgroundColor={colors.primary[400]}>
+          <Box backgroundColor={colors.primary[450]}>
             <Box
               p="7px 30px"
               display="flex "
@@ -181,7 +181,7 @@ const Dashboard = () => {
                 <Typography
                   variant="h3"
                   fontWeight="600"
-                  color={colors.grey[100]}
+                  color={colors.grey[150]}
                 >
                   Humidity
                 </Typography>
@@ -204,7 +204,7 @@ const Dashboard = () => {
 
         {/* ROW 4 */}
         <Grid item xs={12} md={6}>
-          <Box backgroundColor={colors.primary[400]}>
+          <Box backgroundColor={colors.primary[450]}>
             <Box
               p="7px 30px"
               display="flex "
@@ -215,7 +215,7 @@ const Dashboard = () => {
                 <Typography
                   variant="h3"
                   fontWeight="600"
-                  color={colors.grey[100]}
+                  color={colors.grey[150]}
                 >
                   Water Temperature
                 </Typography>
@@ -237,7 +237,7 @@ const Dashboard = () => {
 
         {/* ROW 4 */}
         <Grid item xs={12} md={6}>
-          <Box backgroundColor={colors.primary[400]}>
+          <Box backgroundColor={colors.primary[450]}>
             <Box
               p="7px 30px"
               display="flex "
@@ -248,7 +248,7 @@ const Dashboard = () => {
                 <Typography
                   variant="h3"
                   fontWeight="600"
-                  color={colors.grey[100]}
+                  color={colors.grey[150]}
                 >
                   Conductivity
                 </Typography>
@@ -271,7 +271,7 @@ const Dashboard = () => {
 
         {/* ROW 4 */}
         <Grid item xs={12} md={6}>
-          <Box backgroundColor={colors.primary[400]}>
+          <Box backgroundColor={colors.primary[450]}>
             <Box
               p="7px 30px"
               display="flex "
@@ -282,7 +282,7 @@ const Dashboard = () => {
                 <Typography
                   variant="h3"
                   fontWeight="600"
-                  color={colors.grey[100]}
+                  color={colors.grey[150]}
                 >
                   pH
                 </Typography>
