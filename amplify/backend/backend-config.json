@@ -24,7 +24,7 @@
     }
   },
   "auth": {
-    "terraiotv26eb51bd26eb51bd2": {
+    "terraiotv24865598748655987": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -47,6 +47,13 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "storage": {
+    "s3b06147cf": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }

@@ -1,0 +1,15 @@
+{
+  "resourceName": "s3b06147cf",
+  "policyUUID": "b06147cf",
+  "bucketName": "terraiotbucket",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

@@ -1,6 +1,6 @@
 import './App.css';
 import { Amplify } from 'aws-amplify';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import config from './amplifyconfiguration.json';
 import { ColorModeContext, useMode } from './theme';
 import {
@@ -16,13 +16,13 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from './scenes/global/Sidebar';
 import Topbar from './scenes/global/Topbar';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import NotificationsOffOutlinedIcon from '@mui/icons-material/NotificationsOffOutlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+// import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+// import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { withAuthenticator } from '@aws-amplify/ui-react';
@@ -37,10 +37,16 @@ import Conductivity from './scenes/conductivity';
 import Calendar from './scenes/calendar';
 import PhChartPage from './scenes/ph';
 import GoogleCalendar from './scenes/google_calendar';
+import { UserProfile } from './scenes/profile';
+import { fetchUserAttributes } from 'aws-amplify/auth';
+import { getUrl } from 'aws-amplify/storage';
 
 Amplify.configure(config);
 
 function App({ signOut, user }) {
+  const [avatarSrc, setAvatarSrc] = useState('');
+
+  const navigate = useNavigate();
   const [theme, colorMode] = useMode();
   const [clicked, setClicked] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -52,6 +58,22 @@ function App({ signOut, user }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    const getUserAttributes = async () => {
+      const attributes = await fetchUserAttributes();
+      if (attributes.picture) {
+        const url = await getUrl({
+          key: attributes.picture,
+          options: {
+            expiresIn: 3600,
+          },
+        });
+        setAvatarSrc(url.url.toString());
+      }
+    };
+    getUserAttributes();
+  }, []);
 
   return (
     <div className="App">
@@ -76,7 +98,7 @@ function App({ signOut, user }) {
                 </IconButton>
               </Tooltip>
 
-              <Tooltip
+              {/* <Tooltip
                 title="Theme Toggling"
                 style={{ position: 'absolute', top: '27px', right: '270px' }}
                 arrow
@@ -88,7 +110,7 @@ function App({ signOut, user }) {
                     <LightModeOutlinedIcon />
                   )}
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
               <React.Fragment>
                 <Box
                   sx={{
@@ -115,7 +137,7 @@ function App({ signOut, user }) {
                         alt="profile-user"
                         width="40px"
                         height="40px"
-                        src={`../../assets/Avatar.png`}
+                        src={avatarSrc || `../../assets/Avatar.png`}
                         style={{ cursor: 'pointer', borderRadius: '50%' }}
                       />
                       <Box width="110px">
@@ -162,7 +184,12 @@ function App({ signOut, user }) {
                   transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                   anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem
+                    onClick={() => {
+                      handleClose();
+                      navigate('/user-profile');
+                    }}
+                  >
                     <Avatar /> Profile
                   </MenuItem>
                   <Divider />
@@ -197,6 +224,7 @@ function App({ signOut, user }) {
                 <Route path="/calendar" element={<Calendar />} />
                 <Route path="/pH" element={<PhChartPage />} />
                 <Route path="/google_calendar" element={<GoogleCalendar />} />
+                <Route path="/user-profile" element={<UserProfile />} />
               </Routes>
             </main>
           </div>

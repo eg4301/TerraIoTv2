@@ -53,7 +53,7 @@ const baselineStyleExtraLite = {
   },
 };
 
-const HumidityChar = ({ series, height = '150' }) => {
+const HumidityChar = ({ series, height = '150', label }) => {
   const [timerange, setTimeRange] = useState(series.range());
 
   const handleTimeRange = (timerange) => {
@@ -86,8 +86,12 @@ const HumidityChar = ({ series, height = '150' }) => {
         <ChartRow height={height}>
           <YAxis
             id="humidity"
+            label={label}
             style={{
               values: {
+                fill: '#fff',
+              },
+              label: {
                 fill: '#fff',
               },
               axis: {

@@ -53,7 +53,7 @@ const baselineStyleExtraLite = {
   },
 };
 
-const WaterTempChart = ({ series, height = '150' }) => {
+const WaterTempChart = ({ series, height = '150', label }) => {
   const [timerange, setTimeRange] = useState(series.range());
 
   const handleTimeRange = (timerange) => {
@@ -84,9 +84,13 @@ const WaterTempChart = ({ series, height = '150' }) => {
       >
         <ChartRow height={height}>
           <YAxis
+            label={label}
             id="waterTempChart"
             style={{
               values: {
+                fill: '#fff',
+              },
+              label: {
                 fill: '#fff',
               },
               axis: {

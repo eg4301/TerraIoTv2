@@ -32,7 +32,7 @@ const PhChartPage = () => {
       <Header title="PH" subtitle="PH Parameter" />
       <Box height="75vh">
         <Box backgroundColor={colors.primary[450]}>
-          <PHChart series={pHSeries} height="300" />
+          <PHChart series={pHSeries} height="300" label="PH" />
         </Box>
       </Box>
     </Box>

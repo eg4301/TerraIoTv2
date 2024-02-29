@@ -53,7 +53,7 @@ const baselineStyleExtraLite = {
   },
 };
 
-const PHChart = ({ series, height = '150' }) => {
+const PHChart = ({ series, height = '150', label }) => {
   const [timerange, setTimeRange] = useState(series.range());
 
   const handleTimeRange = (timerange) => {
@@ -86,8 +86,12 @@ const PHChart = ({ series, height = '150' }) => {
         <ChartRow height={height}>
           <YAxis
             id="ph"
+            label={label}
             style={{
               values: {
+                fill: '#fff',
+              },
+              label: {
                 fill: '#fff',
               },
               axis: {

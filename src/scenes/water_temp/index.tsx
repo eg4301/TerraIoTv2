@@ -32,7 +32,11 @@ const Water_temp = () => {
       <Header title="Water Temperature" subtitle="Water Parameter" />
       <Box height="75vh">
         <Box backgroundColor={colors.primary[450]}>
-          <WaterTempChart series={waterSeries} height="300" />
+          <WaterTempChart
+            series={waterSeries}
+            height="300"
+            label="Water Temperature"
+          />
         </Box>
       </Box>
     </Box>

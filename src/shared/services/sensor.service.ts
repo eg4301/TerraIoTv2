@@ -5,15 +5,34 @@ import { TimeSeries } from 'pondjs';
 
 class SernsorService {
   async getSensorsData() {
-    const response = await execute(
+    const response1 = await execute(
       {
         statement: listRACSensors,
         name: 'listRACSensors',
       },
-      { limit: 40 }
+      { MAC: 1, limit: 1000, sortDirection: 'DESC' }
+    );
+    const response2 = await execute(
+      {
+        statement: listRACSensors,
+        name: 'listRACSensors',
+      },
+      { MAC: 2, limit: 1000, sortDirection: 'DESC' }
     );
 
-    return response.items;
+    let items = [];
+
+    if (response1.items?.length) {
+      items.push(...response1.items);
+    }
+    if (response2.items?.length) {
+      items.push(...response2.items);
+    }
+
+    return items.sort(
+      (a, b) =>
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    );
   }
 
   generateAtmTemperatureSeries(data: RACSensors[]) {

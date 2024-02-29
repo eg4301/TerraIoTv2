@@ -32,7 +32,11 @@ const Humidity = () => {
       <Header title="Humidity" subtitle="Ambient Parameter" />
       <Box height="75vh">
         <Box backgroundColor={colors.primary[450]}>
-          <HumidityChart series={humiditySeries} height="300" />
+          <HumidityChart
+            series={humiditySeries}
+            height="300"
+            label="Humidity"
+          />
         </Box>
       </Box>
     </Box>

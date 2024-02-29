@@ -94,7 +94,10 @@ const Dashboard = () => {
               </Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
-              <AirTempChart atmTemperatureSeries={atmTemperatureSeries} />
+              <AirTempChart
+                atmTemperatureSeries={atmTemperatureSeries}
+                label="Air Temperature"
+              />
             </Box>
           </Box>
         </Grid>
@@ -128,7 +131,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
-              <CO2Chart series={co2Series} />
+              <CO2Chart series={co2Series} label="CO2" />
             </Box>
           </Box>
         </Grid>
@@ -162,7 +165,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
-              <O2Chart series={o2Series} />
+              <O2Chart series={o2Series} label="O2" />
             </Box>
           </Box>
         </Grid>
@@ -196,7 +199,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0">
-              <HumidityChart series={humiditySeries} />
+              <HumidityChart series={humiditySeries} label="Humidity" />
             </Box>
           </Box>
         </Grid>
@@ -230,7 +233,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0">
-              <WaterTempChart series={waterSeries} />
+              <WaterTempChart series={waterSeries} label="Water Temperature" />
             </Box>
           </Box>
         </Grid>
@@ -263,7 +266,10 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
-              <ConductivityChart series={conductivitySeries} />
+              <ConductivityChart
+                series={conductivitySeries}
+                label="Conductivity"
+              />
             </Box>
           </Box>
         </Grid>
@@ -297,7 +303,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="0px 0 0 0" p="4px" width="100%">
-              <PHChart series={pHSeries} />
+              <PHChart series={pHSeries} label="PH" />
             </Box>
           </Box>
         </Grid>

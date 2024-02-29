@@ -53,7 +53,7 @@ const baselineStyleExtraLite = {
   },
 };
 
-const O2Chart = ({ series, height = '150' }) => {
+const O2Chart = ({ series, height = '150', label }) => {
   const [timerange, setTimeRange] = useState(series.range());
 
   const handleTimeRange = (timerange) => {
@@ -85,9 +85,13 @@ const O2Chart = ({ series, height = '150' }) => {
       >
         <ChartRow height={height}>
           <YAxis
+            label={label}
             id="o2"
             style={{
               values: {
+                fill: '#fff',
+              },
+              label: {
                 fill: '#fff',
               },
               axis: {

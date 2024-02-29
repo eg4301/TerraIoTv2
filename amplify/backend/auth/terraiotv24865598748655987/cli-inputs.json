@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "terraiotv26eb51bd2_identitypool_6eb51bd2",
+    "identityPoolName": "terraiotv248655987_identitypool_48655987",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "terrai6eb51bd2",
-    "userPoolName": "terraiotv26eb51bd2_userpool_6eb51bd2",
+    "resourceNameTruncated": "terrai48655987",
+    "userPoolName": "terraiotv248655987_userpool_48655987",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -26,20 +26,22 @@
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": "7",
     "userpoolClientWriteAttributes": [
+      "picture",
       "email"
     ],
     "userpoolClientReadAttributes": [
-      "email"
+      "email",
+      "picture"
     ],
-    "userpoolClientLambdaRole": "terrai6eb51bd2_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
-    "sharedId": "6eb51bd2",
-    "resourceName": "terraiotv26eb51bd26eb51bd2",
+    "userpoolClientLambdaRole": "terrai48655987_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": true,
+    "sharedId": "48655987",
+    "resourceName": "terraiotv24865598748655987",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
     "thirdPartyAuth": false,
     "userPoolGroups": false,
-    "adminQueries": true,
+    "adminQueries": false,
     "triggers": {},
     "hostedUI": false,
     "userPoolGroupList": [],

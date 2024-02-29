@@ -53,7 +53,7 @@ const baselineStyleExtraLite = {
   },
 };
 
-const AirTempChart = ({ atmTemperatureSeries, height = '150' }) => {
+const AirTempChart = ({ atmTemperatureSeries, height = '150', label }) => {
   const [timerange, setTimeRange] = useState(atmTemperatureSeries.range());
 
   const handleTimeRange = (timerange) => {
@@ -86,8 +86,12 @@ const AirTempChart = ({ atmTemperatureSeries, height = '150' }) => {
         <ChartRow height={height}>
           <YAxis
             id="airTemperature"
+            label={label}
             style={{
               values: {
+                fill: '#fff',
+              },
+              label: {
                 fill: '#fff',
               },
               axis: {

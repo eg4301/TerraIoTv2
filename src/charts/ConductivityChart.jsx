@@ -53,7 +53,7 @@ const baselineStyleExtraLite = {
   },
 };
 
-const ConductivityChart = ({ series, height = '150' }) => {
+const ConductivityChart = ({ series, height = '150', label }) => {
   const [timerange, setTimeRange] = useState(series.range());
 
   const handleTimeRange = (timerange) => {
@@ -86,6 +86,7 @@ const ConductivityChart = ({ series, height = '150' }) => {
         <ChartRow height={height}>
           <YAxis
             id="conductivity"
+            label={label}
             style={{
               values: {
                 fill: '#fff',
@@ -93,6 +94,9 @@ const ConductivityChart = ({ series, height = '150' }) => {
               axis: {
                 fill: 'none',
                 stroke: '#fff',
+              },
+              label: {
+                fill: '#fff',
               },
               ticks: {
                 fill: 'none',

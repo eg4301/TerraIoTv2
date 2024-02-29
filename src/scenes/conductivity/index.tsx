@@ -32,7 +32,11 @@ const Conductivity = () => {
       <Header title="Conductivity" subtitle="Water Parameter" />
       <Box height="75vh">
         <Box backgroundColor={colors.primary[450]}>
-          <ConductivityChart series={conductivitySeries} height="300" />
+          <ConductivityChart
+            series={conductivitySeries}
+            height="300"
+            label="Conductivity"
+          />
         </Box>
       </Box>
     </Box>
