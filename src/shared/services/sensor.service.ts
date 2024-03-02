@@ -1,9 +1,67 @@
-import { RACSensors } from '../../API';
-import { listRACSensors } from '../../graphql/queries';
+import {
+  RACSensors,
+  UpdateActuationMaxInput,
+  UpdateActuationMinInput,
+} from '../../API';
+import {
+  updateActuationMax,
+  updateActuationMin,
+} from '../../graphql/mutations';
+import {
+  listRACSensors,
+  listActuationMins,
+  listActuationMaxes,
+} from '../../graphql/queries';
 import { execute } from '../utils/api';
 import { TimeSeries } from 'pondjs';
 
 class SernsorService {
+  async getActuationMinData() {
+    const response = await execute(
+      {
+        statement: listActuationMins,
+        name: 'listActuationMins',
+      },
+      {}
+    );
+
+    return response.items || [];
+  }
+  async getActuationMaxData() {
+    const response = await execute(
+      {
+        statement: listActuationMaxes,
+        name: 'listActuationMaxes',
+      },
+      {}
+    );
+
+    return response.items || [];
+  }
+
+  async updateActuationMinRecord(input: UpdateActuationMinInput) {
+    await execute(
+      {
+        statement: updateActuationMin,
+        name: 'updateActuationMin',
+      },
+      {
+        input,
+      }
+    );
+  }
+  async updateActuationMaxRecord(input: UpdateActuationMaxInput) {
+    await execute(
+      {
+        statement: updateActuationMax,
+        name: 'updateActuationMax',
+      },
+      {
+        input,
+      }
+    );
+  }
+
   async getSensorsData() {
     const response1 = await execute(
       {

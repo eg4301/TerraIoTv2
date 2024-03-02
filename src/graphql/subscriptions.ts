@@ -15,8 +15,6 @@ export const onCreateActuationMax = /* GraphQL */ `subscription OnCreateActuatio
     Max
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -31,8 +29,6 @@ export const onUpdateActuationMax = /* GraphQL */ `subscription OnUpdateActuatio
     Max
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -47,8 +43,6 @@ export const onDeleteActuationMax = /* GraphQL */ `subscription OnDeleteActuatio
     Max
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -63,8 +57,6 @@ export const onCreateActuationMin = /* GraphQL */ `subscription OnCreateActuatio
     Min
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -79,8 +71,6 @@ export const onUpdateActuationMin = /* GraphQL */ `subscription OnUpdateActuatio
     Min
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -95,8 +85,6 @@ export const onDeleteActuationMin = /* GraphQL */ `subscription OnDeleteActuatio
     Min
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }

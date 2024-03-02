@@ -13,8 +13,6 @@ export const getActuationMax = /* GraphQL */ `query GetActuationMax($Setup: Stri
     Max
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -42,8 +40,6 @@ export const listActuationMaxes = /* GraphQL */ `query ListActuationMaxes(
       Max
       Setup
       Variable
-      createdAt
-      updatedAt
       __typename
     }
     nextToken
@@ -59,8 +55,6 @@ export const getActuationMin = /* GraphQL */ `query GetActuationMin($Setup: Stri
     Min
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -88,8 +82,6 @@ export const listActuationMins = /* GraphQL */ `query ListActuationMins(
       Min
       Setup
       Variable
-      createdAt
-      updatedAt
       __typename
     }
     nextToken

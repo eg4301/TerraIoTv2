@@ -1,10 +1,10 @@
-type ActuationMax @model @auth(rules: [{ allow: public }]) {
+type ActuationMax @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   Max: Float
   Setup: String! @primaryKey(sortKeyFields: ["Variable"])
   Variable: String!
 }
 
-type ActuationMin @model @auth(rules: [{ allow: public }]) {
+type ActuationMin @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   Min: Float
   Setup: String! @primaryKey(sortKeyFields: ["Variable"])
   Variable: String!
@@ -20,4 +20,15 @@ type RACSensors @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   pH: Float
   temperature: Float
   timestamp: String!
+}
+
+input UpdateActuationByVariableInput {
+  Min: Float!
+}
+
+type Mutation {
+  updateActuationMinByVariable(
+    input: UpdateActuationByVariableInput
+    variable: String
+  ): ActuationMin!
 }

@@ -2,6 +2,17 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
+export type UpdateActuationByVariableInput = {
+  Min: number,
+};
+
+export type ActuationMin = {
+  __typename: "ActuationMin",
+  Min?: number | null,
+  Setup: string,
+  Variable: string,
+};
+
 export type CreateActuationMaxInput = {
   Max?: number | null,
   Setup: string,
@@ -46,8 +57,6 @@ export type ActuationMax = {
   Max?: number | null,
   Setup: string,
   Variable: string,
-  createdAt: string,
-  updatedAt: string,
 };
 
 export type UpdateActuationMaxInput = {
@@ -72,15 +81,6 @@ export type ModelActuationMinConditionInput = {
   and?: Array< ModelActuationMinConditionInput | null > | null,
   or?: Array< ModelActuationMinConditionInput | null > | null,
   not?: ModelActuationMinConditionInput | null,
-};
-
-export type ActuationMin = {
-  __typename: "ActuationMin",
-  Min?: number | null,
-  Setup: string,
-  Variable: string,
-  createdAt: string,
-  updatedAt: string,
 };
 
 export type UpdateActuationMinInput = {
@@ -323,6 +323,20 @@ export type ModelSubscriptionIntInput = {
   notIn?: Array< number | null > | null,
 };
 
+export type UpdateActuationMinByVariableMutationVariables = {
+  input?: UpdateActuationByVariableInput | null,
+  variable?: string | null,
+};
+
+export type UpdateActuationMinByVariableMutation = {
+  updateActuationMinByVariable:  {
+    __typename: "ActuationMin",
+    Min?: number | null,
+    Setup: string,
+    Variable: string,
+  },
+};
+
 export type CreateActuationMaxMutationVariables = {
   input: CreateActuationMaxInput,
   condition?: ModelActuationMaxConditionInput | null,
@@ -334,8 +348,6 @@ export type CreateActuationMaxMutation = {
     Max?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -350,8 +362,6 @@ export type UpdateActuationMaxMutation = {
     Max?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -366,8 +376,6 @@ export type DeleteActuationMaxMutation = {
     Max?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -382,8 +390,6 @@ export type CreateActuationMinMutation = {
     Min?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -398,8 +404,6 @@ export type UpdateActuationMinMutation = {
     Min?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -414,8 +418,6 @@ export type DeleteActuationMinMutation = {
     Min?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -490,8 +492,6 @@ export type GetActuationMaxQuery = {
     Max?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -512,8 +512,6 @@ export type ListActuationMaxesQuery = {
       Max?: number | null,
       Setup: string,
       Variable: string,
-      createdAt: string,
-      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -530,8 +528,6 @@ export type GetActuationMinQuery = {
     Min?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -552,8 +548,6 @@ export type ListActuationMinsQuery = {
       Min?: number | null,
       Setup: string,
       Variable: string,
-      createdAt: string,
-      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -617,8 +611,6 @@ export type OnCreateActuationMaxSubscription = {
     Max?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -632,8 +624,6 @@ export type OnUpdateActuationMaxSubscription = {
     Max?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -647,8 +637,6 @@ export type OnDeleteActuationMaxSubscription = {
     Max?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -662,8 +650,6 @@ export type OnCreateActuationMinSubscription = {
     Min?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -677,8 +663,6 @@ export type OnUpdateActuationMinSubscription = {
     Min?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -692,8 +676,6 @@ export type OnDeleteActuationMinSubscription = {
     Min?: number | null,
     Setup: string,
     Variable: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 

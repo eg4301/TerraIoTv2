@@ -8,6 +8,21 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
+export const updateActuationMinByVariable = /* GraphQL */ `mutation UpdateActuationMinByVariable(
+  $input: UpdateActuationByVariableInput
+  $variable: String
+) {
+  updateActuationMinByVariable(input: $input, variable: $variable) {
+    Min
+    Setup
+    Variable
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateActuationMinByVariableMutationVariables,
+  APITypes.UpdateActuationMinByVariableMutation
+>;
 export const createActuationMax = /* GraphQL */ `mutation CreateActuationMax(
   $input: CreateActuationMaxInput!
   $condition: ModelActuationMaxConditionInput
@@ -16,8 +31,6 @@ export const createActuationMax = /* GraphQL */ `mutation CreateActuationMax(
     Max
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -33,8 +46,6 @@ export const updateActuationMax = /* GraphQL */ `mutation UpdateActuationMax(
     Max
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -50,8 +61,6 @@ export const deleteActuationMax = /* GraphQL */ `mutation DeleteActuationMax(
     Max
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -67,8 +76,6 @@ export const createActuationMin = /* GraphQL */ `mutation CreateActuationMin(
     Min
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -84,8 +91,6 @@ export const updateActuationMin = /* GraphQL */ `mutation UpdateActuationMin(
     Min
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -101,8 +106,6 @@ export const deleteActuationMin = /* GraphQL */ `mutation DeleteActuationMin(
     Min
     Setup
     Variable
-    createdAt
-    updatedAt
     __typename
   }
 }

@@ -37,6 +37,8 @@ import Conductivity from './scenes/conductivity';
 import Calendar from './scenes/calendar';
 import PhChartPage from './scenes/ph';
 import GoogleCalendar from './scenes/google_calendar';
+import ActuationMin from './scenes/actuation-min';
+import ActuationMax from './scenes/actuation-max';
 import { UserProfile } from './scenes/profile';
 import { fetchUserAttributes } from 'aws-amplify/auth';
 import { getUrl } from 'aws-amplify/storage';
@@ -225,6 +227,8 @@ function App({ signOut, user }) {
                 <Route path="/pH" element={<PhChartPage />} />
                 <Route path="/google_calendar" element={<GoogleCalendar />} />
                 <Route path="/user-profile" element={<UserProfile />} />
+                <Route path="/actuation-min" element={<ActuationMin />} />
+                <Route path="/actuation-max" element={<ActuationMax />} />
               </Routes>
             </main>
           </div>
