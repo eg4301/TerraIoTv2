@@ -2,24 +2,30 @@ import { useEffect, useState } from 'react';
 import { sensorService } from '../../../shared/services/sensor.service';
 
 export const useFetchSensorData = () => {
-  const [records, setRecords] = useState([]);
+  const [mac1Records, setMac1Records] = useState([]);
+  const [mac2Records, setMac2Records] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const atmTemperatureSeries =
-    sensorService.generateAtmTemperatureSeries(records);
-  const co2Series = sensorService.generateCO2Series(records);
-  const o2Series = sensorService.generateO2Series(records);
-  const humiditySeries = sensorService.generateHumiditySeries(records);
-  const waterSeries = sensorService.generateWaterSeries(records);
-  const conductivitySeries = sensorService.generateConductivitySeries(records);
-  const pHSeries = sensorService.generatePHSeries(records);
+    sensorService.generateAtmTemperatureSeries(mac2Records);
+  const co2Series = sensorService.generateCO2Series(mac2Records);
+  const o2Series = sensorService.generateO2Series(mac2Records);
+  const humiditySeries = sensorService.generateHumiditySeries(mac2Records);
+  const waterSeries = sensorService.generateWaterSeries(mac1Records);
+  const conductivitySeries =
+    sensorService.generateConductivitySeries(mac1Records);
+  const pHSeries = sensorService.generatePHSeries(mac1Records);
 
   useEffect(() => {
     setLoading(true);
-    sensorService
-      .getSensorsData()
-      .then((data) => {
-        setRecords(data);
+    Promise.all([
+      sensorService.getRACMAC1Sensors(),
+      sensorService.getRACMAC2Sensors(),
+    ])
+      .then((res) => {
+        const [mac1Records, mac2Records] = res;
+        setMac1Records(mac1Records);
+        setMac2Records(mac2Records);
       })
       .catch((error) => {
         const errMsg = error?.message || 'Something went wrong!';
@@ -33,7 +39,8 @@ export const useFetchSensorData = () => {
 
   return {
     loading,
-    records,
+    mac1Records,
+    mac2Records,
     error,
     atmTemperatureSeries,
     co2Series,

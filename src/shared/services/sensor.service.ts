@@ -4,6 +4,10 @@ import {
   UpdateActuationMinInput,
 } from '../../API';
 import {
+  listRACMAC1Sensors,
+  listRACMAC2Sensors,
+} from '../../graphql/custom-queries';
+import {
   updateActuationMax,
   updateActuationMin,
 } from '../../graphql/mutations';
@@ -62,20 +66,52 @@ class SernsorService {
     );
   }
 
+  async getRACMAC2Sensors() {
+    const response = await execute(
+      {
+        statement: listRACMAC2Sensors,
+        name: 'listRACSensors',
+      },
+      { MAC: 2, limit: 800, sortDirection: 'DESC' }
+    );
+
+    const items = response.items;
+    return items.sort(
+      (a, b) =>
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    );
+  }
+
+  async getRACMAC1Sensors() {
+    const response = await execute(
+      {
+        statement: listRACMAC1Sensors,
+        name: 'listRACSensors',
+      },
+      { MAC: 1, limit: 800, sortDirection: 'DESC' }
+    );
+
+    const items = response.items;
+    return items.sort(
+      (a, b) =>
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    );
+  }
+
   async getSensorsData() {
     const response1 = await execute(
       {
         statement: listRACSensors,
         name: 'listRACSensors',
       },
-      { MAC: 1, limit: 1000, sortDirection: 'DESC' }
+      { MAC: 1, limit: 10, sortDirection: 'DESC' }
     );
     const response2 = await execute(
       {
         statement: listRACSensors,
         name: 'listRACSensors',
       },
-      { MAC: 2, limit: 1000, sortDirection: 'DESC' }
+      { MAC: 2, limit: 10, sortDirection: 'DESC' }
     );
 
     let items = [];

@@ -217,6 +217,30 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            {!isCollapsed && (
+              <Typography
+                variant="h6"
+                color={colors.grey[100]}
+                sx={{ m: '15px 0 5px 20px', fontSize: 15 }}
+                // align = "center"
+              >
+                Actuation
+              </Typography>
+            )}
+            <Item
+              title="Min Actuation"
+              to="/actuation-min"
+              icon={<BatterySaverOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Max Actuation"
+              to="/actuation-max"
+              icon={<BatterySaverOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Box>
         </Menu>
       </ProSidebar>
