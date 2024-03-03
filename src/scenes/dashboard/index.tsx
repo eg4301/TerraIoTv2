@@ -96,7 +96,6 @@ const Dashboard = () => {
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
               <AirTempChart
                 atmTemperatureSeries={atmTemperatureSeries}
-                label="Air Temperature"
               />
             </Box>
           </Box>
@@ -165,7 +164,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
-              <O2Chart series={o2Series} label="O2" />
+              <O2Chart series={o2Series} />
             </Box>
           </Box>
         </Grid>
@@ -199,7 +198,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0">
-              <HumidityChart series={humiditySeries} label="Humidity" />
+              <HumidityChart series={humiditySeries} />
             </Box>
           </Box>
         </Grid>
@@ -233,7 +232,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0">
-              <WaterTempChart series={waterSeries} label="Water Temperature" />
+              <WaterTempChart series={waterSeries} />
             </Box>
           </Box>
         </Grid>
@@ -268,7 +267,6 @@ const Dashboard = () => {
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
               <ConductivityChart
                 series={conductivitySeries}
-                label="Conductivity"
               />
             </Box>
           </Box>
@@ -303,7 +301,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="0px 0 0 0" p="4px" width="100%">
-              <PHChart series={pHSeries} label="PH" />
+              <PHChart series={pHSeries} />
             </Box>
           </Box>
         </Grid>

@@ -35,7 +35,6 @@ const Conductivity = () => {
           <ConductivityChart
             series={conductivitySeries}
             height="300"
-            label="Conductivity"
           />
         </Box>
       </Box>

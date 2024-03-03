@@ -55,6 +55,8 @@ const ActuationMax = () => {
             textTransform: 'capitalize',
             fontSize: '20px',
             fontWeight: 'medium',
+            right : '170px',
+            top : '70px',
             '&:hover': {
               backgroundColor: colors.greenAccent[400],
             },
@@ -97,9 +99,9 @@ const ActuationMax = () => {
                 },
               }}
             >
-              <TableCell align="center">Paramter</TableCell>
+              <TableCell align="center">Parameter</TableCell>
               <TableCell align="center">Current Max</TableCell>
-              <TableCell align="center">New Max</TableCell>
+              <TableCell align="center">Set Max</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

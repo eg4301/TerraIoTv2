@@ -35,7 +35,6 @@ const Water_temp = () => {
           <WaterTempChart
             series={waterSeries}
             height="300"
-            label="Water Temperature"
           />
         </Box>
       </Box>

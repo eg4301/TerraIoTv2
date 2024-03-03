@@ -17,6 +17,8 @@ import WaterOutlinedIcon from '@mui/icons-material/WaterOutlined';
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import BatterySaverOutlinedIcon from '@mui/icons-material/BatterySaverOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -146,7 +148,7 @@ const Sidebar = () => {
               <Typography
                 variant="h6"
                 color={colors.grey[300]}
-                sx={{ m: '15px 0 5px 20px', fontSize: 15 }}
+                sx={{ m: '50px 0 5px 20px', fontSize: 15 }}
               >
                 Ambient Charts
               </Typography>
@@ -189,7 +191,7 @@ const Sidebar = () => {
               <Typography
                 variant="h6"
                 color={colors.grey[300]}
-                sx={{ m: '15px 0 5px 20px', fontSize: 15 }}
+                sx={{ m: '50px 0 5px 20px', fontSize: 15 }}
                 // align = "center"
               >
                 Water Charts
@@ -220,8 +222,8 @@ const Sidebar = () => {
             {!isCollapsed && (
               <Typography
                 variant="h6"
-                color={colors.grey[100]}
-                sx={{ m: '15px 0 5px 20px', fontSize: 15 }}
+                color={colors.grey[300]}
+                sx={{ m: '50px 0 5px 20px', fontSize: 15 }}
                 // align = "center"
               >
                 Actuation
@@ -230,14 +232,14 @@ const Sidebar = () => {
             <Item
               title="Min Actuation"
               to="/actuation-min"
-              icon={<BatterySaverOutlinedIcon />}
+              icon={<KeyboardDoubleArrowDownIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Max Actuation"
               to="/actuation-max"
-              icon={<BatterySaverOutlinedIcon />}
+              icon={<KeyboardDoubleArrowUpIcon />}
               selected={selected}
               setSelected={setSelected}
             />

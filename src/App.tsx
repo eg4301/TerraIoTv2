@@ -21,8 +21,7 @@ import Sidebar from './scenes/global/Sidebar';
 import Topbar from './scenes/global/Topbar';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import NotificationsOffOutlinedIcon from '@mui/icons-material/NotificationsOffOutlined';
-// import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-// import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import Paper from '@mui/material/Paper';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { withAuthenticator } from '@aws-amplify/ui-react';
@@ -88,7 +87,7 @@ function App({ signOut, user }) {
               <Topbar />
               <Tooltip
                 title="Notifications"
-                style={{ position: 'absolute', top: '27px', right: '230px' }}
+                style={{ position: 'absolute', top: '27px', right: '210px' }}
                 arrow
               >
                 <IconButton onClick={() => setClicked((prev) => !prev)}>
@@ -100,19 +99,6 @@ function App({ signOut, user }) {
                 </IconButton>
               </Tooltip>
 
-              {/* <Tooltip
-                title="Theme Toggling"
-                style={{ position: 'absolute', top: '27px', right: '270px' }}
-                arrow
-              >
-                <IconButton onClick={colorMode.toggleColorMode}>
-                  {theme.palette.mode === 'dark' ? (
-                    <DarkModeOutlinedIcon />
-                  ) : (
-                    <LightModeOutlinedIcon />
-                  )}
-                </IconButton>
-              </Tooltip> */}
               <React.Fragment>
                 <Box
                   sx={{
@@ -151,6 +137,7 @@ function App({ signOut, user }) {
                     </IconButton>
                   </Tooltip>
                 </Box>
+            
                 <Menu
                   anchorEl={anchorEl}
                   id="account-menu"
@@ -186,6 +173,7 @@ function App({ signOut, user }) {
                   transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                   anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
+                <Paper sx={{ width: 150, maxWidth: '100%' }}>
                   <MenuItem
                     onClick={() => {
                       handleClose();
@@ -195,12 +183,6 @@ function App({ signOut, user }) {
                     <Avatar /> Profile
                   </MenuItem>
                   <Divider />
-                  <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                      <PersonAdd fontSize="small" />
-                    </ListItemIcon>
-                    Add another account
-                  </MenuItem>
                   <MenuItem onClick={handleClose}>
                     <ListItemIcon>
                       <Settings fontSize="small" />
@@ -213,6 +195,7 @@ function App({ signOut, user }) {
                     </ListItemIcon>
                     Logout
                   </MenuItem>
+                  </Paper>
                 </Menu>
               </React.Fragment>
               <Routes>

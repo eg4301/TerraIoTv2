@@ -55,6 +55,8 @@ const ActuationMin = () => {
             textTransform: 'capitalize',
             fontSize: '20px',
             fontWeight: 'medium',
+            right : '170px',
+            top : '70px',
             '&:hover': {
               backgroundColor: colors.greenAccent[400],
             },
@@ -97,9 +99,9 @@ const ActuationMin = () => {
                 },
               }}
             >
-              <TableCell align="center">Paramter</TableCell>
+              <TableCell align="center">Parameter</TableCell>
               <TableCell align="center">Current Min</TableCell>
-              <TableCell align="center">New Min</TableCell>
+              <TableCell align="center">Set Min</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -128,7 +130,7 @@ const ActuationMin = () => {
                     onChange={handleChange}
                     sx={{
                       '& fieldset': {
-                        border: `1px solid ${colors.grey[100]} !important`,
+                        border: `1px solid ${colors.primary[100]} !important`,
                       },
                       '& label': {
                         color: `${colors.grey[100]} !important`,

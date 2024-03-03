@@ -35,7 +35,6 @@ const Air_temp = () => {
           <AirTempChart
             atmTemperatureSeries={atmTemperatureSeries}
             height="300"
-            label="Air Temperature"
           />
         </Box>
       </Box>
