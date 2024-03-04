@@ -46,19 +46,17 @@ const ActuationMin = () => {
         <Header title="Min Actuation" subtitle="Minimum actuation values" />
       </Box>
 
-      <Box display="flex" justifyContent="flex-end" mb={3}>
+      <Box display="flex" justifyContent="center" mb={3} sx={{ m: '5% 0 3% 0' }}>
         <Button
           onClick={handleSaveChanges}
           variant="contained"
           sx={{
-            backgroundColor: colors.greenAccent[400],
+            backgroundColor: colors.greenAccent[600],
             textTransform: 'capitalize',
             fontSize: '20px',
             fontWeight: 'medium',
-            right : '170px',
-            top : '70px',
             '&:hover': {
-              backgroundColor: colors.greenAccent[400],
+              backgroundColor: colors.greenAccent[800],
             },
           }}
         >
