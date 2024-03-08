@@ -29,10 +29,10 @@ const PhChartPage = () => {
   }
   return (
     <Box m="20px">
-      <Header title="PH" subtitle="PH Parameter" />
+      <Header title="PH" subtitle="Water Parameter" />
       <Box height="75vh">
         <Box backgroundColor={colors.primary[450]}>
-          <PHChart series={pHSeries} height="300" label="PH" />
+          <PHChart series={pHSeries} height="300" />
         </Box>
       </Box>
     </Box>

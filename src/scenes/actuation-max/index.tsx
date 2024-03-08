@@ -43,20 +43,20 @@ const ActuationMax = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Max Actuation" subtitle="Miximum actuation values" />
+        <Header title="Max Actuation" subtitle="Maximum actuation values" />
       </Box>
 
-      <Box display="flex" justifyContent="flex-end" mb={3}>
+      <Box display="flex" justifyContent="center" mb={3} sx={{ m: '5% 0 3% 0' }}>
         <Button
           onClick={handleSaveChanges}
           variant="contained"
           sx={{
-            backgroundColor: colors.greenAccent[400],
+            backgroundColor: colors.greenAccent[600],
             textTransform: 'capitalize',
             fontSize: '20px',
             fontWeight: 'medium',
             '&:hover': {
-              backgroundColor: colors.greenAccent[400],
+              backgroundColor: colors.greenAccent[800],
             },
           }}
         >
@@ -97,9 +97,9 @@ const ActuationMax = () => {
                 },
               }}
             >
-              <TableCell align="center">Paramter</TableCell>
+              <TableCell align="center">Parameter</TableCell>
               <TableCell align="center">Current Max</TableCell>
-              <TableCell align="center">New Max</TableCell>
+              <TableCell align="center">Set Max</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

@@ -32,7 +32,7 @@ const CO2 = () => {
       <Header title="CO2" subtitle="Ambient Parameter" />
       <Box height="75vh">
         <Box backgroundColor={colors.primary[450]}>
-          <CO2Chart series={co2Series} height="300" label="CO2" />
+          <CO2Chart series={co2Series} height="300" />
         </Box>
       </Box>
     </Box>

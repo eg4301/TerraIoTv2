@@ -151,7 +151,6 @@ const CO2Chart = ({ series, height = '150', label }) => {
         <ChartRow height={height}>
           <YAxis
             id="co2"
-            label={label}
             style={{
               values: {
                 fill: '#fff',

@@ -72,7 +72,7 @@ class SernsorService {
         statement: listRACMAC2Sensors,
         name: 'listRACSensors',
       },
-      { MAC: 2, limit: 800, sortDirection: 'DESC' }
+      { MAC: 2, limit: 1000, sortDirection: 'DESC' }
     );
 
     const items = response.items;
@@ -88,7 +88,7 @@ class SernsorService {
         statement: listRACMAC1Sensors,
         name: 'listRACSensors',
       },
-      { MAC: 1, limit: 800, sortDirection: 'DESC' }
+      { MAC: 1, limit: 1000, sortDirection: 'DESC' }
     );
 
     const items = response.items;
