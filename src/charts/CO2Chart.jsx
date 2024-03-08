@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { useTheme } from '@mui/material';
 import { useState } from 'react';
 import {
   Charts,
@@ -9,7 +10,10 @@ import {
   LineChart,
   Baseline,
   Resizable,
+  EventMarker,
+  ScatterChart,
 } from 'react-timeseries-charts';
+import { tokens } from '../theme';
 
 const style = {
   value: {
@@ -53,11 +57,71 @@ const baselineStyleExtraLite = {
   },
 };
 
+const NullMarker = (props) => {
+  return <g />;
+};
+
 const CO2Chart = ({ series, height = '150', label }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const [timerange, setTimeRange] = useState(series.range());
+  const [track, setTrack] = useState({
+    tracker: null,
+    trackerValue: '--',
+    trackerEvent: null,
+  });
+  const croppedSeries = series.crop(timerange);
 
   const handleTimeRange = (timerange) => {
     setTimeRange(timerange);
+  };
+
+  const handleTrackerChanged = (t) => {
+    if (t) {
+      const e = series.atTime(t);
+      const eventTime = new Date(
+        e.begin().getTime() + (e.end().getTime() - e.begin().getTime()) / 2
+      );
+      const eventValue = e.get('value');
+      const v = `${eventValue > 0 ? '+' : ''}${eventValue}`;
+      setTrack({ tracker: eventTime, trackerValue: v, trackerEvent: e });
+    } else {
+      setTrack({ tracker: null, trackerValue: null, trackerEvent: null });
+    }
+  };
+
+  const renderMarker = () => {
+    if (!track.tracker) {
+      return <NullMarker />;
+    }
+
+    return (
+      <EventMarker
+        type="flag"
+        axis="co2"
+        event={track.trackerEvent}
+        column="value"
+        info={[{ label: 'CO2', value: track.trackerValue }]}
+        stemStyle={{
+          stroke: 'white',
+        }}
+        infoStyle={{
+          label: {
+            fill: 'white',
+            pointerEvents: 'none',
+          },
+          box: {
+            fill: colors.greenAccent[400],
+          },
+        }}
+        infoTimeFormat="%Y"
+        infoWidth={150}
+        markerRadius={2}
+        markerStyle={{
+          fill: 'white',
+        }}
+      />
+    );
   };
 
   return (
@@ -80,6 +144,7 @@ const CO2Chart = ({ series, height = '150', label }) => {
         }}
         timeRange={timerange}
         onTimeRangeChanged={handleTimeRange}
+        onTrackerChanged={handleTrackerChanged}
         format="%b '%y"
         timeAxisTickCount={5}
       >
@@ -103,8 +168,8 @@ const CO2Chart = ({ series, height = '150', label }) => {
                 stroke: '#fff',
               },
             }}
-            min={series.min()}
-            max={series.max()}
+            min={croppedSeries.min()}
+            max={croppedSeries.max()}
             width="60"
             format=",.2f"
           />
@@ -141,6 +206,8 @@ const CO2Chart = ({ series, height = '150', label }) => {
               label="Avg"
               position="right"
             />
+            <ScatterChart axis="co2" series={series} columns={['value']} />
+            {renderMarker()}
           </Charts>
         </ChartRow>
       </ChartContainer>

@@ -1,10 +1,10 @@
 // @ts-nocheck
 
-import { useState } from 'react';
 import Calendar from '@ericz1803/react-google-calendar';
 import { css } from '@emotion/react';
 import { Box, useTheme, TextField, Button } from '@mui/material';
 import { ColorModeContext, tokens } from '../../theme';
+import { useGoogleCalendarContext } from '../../context/GoogleCalendarProvider';
 
 let styles = {
   //you can use object styles
@@ -24,28 +24,8 @@ let styles = {
 const GoogleCalendar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [state, setState] = useState({
-    apiKey: '',
-    calendarId: '',
-    display: false,
-  });
-
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setState((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const displayEvents = () => {
-    if (state.calendarId && state.apiKey) {
-      setState((prev) => ({
-        ...prev,
-        display: true,
-      }));
-    }
-  };
+  const { apiKey, calendarId, display, displayEvents, handleOnChange } =
+    useGoogleCalendarContext();
 
   return (
     <>
@@ -57,6 +37,7 @@ const GoogleCalendar = () => {
           fullwidth
           label="Google API Key"
           variant="outlined"
+          value={apiKey}
           onChange={handleOnChange}
           sx={{
             '& fieldset': {
@@ -72,6 +53,7 @@ const GoogleCalendar = () => {
           id="calendarId"
           name="calendarId"
           fullwidth
+          value={calendarId}
           label="Google Calendar ID"
           variant="outlined"
           onChange={handleOnChange}
@@ -99,7 +81,7 @@ const GoogleCalendar = () => {
           Google Events
         </Button>
       </Box>
-      {state.display ? (
+      {display ? (
         <div
           style={{
             width: '90%',
@@ -110,10 +92,10 @@ const GoogleCalendar = () => {
           }}
         >
           <Calendar
-            apiKey={state.apiKey}
+            apiKey={apiKey}
             calendars={[
               {
-                calendarId: state.calendarId,
+                calendarId: calendarId,
               },
             ]}
             styles={styles}

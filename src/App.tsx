@@ -42,6 +42,7 @@ import ActuationMax from './scenes/actuation-max';
 import { UserProfile } from './scenes/profile';
 import { fetchUserAttributes } from 'aws-amplify/auth';
 import { getUrl } from 'aws-amplify/storage';
+import { GoogleCalendarProvider } from './context/GoogleCalendarProvider';
 
 Amplify.configure(config);
 
@@ -215,21 +216,23 @@ function App({ signOut, user }) {
                   </MenuItem>
                 </Menu>
               </React.Fragment>
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/air_temp" element={<AirTemp />} />
-                <Route path="/co2" element={<CO2 />} />
-                <Route path="/o2" element={<O2 />} />
-                <Route path="/humidity" element={<Humidity />} />
-                <Route path="/water_temp" element={<WaterTemp />} />
-                <Route path="/conductivity" element={<Conductivity />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/pH" element={<PhChartPage />} />
-                <Route path="/google_calendar" element={<GoogleCalendar />} />
-                <Route path="/user-profile" element={<UserProfile />} />
-                <Route path="/actuation-min" element={<ActuationMin />} />
-                <Route path="/actuation-max" element={<ActuationMax />} />
-              </Routes>
+              <GoogleCalendarProvider>
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/air_temp" element={<AirTemp />} />
+                  <Route path="/co2" element={<CO2 />} />
+                  <Route path="/o2" element={<O2 />} />
+                  <Route path="/humidity" element={<Humidity />} />
+                  <Route path="/water_temp" element={<WaterTemp />} />
+                  <Route path="/conductivity" element={<Conductivity />} />
+                  <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/pH" element={<PhChartPage />} />
+                  <Route path="/google_calendar" element={<GoogleCalendar />} />
+                  <Route path="/user-profile" element={<UserProfile />} />
+                  <Route path="/actuation-min" element={<ActuationMin />} />
+                  <Route path="/actuation-max" element={<ActuationMax />} />
+                </Routes>
+              </GoogleCalendarProvider>
             </main>
           </div>
         </ThemeProvider>
