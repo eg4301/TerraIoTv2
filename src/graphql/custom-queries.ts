@@ -8,7 +8,7 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const listRACMAC2Sensors = /* GraphQL */ `query ListRACSensors(
+export const listRACMAC2Sensors = /* GraphQL */ `query ListRACSensors2(
     $MAC: Int
     $timestamp: ModelStringKeyConditionInput
     $filter: ModelRACSensorsFilterInput
@@ -42,7 +42,7 @@ export const listRACMAC2Sensors = /* GraphQL */ `query ListRACSensors(
   APITypes.ListRACSensorsQuery
 >;
 
-export const listRACMAC1Sensors = /* GraphQL */ `query ListRACSensors(
+export const listRACMAC1Sensors = /* GraphQL */ `query ListRACSensors1(
     $MAC: Int
     $timestamp: ModelStringKeyConditionInput
     $filter: ModelRACSensorsFilterInput

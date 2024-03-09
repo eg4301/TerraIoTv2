@@ -92,6 +92,51 @@ export const onDeleteActuationMin = /* GraphQL */ `subscription OnDeleteActuatio
   APITypes.OnDeleteActuationMinSubscriptionVariables,
   APITypes.OnDeleteActuationMinSubscription
 >;
+export const onCreateActuationMinMax = /* GraphQL */ `subscription OnCreateActuationMinMax(
+  $filter: ModelSubscriptionActuationMinMaxFilterInput
+) {
+  onCreateActuationMinMax(filter: $filter) {
+    Max
+    Min
+    Setup
+    Variable
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateActuationMinMaxSubscriptionVariables,
+  APITypes.OnCreateActuationMinMaxSubscription
+>;
+export const onUpdateActuationMinMax = /* GraphQL */ `subscription OnUpdateActuationMinMax(
+  $filter: ModelSubscriptionActuationMinMaxFilterInput
+) {
+  onUpdateActuationMinMax(filter: $filter) {
+    Max
+    Min
+    Setup
+    Variable
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateActuationMinMaxSubscriptionVariables,
+  APITypes.OnUpdateActuationMinMaxSubscription
+>;
+export const onDeleteActuationMinMax = /* GraphQL */ `subscription OnDeleteActuationMinMax(
+  $filter: ModelSubscriptionActuationMinMaxFilterInput
+) {
+  onDeleteActuationMinMax(filter: $filter) {
+    Max
+    Min
+    Setup
+    Variable
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteActuationMinMaxSubscriptionVariables,
+  APITypes.OnDeleteActuationMinMaxSubscription
+>;
 export const onCreateRACSensors = /* GraphQL */ `subscription OnCreateRACSensors(
   $filter: ModelSubscriptionRACSensorsFilterInput
 ) {

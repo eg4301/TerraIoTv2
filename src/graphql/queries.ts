@@ -92,7 +92,51 @@ export const listActuationMins = /* GraphQL */ `query ListActuationMins(
   APITypes.ListActuationMinsQueryVariables,
   APITypes.ListActuationMinsQuery
 >;
-export const getRACSensors = /* GraphQL */ `query GetRACSensors($MAC: Int!, $timestamp: String!) {
+export const getActuationMinMax = /* GraphQL */ `query GetActuationMinMax($Setup: String!, $Variable: String!) {
+  getActuationMinMax(Setup: $Setup, Variable: $Variable) {
+    Max
+    Min
+    Setup
+    Variable
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetActuationMinMaxQueryVariables,
+  APITypes.GetActuationMinMaxQuery
+>;
+export const listActuationMinMaxes = /* GraphQL */ `query ListActuationMinMaxes(
+  $Setup: String
+  $Variable: ModelStringKeyConditionInput
+  $filter: ModelActuationMinMaxFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listActuationMinMaxes(
+    Setup: $Setup
+    Variable: $Variable
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      Max
+      Min
+      Setup
+      Variable
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListActuationMinMaxesQueryVariables,
+  APITypes.ListActuationMinMaxesQuery
+>;
+export const getRACSensors = /* GraphQL */ `query GetRACSensors($MAC: Int!, $timestamp: AWSDateTime!) {
   getRACSensors(MAC: $MAC, timestamp: $timestamp) {
     CO2
     MAC

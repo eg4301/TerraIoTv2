@@ -66,13 +66,25 @@ class SernsorService {
     );
   }
 
-  async getRACMAC2Sensors() {
+  async getRACMAC2Sensors(startDate: Date | null, endDate: Date | null) {
+    const params: Record<string, any> = {
+      MAC: 2,
+      limit: 1000,
+      sortDirection: 'DESC',
+    };
+
+    if (startDate && endDate) {
+      params.timestamp = {
+        between: [startDate.toISOString(), endDate.toISOString()],
+      };
+    }
+
     const response = await execute(
       {
         statement: listRACMAC2Sensors,
         name: 'listRACSensors',
       },
-      { MAC: 2, limit: 1000, sortDirection: 'DESC' }
+      params
     );
 
     const items = response.items;
@@ -82,13 +94,25 @@ class SernsorService {
     );
   }
 
-  async getRACMAC1Sensors() {
+  async getRACMAC1Sensors(startDate: Date | null, endDate: Date | null) {
+    const params: Record<string, any> = {
+      MAC: 1,
+      limit: 1000,
+      sortDirection: 'DESC',
+    };
+
+    if (startDate && endDate) {
+      params.timestamp = {
+        between: [startDate.toISOString(), endDate.toISOString()],
+      };
+    }
+
     const response = await execute(
       {
         statement: listRACMAC1Sensors,
         name: 'listRACSensors',
       },
-      { MAC: 1, limit: 1000, sortDirection: 'DESC' }
+      params
     );
 
     const items = response.items;

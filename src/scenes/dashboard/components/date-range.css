@@ -1,0 +1,13 @@
+.date-range-wrapper {
+  position: absolute;
+  left: 0 !important;
+  top: 60px !important;
+}
+
+.date-range-wrapper .rdrInputRange span {
+  color: black !important;
+}
+
+.date-range-wrapper .rdrDayNumber span::after {
+  background: rgb(112, 216, 189) !important;
+}

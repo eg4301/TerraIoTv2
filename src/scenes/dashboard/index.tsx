@@ -17,6 +17,7 @@ import WaterTempChart from '../../charts/WaterTempChart';
 import ConductivityChart from '../../charts/ConductivityChart';
 import PHChart from '../../charts/PHChart';
 import { useFetchSensorData } from './hooks/useFetchSensorData';
+import { DateRangeInput } from './components/DateRangePicker';
 
 const Dashboard = () => {
   const {
@@ -28,44 +29,54 @@ const Dashboard = () => {
     waterSeries,
     conductivitySeries,
     pHSeries,
+    handleOnDateRangeChange,
   } = useFetchSensorData();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  if (
-    loading ||
-    !atmTemperatureSeries ||
-    !co2Series ||
-    !o2Series ||
-    !humiditySeries ||
-    !waterSeries ||
-    !conductivitySeries ||
-    !pHSeries
-  ) {
+  const renderGraphs = () => {
+    if (loading) {
+      return (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            height: '100%',
+            color: colors.greenAccent[500],
+          }}
+        >
+          <CircularProgress color="inherit" />
+        </Box>
+      );
+    }
+
+    if (
+      !atmTemperatureSeries ||
+      !co2Series ||
+      !o2Series ||
+      !humiditySeries ||
+      !waterSeries ||
+      !conductivitySeries ||
+      !pHSeries
+    ) {
+      return (
+        <Box
+          sx={{
+            color: '#fff',
+            margin: '10px, 0px',
+            fontSize: '18px',
+            fontWeight: 'medium',
+            textAlign: 'center',
+          }}
+        >
+          No Date Found!
+        </Box>
+      );
+    }
+
     return (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          height: '100%',
-          color: colors.greenAccent[500],
-        }}
-      >
-        <CircularProgress color="inherit" />
-      </Box>
-    );
-  }
-
-  return (
-    <Box m="20px">
-      {/* HEADER */}
-      <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
-      </Box>
-
-      {/* GRID & CHARTS */}
       <Grid container spacing={2}>
         {/* ROW 2 */}
         <Grid item xs={12} md={6}>
@@ -95,14 +106,15 @@ const Dashboard = () => {
             </Box>
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
               <AirTempChart
+                label="Air Temperature"
                 atmTemperatureSeries={atmTemperatureSeries}
               />
             </Box>
           </Box>
         </Grid>
         {/* 
-
-        {/* ROW 2 */}
+ 
+         {/* ROW 2 */}
         <Grid item xs={12} md={6}>
           <Box backgroundColor={colors.primary[450]}>
             <Box
@@ -135,8 +147,8 @@ const Dashboard = () => {
           </Box>
         </Grid>
         {/* 
-
-        {/* ROW 3 */}
+ 
+         {/* ROW 3 */}
         <Grid item xs={12} md={6}>
           <Box backgroundColor={colors.primary[450]}>
             <Box
@@ -164,13 +176,13 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
-              <O2Chart series={o2Series} />
+              <O2Chart series={o2Series} label="O2" />
             </Box>
           </Box>
         </Grid>
         {/* 
-
-        {/* ROW 3 */}
+ 
+         {/* ROW 3 */}
         <Grid item xs={12} md={6}>
           <Box backgroundColor={colors.primary[450]}>
             <Box
@@ -198,13 +210,13 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0">
-              <HumidityChart series={humiditySeries} />
+              <HumidityChart series={humiditySeries} label="Humidity" />
             </Box>
           </Box>
         </Grid>
         {/* 
-
-        {/* ROW 4 */}
+ 
+         {/* ROW 4 */}
         <Grid item xs={12} md={6}>
           <Box backgroundColor={colors.primary[450]}>
             <Box
@@ -232,7 +244,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="-20px 0 0 0">
-              <WaterTempChart series={waterSeries} />
+              <WaterTempChart series={waterSeries} label="Water Temperature" />
             </Box>
           </Box>
         </Grid>
@@ -266,14 +278,15 @@ const Dashboard = () => {
             </Box>
             <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
               <ConductivityChart
+                label="Conductivity"
                 series={conductivitySeries}
               />
             </Box>
           </Box>
         </Grid>
         {/* 
-
-        {/* ROW 4 */}
+ 
+         {/* ROW 4 */}
         <Grid item xs={12} md={6}>
           <Box backgroundColor={colors.primary[450]}>
             <Box
@@ -301,11 +314,31 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="250px" m="0px 0 0 0" p="4px" width="100%">
-              <PHChart series={pHSeries} />
+              <PHChart label="PH" series={pHSeries} />
             </Box>
           </Box>
         </Grid>
       </Grid>
+    );
+  };
+
+  return (
+    <Box m="20px">
+      {/* HEADER */}
+      <Box
+        display="flex"
+        mb={1}
+        flexDirection={{ xs: 'column', md: 'row' }}
+        justifyContent="flex-start"
+        alignItems={{ xs: 'flex-start', md: 'center' }}
+        gap={{ xs: 0, md: 5 }}
+      >
+        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <DateRangeInput onChange={handleOnDateRangeChange} />
+      </Box>
+
+      {/* GRID & CHARTS */}
+      {renderGraphs()}
     </Box>
   );
 };

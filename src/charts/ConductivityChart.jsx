@@ -82,7 +82,7 @@ const ConductivityChart = ({ series, height = '150', label }) => {
       const eventTime = new Date(
         e.begin().getTime() + (e.end().getTime() - e.begin().getTime()) / 2
       );
-      const eventValue = e.get('value');
+      const eventValue = e.get('value').toFixed(2);
       const v = `${eventValue > 0 ? '+' : ''}${eventValue}`;
       setTrack({ tracker: eventTime, trackerValue: v, trackerEvent: e });
     } else {
@@ -111,11 +111,11 @@ const ConductivityChart = ({ series, height = '150', label }) => {
             pointerEvents: 'none',
           },
           box: {
-            fill: colors.greenAccent[400],
+            fill: colors.greenAccent[700],
           },
         }}
         infoTimeFormat="%Y"
-        infoWidth={150}
+        infoWidth={110}
         markerRadius={2}
         markerStyle={{
           fill: 'white',
@@ -145,7 +145,7 @@ const ConductivityChart = ({ series, height = '150', label }) => {
         onTimeRangeChanged={handleTimeRange}
         onTrackerChanged={handleTrackerChanged}
         timeRange={timerange}
-        format="%b '%y"
+        // format="%b '%y"
         timeAxisTickCount={5}
       >
         <ChartRow height={height}>
@@ -162,6 +162,7 @@ const ConductivityChart = ({ series, height = '150', label }) => {
               },
               label: {
                 fill: '#fff',
+                transform: 'translateY(50px) rotate(-90deg)',
               },
               ticks: {
                 fill: 'none',

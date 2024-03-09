@@ -10,6 +10,15 @@ type ActuationMin @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   Variable: String!
 }
 
+type ActuationMinMax
+  @model(timestamps: null)
+  @auth(rules: [{ allow: public }]) {
+  Max: Float
+  Min: Float
+  Setup: String! @primaryKey(sortKeyFields: ["Variable"])
+  Variable: String!
+}
+
 type RACSensors @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   CO2: Float
   MAC: Int! @primaryKey(sortKeyFields: ["timestamp"])
@@ -19,7 +28,7 @@ type RACSensors @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   humidity: Float
   pH: Float
   temperature: Float
-  timestamp: String!
+  timestamp: AWSDateTime!
 }
 
 input UpdateActuationByVariableInput {

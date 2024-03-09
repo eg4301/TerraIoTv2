@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import { sensorService } from '../../../shared/services/sensor.service';
 
 export const useFetchSensorData = () => {
+  const [dateRange, setDateRange] = useState({
+    startDate: null,
+    endDate: null,
+  });
   const [mac1Records, setMac1Records] = useState([]);
   const [mac2Records, setMac2Records] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -19,8 +23,8 @@ export const useFetchSensorData = () => {
   useEffect(() => {
     setLoading(true);
     Promise.all([
-      sensorService.getRACMAC1Sensors(),
-      sensorService.getRACMAC2Sensors(),
+      sensorService.getRACMAC1Sensors(dateRange.startDate, dateRange.endDate),
+      sensorService.getRACMAC2Sensors(dateRange.startDate, dateRange.endDate),
     ])
       .then((res) => {
         const [mac1Records, mac2Records] = res;
@@ -35,7 +39,14 @@ export const useFetchSensorData = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [dateRange]);
+
+  const handleOnDateRangeChange = (startDate, endDate) => {
+    setDateRange({
+      startDate,
+      endDate,
+    });
+  };
 
   return {
     loading,
@@ -49,5 +60,6 @@ export const useFetchSensorData = () => {
     waterSeries,
     conductivitySeries,
     pHSeries,
+    handleOnDateRangeChange,
   };
 };
