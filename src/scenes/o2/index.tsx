@@ -31,7 +31,7 @@ const O2 = () => {
       <Header title="O2" subtitle="Ambient Parameter" />
       <Box height="75vh">
         <Box backgroundColor={colors.primary[450]}>
-          <O2Chart label="O2" series={o2Series} height="300" />
+          <O2Chart series={o2Series} height="300" />
         </Box>
       </Box>
     </Box>

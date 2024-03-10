@@ -190,7 +190,7 @@ const HumidityChar = ({ series, height = '150', label }) => {
               label="Min"
               position="right"
             />
-            <Baseline
+            {/* <Baseline
               axis="humidity"
               style={baselineStyleExtraLite}
               value={series.avg() - series.stdev()}
@@ -199,7 +199,7 @@ const HumidityChar = ({ series, height = '150', label }) => {
               axis="humidity"
               style={baselineStyleExtraLite}
               value={series.avg() + series.stdev()}
-            />
+            /> */}
             <Baseline
               axis="humidity"
               style={baselineStyle}

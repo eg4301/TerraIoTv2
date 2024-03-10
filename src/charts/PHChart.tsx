@@ -130,7 +130,7 @@ const PHChart = ({ series, height = '150', label }) => {
       <ChartContainer
         showGrid={false}
         enablePanZoom
-        title="PH"
+        title="pH"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
           axis: {
@@ -191,7 +191,7 @@ const PHChart = ({ series, height = '150', label }) => {
               label="Min"
               position="right"
             />
-            <Baseline
+            {/* <Baseline
               axis="ph"
               style={baselineStyleExtraLite}
               value={series.avg() - series.stdev()}
@@ -200,7 +200,7 @@ const PHChart = ({ series, height = '150', label }) => {
               axis="ph"
               style={baselineStyleExtraLite}
               value={series.avg() + series.stdev()}
-            />
+            /> */}
             <Baseline
               axis="ph"
               style={baselineStyle}

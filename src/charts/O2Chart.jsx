@@ -191,7 +191,7 @@ const O2Chart = ({ series, height = '150', label }) => {
               label="Min"
               position="right"
             />
-            <Baseline
+            {/* <Baseline
               axis="o2"
               style={baselineStyleExtraLite}
               value={series.avg() - series.stdev()}
@@ -200,7 +200,7 @@ const O2Chart = ({ series, height = '150', label }) => {
               axis="o2"
               style={baselineStyleExtraLite}
               value={series.avg() + series.stdev()}
-            />
+            /> */}
             <Baseline
               axis="o2"
               style={baselineStyle}

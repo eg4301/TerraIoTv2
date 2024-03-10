@@ -49,14 +49,14 @@ const ActuationMinMax = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Actuation" subtitle="Actuation values" />
+        <Header title="Actuation" subtitle="Manage Actuation Values" />
       </Box>
 
       <Box
         display="flex"
         justifyContent="center"
         mb={3}
-        sx={{ m: '5% 0 3% 0' }}
+        sx={{ m: '3% 0 3% 0' }}
       >
         <Button
           onClick={handleSaveChanges}

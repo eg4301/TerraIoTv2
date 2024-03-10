@@ -191,7 +191,7 @@ const WaterTempChart = ({ series, height = '150', label }) => {
               label="Min"
               position="right"
             />
-            <Baseline
+            {/* <Baseline
               axis="waterTempChart"
               style={baselineStyleExtraLite}
               value={series.avg() - series.stdev()}
@@ -200,7 +200,7 @@ const WaterTempChart = ({ series, height = '150', label }) => {
               axis="waterTempChart"
               style={baselineStyleExtraLite}
               value={series.avg() + series.stdev()}
-            />
+            /> */}
             <Baseline
               axis="waterTempChart"
               style={baselineStyle}

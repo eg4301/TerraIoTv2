@@ -35,7 +35,6 @@ const Humidity = () => {
           <HumidityChart
             series={humiditySeries}
             height="300"
-            label="Humidity"
           />
         </Box>
       </Box>

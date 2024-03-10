@@ -17,6 +17,7 @@ import WaterOutlinedIcon from '@mui/icons-material/WaterOutlined';
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import BatterySaverOutlinedIcon from '@mui/icons-material/BatterySaverOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
+import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -144,7 +145,7 @@ const Sidebar = () => {
             <Item
               title="Actuation"
               to="/actuation"
-              icon={<GoogleIcon />}
+              icon={<ChangeCircleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

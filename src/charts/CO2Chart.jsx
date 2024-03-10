@@ -191,7 +191,7 @@ const CO2Chart = ({ series, height = '150', label }) => {
               label="Min"
               position="right"
             />
-            <Baseline
+            {/* <Baseline
               axis="co2"
               style={baselineStyleExtraLite}
               value={series.avg() - series.stdev()}
@@ -200,7 +200,7 @@ const CO2Chart = ({ series, height = '150', label }) => {
               axis="co2"
               style={baselineStyleExtraLite}
               value={series.avg() + series.stdev()}
-            />
+            /> */}
             <Baseline
               axis="co2"
               style={baselineStyle}

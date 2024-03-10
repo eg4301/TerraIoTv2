@@ -191,7 +191,7 @@ const ConductivityChart = ({ series, height = '150', label }) => {
               label="Min"
               position="right"
             />
-            <Baseline
+            {/* <Baseline
               axis="conductivity"
               style={baselineStyleExtraLite}
               value={series.avg() - series.stdev()}
@@ -200,7 +200,7 @@ const ConductivityChart = ({ series, height = '150', label }) => {
               axis="conductivity"
               style={baselineStyleExtraLite}
               value={series.avg() + series.stdev()}
-            />
+            /> */}
             <Baseline
               axis="conductivity"
               style={baselineStyle}
