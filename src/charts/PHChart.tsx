@@ -111,7 +111,7 @@ const PHChart = ({ series, height = '150', label }) => {
             pointerEvents: 'none',
           },
           box: {
-            fill: colors.greenAccent[700],
+            fill: colors.grey[600],
           },
         }}
         infoTimeFormat="%Y"

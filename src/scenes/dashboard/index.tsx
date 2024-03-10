@@ -87,7 +87,7 @@ const Dashboard = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Box>
+              <Box m="10px 0 0 0">
                 <Typography
                   variant="h3"
                   fontWeight="600"
@@ -104,10 +104,10 @@ const Dashboard = () => {
                 </Typography>
               </Box>
             </Box>
-            <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
+            <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
               <AirTempChart
-                label="Air Temperature"
                 atmTemperatureSeries={atmTemperatureSeries}
+                height = '200'
               />
             </Box>
           </Box>
@@ -123,7 +123,7 @@ const Dashboard = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Box>
+              <Box m="10px 0 0 0">
                 <Typography
                   variant="h3"
                   fontWeight="600"
@@ -141,8 +141,8 @@ const Dashboard = () => {
               </Box>
               <Box></Box>
             </Box>
-            <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
-              <CO2Chart series={co2Series} label="CO2" />
+            <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
+              <CO2Chart series={co2Series} height = '200'/>
             </Box>
           </Box>
         </Grid>
@@ -157,13 +157,13 @@ const Dashboard = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Box>
+              <Box m="10px 0 0 0">
                 <Typography
                   variant="h3"
                   fontWeight="600"
                   color={colors.grey[150]}
                 >
-                  O2
+                  O2 
                 </Typography>
                 <Typography
                   variant="h5"
@@ -175,8 +175,8 @@ const Dashboard = () => {
               </Box>
               <Box></Box>
             </Box>
-            <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
-              <O2Chart series={o2Series} label="O2" />
+            <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
+              <O2Chart series={o2Series} height = '200' />
             </Box>
           </Box>
         </Grid>
@@ -191,7 +191,7 @@ const Dashboard = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Box>
+              <Box m="10px 0 0 0">
                 <Typography
                   variant="h3"
                   fontWeight="600"
@@ -209,8 +209,8 @@ const Dashboard = () => {
               </Box>
               <Box></Box>
             </Box>
-            <Box height="250px" m="-20px 0 0 0">
-              <HumidityChart series={humiditySeries} label="Humidity" />
+            <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
+              <HumidityChart series={humiditySeries} height = '175' />
             </Box>
           </Box>
         </Grid>
@@ -225,7 +225,7 @@ const Dashboard = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Box>
+              <Box m="10px 0 0 0">
                 <Typography
                   variant="h3"
                   fontWeight="600"
@@ -243,8 +243,8 @@ const Dashboard = () => {
               </Box>
               <Box></Box>
             </Box>
-            <Box height="250px" m="-20px 0 0 0">
-              <WaterTempChart series={waterSeries} label="Water Temperature" />
+            <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
+              <WaterTempChart series={waterSeries} height = '175' />
             </Box>
           </Box>
         </Grid>
@@ -258,7 +258,7 @@ const Dashboard = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Box>
+              <Box m="10px 0 0 0">
                 <Typography
                   variant="h3"
                   fontWeight="600"
@@ -276,10 +276,10 @@ const Dashboard = () => {
               </Box>
               <Box></Box>
             </Box>
-            <Box height="250px" m="-20px 0 0 0" p="4px" width="100%">
+            <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
               <ConductivityChart
-                label="Conductivity"
                 series={conductivitySeries}
+                height = '175'
               />
             </Box>
           </Box>
@@ -295,7 +295,7 @@ const Dashboard = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Box>
+              <Box m="10px 0 0 0">
                 <Typography
                   variant="h3"
                   fontWeight="600"
@@ -313,8 +313,8 @@ const Dashboard = () => {
               </Box>
               <Box></Box>
             </Box>
-            <Box height="250px" m="0px 0 0 0" p="4px" width="100%">
-              <PHChart label="PH" series={pHSeries} />
+            <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
+              <PHChart series={pHSeries} height = '175' />
             </Box>
           </Box>
         </Grid>

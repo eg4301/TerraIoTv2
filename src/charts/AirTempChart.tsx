@@ -111,7 +111,7 @@ const AirTempChart = ({ atmTemperatureSeries, height = '150', label }) => {
             pointerEvents: 'none',
           },
           box: {
-            fill: colors.greenAccent[700],
+            fill: colors.grey[600],
           },
         }}
         infoTimeFormat="%Y"
@@ -129,7 +129,7 @@ const AirTempChart = ({ atmTemperatureSeries, height = '150', label }) => {
       <ChartContainer
         showGrid={false}
         enablePanZoom
-        title="Air Temperature"
+        title="Air Temperature (°C)"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
           axis: {

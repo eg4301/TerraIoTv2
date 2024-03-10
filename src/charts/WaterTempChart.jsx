@@ -111,7 +111,7 @@ const WaterTempChart = ({ series, height = '150', label }) => {
             pointerEvents: 'none',
           },
           box: {
-            fill: colors.greenAccent[700],
+            fill: colors.grey[600],
           },
         }}
         infoTimeFormat="%Y"
@@ -129,7 +129,7 @@ const WaterTempChart = ({ series, height = '150', label }) => {
       <ChartContainer
         showGrid={false}
         enablePanZoom
-        title="Water Temperature"
+        title="Water Temperature (°C)"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
           axis: {

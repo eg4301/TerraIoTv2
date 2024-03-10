@@ -41,12 +41,12 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = ({ onChange }) => {
   };
 
   return (
-    <Box display="flex" gap={0.7} position="relative" bgcolor="#fff" p={0.6}>
+    <Box display="flex" gap={3} position="relative" top={"-10px"} bgcolor="216, 216, 216" p={0.6}>
       <Box
         display="flex"
         sx={{
           border: `1px solid ${colors.grey[100]}`,
-          borderRadius: '3px',
+          borderRadius: '10px',
         }}
       >
         <Box
@@ -76,8 +76,8 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = ({ onChange }) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: '6px',
-            color: 'black',
+            gap: '7px',
+            color: 'white',
           }}
         >
           <span>{format(dateRange.startDate, 'MMM d, yy')}</span>

@@ -69,7 +69,7 @@ class SernsorService {
   async getRACMAC2Sensors(startDate: Date | null, endDate: Date | null) {
     const params: Record<string, any> = {
       MAC: 2,
-      limit: 1000,
+      limit: 2000,
       sortDirection: 'DESC',
     };
 
@@ -97,7 +97,7 @@ class SernsorService {
   async getRACMAC1Sensors(startDate: Date | null, endDate: Date | null) {
     const params: Record<string, any> = {
       MAC: 1,
-      limit: 1000,
+      limit: 2000,
       sortDirection: 'DESC',
     };
 

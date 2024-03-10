@@ -86,7 +86,7 @@ function App({ signOut, user }) {
             <Sidebar />
             <main className="content">
               <Topbar />
-              <Tooltip
+              {/* <Tooltip
                 title="Notifications"
                 style={{ position: 'absolute', top: '27px', right: '210px' }}
                 arrow
@@ -98,7 +98,7 @@ function App({ signOut, user }) {
                     <NotificationsOutlinedIcon />
                   )}
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
 
               <React.Fragment>
                 <Box

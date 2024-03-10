@@ -110,7 +110,7 @@ const HumidityChar = ({ series, height = '150', label }) => {
             pointerEvents: 'none',
           },
           box: {
-            fill: colors.greenAccent[700],
+            fill: colors.grey[600],
           },
         }}
         infoTimeFormat="%Y"
@@ -128,7 +128,7 @@ const HumidityChar = ({ series, height = '150', label }) => {
       <ChartContainer
         showGrid={false}
         enablePanZoom
-        title="Humidity"
+        title="Humidity (%)"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
           axis: {

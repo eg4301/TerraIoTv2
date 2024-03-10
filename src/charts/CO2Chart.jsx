@@ -111,7 +111,7 @@ const CO2Chart = ({ series, height = '150', label }) => {
             pointerEvents: 'none',
           },
           box: {
-            fill: colors.greenAccent[700],
+            fill: colors.grey[600],
           },
         }}
         infoTimeFormat="%Y"
@@ -129,7 +129,7 @@ const CO2Chart = ({ series, height = '150', label }) => {
       <ChartContainer
         showGrid={false}
         enablePanZoom
-        title="CO2"
+        title="CO2 (ppm)"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
           axis: {
