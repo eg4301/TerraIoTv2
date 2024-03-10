@@ -14,6 +14,7 @@ import {
   ScatterChart,
 } from 'react-timeseries-charts';
 import { tokens } from '../theme';
+import { format } from 'date-fns';
 
 const style = {
   value: {
@@ -113,7 +114,7 @@ const HumidityChar = ({ series, height = '150', label }) => {
             fill: colors.grey[600],
           },
         }}
-        infoTimeFormat="%Y"
+        infoTimeFormat={(date) => format(date, 'MMM dd')}
         infoWidth={100}
         markerRadius={2}
         markerStyle={{

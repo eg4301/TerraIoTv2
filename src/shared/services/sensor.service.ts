@@ -1,4 +1,6 @@
 import {
+  ActuationMax,
+  ActuationMin,
   RACSensors,
   UpdateActuationMaxInput,
   UpdateActuationMinInput,
@@ -41,6 +43,23 @@ class SernsorService {
     );
 
     return response.items || [];
+  }
+
+  mergeActuationMinMax(
+    actuationMin: ActuationMin[],
+    actuationMax: ActuationMax[]
+  ) {
+    if (actuationMin.length && actuationMax.length) {
+      return actuationMin.map((objMin) => {
+        const maxActuation = actuationMax.find(
+          (objMax) => objMax.Variable === objMin.Variable
+        );
+        Object.assign(objMin, maxActuation);
+        return objMin;
+      });
+    }
+
+    return [];
   }
 
   async updateActuationMinRecord(input: UpdateActuationMinInput) {

@@ -36,8 +36,7 @@ import Conductivity from './scenes/conductivity';
 import Calendar from './scenes/calendar';
 import PhChartPage from './scenes/ph';
 import GoogleCalendar from './scenes/google_calendar';
-import ActuationMin from './scenes/actuation-min';
-import ActuationMax from './scenes/actuation-max';
+import ActuationMinMax from './scenes/actuation-min-max';
 import { UserProfile } from './scenes/profile';
 import { fetchUserAttributes } from 'aws-amplify/auth';
 import { getUrl } from 'aws-amplify/storage';
@@ -138,7 +137,7 @@ function App({ signOut, user }) {
                     </IconButton>
                   </Tooltip>
                 </Box>
-            
+
                 <Menu
                   anchorEl={anchorEl}
                   id="account-menu"
@@ -174,28 +173,28 @@ function App({ signOut, user }) {
                   transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                   anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                <Paper sx={{ width: 150, maxWidth: '100%' }}>
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      navigate('/user-profile');
-                    }}
-                  >
-                    <Avatar /> Profile
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                      <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Settings
-                  </MenuItem>
-                  <MenuItem onClick={signOut}>
-                    <ListItemIcon>
-                      <Logout fontSize="small" />
-                    </ListItemIcon>
-                    Logout
-                  </MenuItem>
+                  <Paper sx={{ width: 150, maxWidth: '100%' }}>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        navigate('/user-profile');
+                      }}
+                    >
+                      <Avatar /> Profile
+                    </MenuItem>
+                    <Divider />
+                    <MenuItem onClick={handleClose}>
+                      <ListItemIcon>
+                        <Settings fontSize="small" />
+                      </ListItemIcon>
+                      Settings
+                    </MenuItem>
+                    <MenuItem onClick={signOut}>
+                      <ListItemIcon>
+                        <Logout fontSize="small" />
+                      </ListItemIcon>
+                      Logout
+                    </MenuItem>
                   </Paper>
                 </Menu>
               </React.Fragment>
@@ -212,8 +211,7 @@ function App({ signOut, user }) {
                   <Route path="/pH" element={<PhChartPage />} />
                   <Route path="/google_calendar" element={<GoogleCalendar />} />
                   <Route path="/user-profile" element={<UserProfile />} />
-                  <Route path="/actuation-min" element={<ActuationMin />} />
-                  <Route path="/actuation-max" element={<ActuationMax />} />
+                  <Route path="/actuation" element={<ActuationMinMax />} />
                 </Routes>
               </GoogleCalendarProvider>
             </main>

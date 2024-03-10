@@ -14,6 +14,7 @@ import {
   EventMarker,
 } from 'react-timeseries-charts';
 import { tokens } from '../theme';
+import { format } from 'date-fns';
 
 const style = {
   value: {
@@ -114,7 +115,7 @@ const AirTempChart = ({ atmTemperatureSeries, height = '150', label }) => {
             fill: colors.grey[600],
           },
         }}
-        infoTimeFormat="%Y"
+        infoTimeFormat={(date) => format(date, 'MMM dd')}
         infoWidth={135}
         markerRadius={2}
         markerStyle={{

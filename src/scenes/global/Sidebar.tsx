@@ -17,8 +17,6 @@ import WaterOutlinedIcon from '@mui/icons-material/WaterOutlined';
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import BatterySaverOutlinedIcon from '@mui/icons-material/BatterySaverOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
-import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -143,6 +141,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            <Item
+              title="Actuation"
+              to="/actuation"
+              icon={<GoogleIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 
             {!isCollapsed && (
               <Typography
@@ -216,30 +221,6 @@ const Sidebar = () => {
               title="pH"
               to="/pH"
               icon={<BatterySaverOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            {!isCollapsed && (
-              <Typography
-                variant="h6"
-                color={colors.grey[300]}
-                sx={{ m: '50px 0 5px 20px', fontSize: 15 }}
-                // align = "center"
-              >
-                Actuation
-              </Typography>
-            )}
-            <Item
-              title="Min Actuation"
-              to="/actuation-min"
-              icon={<KeyboardDoubleArrowDownIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Max Actuation"
-              to="/actuation-max"
-              icon={<KeyboardDoubleArrowUpIcon />}
               selected={selected}
               setSelected={setSelected}
             />

@@ -14,11 +14,17 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { tokens } from '../../theme';
-import { useActuationMax } from './hooks/useActuationMax';
+import { useActuationMinMax } from './hooks/useActuationMinMax';
 
-const ActuationMax = () => {
-  const { actuations, loading, formState, handleChange, handleSaveChanges } =
-    useActuationMax();
+const ActuationMinMax = () => {
+  const {
+    actuations,
+    loading,
+    formState,
+    handleMaxChange,
+    handleMinChange,
+    handleSaveChanges,
+  } = useActuationMinMax();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -43,10 +49,15 @@ const ActuationMax = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Max Actuation" subtitle="Maximum actuation values" />
+        <Header title="Actuation" subtitle="Actuation values" />
       </Box>
 
-      <Box display="flex" justifyContent="center" mb={3} sx={{ m: '5% 0 3% 0' }}>
+      <Box
+        display="flex"
+        justifyContent="center"
+        mb={3}
+        sx={{ m: '5% 0 3% 0' }}
+      >
         <Button
           onClick={handleSaveChanges}
           variant="contained"
@@ -75,7 +86,7 @@ const ActuationMax = () => {
         <Table
           sx={{
             margin: '0 auto',
-            width: 650,
+            width: 820,
             tableLayout: 'fixed',
             '& th,td': {
               fontSize: '20px',
@@ -100,6 +111,8 @@ const ActuationMax = () => {
               <TableCell align="center">Parameter</TableCell>
               <TableCell align="center">Current Max</TableCell>
               <TableCell align="center">Set Max</TableCell>
+              <TableCell align="center">Current Min</TableCell>
+              <TableCell align="center">Set Min</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -124,11 +137,33 @@ const ActuationMax = () => {
                     fullWidth
                     label={row.Variable}
                     variant="outlined"
-                    value={formState[row.Variable]}
-                    onChange={handleChange}
+                    value={formState.max[row.Variable]}
+                    onChange={handleMaxChange}
                     sx={{
                       '& fieldset': {
-                        border: `1px solid ${colors.grey[100]} !important`,
+                        border: `1px solid ${colors.primary[100]} !important`,
+                      },
+                      '& label': {
+                        color: `${colors.grey[100]} !important`,
+                      },
+                    }}
+                  />
+                </TableCell>
+                <TableCell align="center">{row.Min}</TableCell>
+                <TableCell align="center">
+                  <TextField
+                    autoComplete="off"
+                    type="number"
+                    id={row.Variable}
+                    name={row.Variable}
+                    fullWidth
+                    label={row.Variable}
+                    variant="outlined"
+                    value={formState.min[row.Variable]}
+                    onChange={handleMinChange}
+                    sx={{
+                      '& fieldset': {
+                        border: `1px solid ${colors.primary[100]} !important`,
                       },
                       '& label': {
                         color: `${colors.grey[100]} !important`,
@@ -145,4 +180,4 @@ const ActuationMax = () => {
   );
 };
 
-export default ActuationMax;
+export default ActuationMinMax;
