@@ -210,7 +210,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
-              <HumidityChart series={humiditySeries} height = '175' />
+              <HumidityChart series={humiditySeries} height = '200' />
             </Box>
           </Box>
         </Grid>
@@ -244,7 +244,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
-              <WaterTempChart series={waterSeries} height = '175' />
+              <WaterTempChart series={waterSeries} height = '200' />
             </Box>
           </Box>
         </Grid>
@@ -279,7 +279,7 @@ const Dashboard = () => {
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
               <ConductivityChart
                 series={conductivitySeries}
-                height = '175'
+                height = '200'
               />
             </Box>
           </Box>
@@ -314,7 +314,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
-              <PHChart series={pHSeries} height = '175' />
+              <PHChart series={pHSeries} height = '200' />
             </Box>
           </Box>
         </Grid>
