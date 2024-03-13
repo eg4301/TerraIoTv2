@@ -23,11 +23,13 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type ActuationMinCreateFormInputValues = {
     Min?: number;
+    PesudoMin?: number;
     Setup?: string;
     Variable?: string;
 };
 export declare type ActuationMinCreateFormValidationValues = {
     Min?: ValidationFunction<number>;
+    PesudoMin?: ValidationFunction<number>;
     Setup?: ValidationFunction<string>;
     Variable?: ValidationFunction<string>;
 };
@@ -35,6 +37,7 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type ActuationMinCreateFormOverridesProps = {
     ActuationMinCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     Min?: PrimitiveOverrideProps<TextFieldProps>;
+    PesudoMin?: PrimitiveOverrideProps<TextFieldProps>;
     Setup?: PrimitiveOverrideProps<TextFieldProps>;
     Variable?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;

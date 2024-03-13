@@ -14,9 +14,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { tokens } from '../../theme';
-import { useActuationMinMax } from './hooks/useActuationMinMax';
+import { useActuationPesudo } from './hooks/useActuationPesudo';
 
-const ActuationMinMax = () => {
+const ActuationPesudo = () => {
   const {
     actuations,
     loading,
@@ -24,7 +24,7 @@ const ActuationMinMax = () => {
     handleMaxChange,
     handleMinChange,
     handleSaveChanges,
-  } = useActuationMinMax();
+  } = useActuationPesudo();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -109,10 +109,10 @@ const ActuationMinMax = () => {
               }}
             >
               <TableCell align="center">Parameter</TableCell>
-              <TableCell align="center">Current Min</TableCell>
-              <TableCell align="center">Set Min</TableCell>
-              <TableCell align="center">Current Max</TableCell>
-              <TableCell align="center">Set Max</TableCell>
+              <TableCell align="center">Current Pseudo Min</TableCell>
+              <TableCell align="center">Set Pseudo Min</TableCell>
+              <TableCell align="center">Current Pseudo Max</TableCell>
+              <TableCell align="center">Set Pseudo Max</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -127,7 +127,7 @@ const ActuationMinMax = () => {
                 }}
               >
                 <TableCell align="center">{row.Variable}</TableCell>
-                <TableCell align="center">{row.Min}</TableCell>
+                <TableCell align="center">{row.PesudoMin}</TableCell>
                 <TableCell align="center">
                   <TextField
                     autoComplete="off"
@@ -137,7 +137,7 @@ const ActuationMinMax = () => {
                     fullWidth
                     label={row.Variable}
                     variant="outlined"
-                    value={formState.min[row.Variable]}
+                    value={formState.pesudoMin[row.Variable]}
                     onChange={handleMinChange}
                     sx={{
                       '& fieldset': {
@@ -149,7 +149,7 @@ const ActuationMinMax = () => {
                     }}
                   />
                 </TableCell>
-                <TableCell align="center">{row.Max}</TableCell>
+                <TableCell align="center">{row.PesudoMax}</TableCell>
                 <TableCell align="center">
                   <TextField
                     autoComplete="off"
@@ -159,7 +159,7 @@ const ActuationMinMax = () => {
                     fullWidth
                     label={row.Variable}
                     variant="outlined"
-                    value={formState.max[row.Variable]}
+                    value={formState.pesudoMax[row.Variable]}
                     onChange={handleMaxChange}
                     sx={{
                       '& fieldset': {
@@ -180,4 +180,4 @@ const ActuationMinMax = () => {
   );
 };
 
-export default ActuationMinMax;
+export default ActuationPesudo;

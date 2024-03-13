@@ -13,6 +13,7 @@ export const onCreateActuationMax = /* GraphQL */ `subscription OnCreateActuatio
 ) {
   onCreateActuationMax(filter: $filter) {
     Max
+    PesudoMax
     Setup
     Variable
     __typename
@@ -27,6 +28,7 @@ export const onUpdateActuationMax = /* GraphQL */ `subscription OnUpdateActuatio
 ) {
   onUpdateActuationMax(filter: $filter) {
     Max
+    PesudoMax
     Setup
     Variable
     __typename
@@ -41,6 +43,7 @@ export const onDeleteActuationMax = /* GraphQL */ `subscription OnDeleteActuatio
 ) {
   onDeleteActuationMax(filter: $filter) {
     Max
+    PesudoMax
     Setup
     Variable
     __typename
@@ -55,6 +58,7 @@ export const onCreateActuationMin = /* GraphQL */ `subscription OnCreateActuatio
 ) {
   onCreateActuationMin(filter: $filter) {
     Min
+    PesudoMin
     Setup
     Variable
     __typename
@@ -69,6 +73,7 @@ export const onUpdateActuationMin = /* GraphQL */ `subscription OnUpdateActuatio
 ) {
   onUpdateActuationMin(filter: $filter) {
     Min
+    PesudoMin
     Setup
     Variable
     __typename
@@ -83,6 +88,7 @@ export const onDeleteActuationMin = /* GraphQL */ `subscription OnDeleteActuatio
 ) {
   onDeleteActuationMin(filter: $filter) {
     Min
+    PesudoMin
     Setup
     Variable
     __typename
@@ -91,51 +97,6 @@ export const onDeleteActuationMin = /* GraphQL */ `subscription OnDeleteActuatio
 ` as GeneratedSubscription<
   APITypes.OnDeleteActuationMinSubscriptionVariables,
   APITypes.OnDeleteActuationMinSubscription
->;
-export const onCreateActuationMinMax = /* GraphQL */ `subscription OnCreateActuationMinMax(
-  $filter: ModelSubscriptionActuationMinMaxFilterInput
-) {
-  onCreateActuationMinMax(filter: $filter) {
-    Max
-    Min
-    Setup
-    Variable
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreateActuationMinMaxSubscriptionVariables,
-  APITypes.OnCreateActuationMinMaxSubscription
->;
-export const onUpdateActuationMinMax = /* GraphQL */ `subscription OnUpdateActuationMinMax(
-  $filter: ModelSubscriptionActuationMinMaxFilterInput
-) {
-  onUpdateActuationMinMax(filter: $filter) {
-    Max
-    Min
-    Setup
-    Variable
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdateActuationMinMaxSubscriptionVariables,
-  APITypes.OnUpdateActuationMinMaxSubscription
->;
-export const onDeleteActuationMinMax = /* GraphQL */ `subscription OnDeleteActuationMinMax(
-  $filter: ModelSubscriptionActuationMinMaxFilterInput
-) {
-  onDeleteActuationMinMax(filter: $filter) {
-    Max
-    Min
-    Setup
-    Variable
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeleteActuationMinMaxSubscriptionVariables,
-  APITypes.OnDeleteActuationMinMaxSubscription
 >;
 export const onCreateRACSensors = /* GraphQL */ `subscription OnCreateRACSensors(
   $filter: ModelSubscriptionRACSensorsFilterInput

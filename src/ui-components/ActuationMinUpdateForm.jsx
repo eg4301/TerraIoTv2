@@ -26,10 +26,12 @@ export default function ActuationMinUpdateForm(props) {
   } = props;
   const initialValues = {
     Min: "",
+    PesudoMin: "",
     Setup: "",
     Variable: "",
   };
   const [Min, setMin] = React.useState(initialValues.Min);
+  const [PesudoMin, setPesudoMin] = React.useState(initialValues.PesudoMin);
   const [Setup, setSetup] = React.useState(initialValues.Setup);
   const [Variable, setVariable] = React.useState(initialValues.Variable);
   const [errors, setErrors] = React.useState({});
@@ -38,6 +40,7 @@ export default function ActuationMinUpdateForm(props) {
       ? { ...initialValues, ...actuationMinRecord }
       : initialValues;
     setMin(cleanValues.Min);
+    setPesudoMin(cleanValues.PesudoMin);
     setSetup(cleanValues.Setup);
     setVariable(cleanValues.Variable);
     setErrors({});
@@ -62,6 +65,7 @@ export default function ActuationMinUpdateForm(props) {
   React.useEffect(resetStateValues, [actuationMinRecord]);
   const validations = {
     Min: [],
+    PesudoMin: [],
     Setup: [{ type: "Required" }],
     Variable: [{ type: "Required" }],
   };
@@ -92,6 +96,7 @@ export default function ActuationMinUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           Min: Min ?? null,
+          PesudoMin: PesudoMin ?? null,
           Setup,
           Variable,
         };
@@ -160,6 +165,7 @@ export default function ActuationMinUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               Min: value,
+              PesudoMin,
               Setup,
               Variable,
             };
@@ -177,6 +183,37 @@ export default function ActuationMinUpdateForm(props) {
         {...getOverrideProps(overrides, "Min")}
       ></TextField>
       <TextField
+        label="Pesudo min"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={PesudoMin}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              Min,
+              PesudoMin: value,
+              Setup,
+              Variable,
+            };
+            const result = onChange(modelFields);
+            value = result?.PesudoMin ?? value;
+          }
+          if (errors.PesudoMin?.hasError) {
+            runValidationTasks("PesudoMin", value);
+          }
+          setPesudoMin(value);
+        }}
+        onBlur={() => runValidationTasks("PesudoMin", PesudoMin)}
+        errorMessage={errors.PesudoMin?.errorMessage}
+        hasError={errors.PesudoMin?.hasError}
+        {...getOverrideProps(overrides, "PesudoMin")}
+      ></TextField>
+      <TextField
         label="Setup"
         isRequired={true}
         isReadOnly={true}
@@ -186,6 +223,7 @@ export default function ActuationMinUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               Min,
+              PesudoMin,
               Setup: value,
               Variable,
             };
@@ -212,6 +250,7 @@ export default function ActuationMinUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               Min,
+              PesudoMin,
               Setup,
               Variable: value,
             };

@@ -123,18 +123,21 @@ export type UpdateActuationByVariableInput = {
 export type ActuationMin = {
   __typename: "ActuationMin",
   Min?: number | null,
+  PesudoMin?: number | null,
   Setup: string,
   Variable: string,
 };
 
 export type CreateActuationMaxInput = {
   Max?: number | null,
+  PesudoMax?: number | null,
   Setup: string,
   Variable: string,
 };
 
 export type ModelActuationMaxConditionInput = {
   Max?: ModelFloatInput | null,
+  PesudoMax?: ModelFloatInput | null,
   and?: Array< ModelActuationMaxConditionInput | null > | null,
   or?: Array< ModelActuationMaxConditionInput | null > | null,
   not?: ModelActuationMaxConditionInput | null,
@@ -143,12 +146,14 @@ export type ModelActuationMaxConditionInput = {
 export type ActuationMax = {
   __typename: "ActuationMax",
   Max?: number | null,
+  PesudoMax?: number | null,
   Setup: string,
   Variable: string,
 };
 
 export type UpdateActuationMaxInput = {
   Max?: number | null,
+  PesudoMax?: number | null,
   Setup: string,
   Variable: string,
 };
@@ -160,12 +165,14 @@ export type DeleteActuationMaxInput = {
 
 export type CreateActuationMinInput = {
   Min?: number | null,
+  PesudoMin?: number | null,
   Setup: string,
   Variable: string,
 };
 
 export type ModelActuationMinConditionInput = {
   Min?: ModelFloatInput | null,
+  PesudoMin?: ModelFloatInput | null,
   and?: Array< ModelActuationMinConditionInput | null > | null,
   or?: Array< ModelActuationMinConditionInput | null > | null,
   not?: ModelActuationMinConditionInput | null,
@@ -173,46 +180,12 @@ export type ModelActuationMinConditionInput = {
 
 export type UpdateActuationMinInput = {
   Min?: number | null,
+  PesudoMin?: number | null,
   Setup: string,
   Variable: string,
 };
 
 export type DeleteActuationMinInput = {
-  Setup: string,
-  Variable: string,
-};
-
-export type CreateActuationMinMaxInput = {
-  Max?: number | null,
-  Min?: number | null,
-  Setup: string,
-  Variable: string,
-};
-
-export type ModelActuationMinMaxConditionInput = {
-  Max?: ModelFloatInput | null,
-  Min?: ModelFloatInput | null,
-  and?: Array< ModelActuationMinMaxConditionInput | null > | null,
-  or?: Array< ModelActuationMinMaxConditionInput | null > | null,
-  not?: ModelActuationMinMaxConditionInput | null,
-};
-
-export type ActuationMinMax = {
-  __typename: "ActuationMinMax",
-  Max?: number | null,
-  Min?: number | null,
-  Setup: string,
-  Variable: string,
-};
-
-export type UpdateActuationMinMaxInput = {
-  Max?: number | null,
-  Min?: number | null,
-  Setup: string,
-  Variable: string,
-};
-
-export type DeleteActuationMinMaxInput = {
   Setup: string,
   Variable: string,
 };
@@ -261,6 +234,7 @@ export type DeleteRACSensorsInput = {
 
 export type ModelActuationMaxFilterInput = {
   Max?: ModelFloatInput | null,
+  PesudoMax?: ModelFloatInput | null,
   Setup?: ModelStringInput | null,
   Variable?: ModelStringInput | null,
   and?: Array< ModelActuationMaxFilterInput | null > | null,
@@ -276,6 +250,7 @@ export type ModelActuationMaxConnection = {
 
 export type ModelActuationMinFilterInput = {
   Min?: ModelFloatInput | null,
+  PesudoMin?: ModelFloatInput | null,
   Setup?: ModelStringInput | null,
   Variable?: ModelStringInput | null,
   and?: Array< ModelActuationMinFilterInput | null > | null,
@@ -289,24 +264,9 @@ export type ModelActuationMinConnection = {
   nextToken?: string | null,
 };
 
-export type ModelActuationMinMaxFilterInput = {
-  Max?: ModelFloatInput | null,
-  Min?: ModelFloatInput | null,
-  Setup?: ModelStringInput | null,
-  Variable?: ModelStringInput | null,
-  and?: Array< ModelActuationMinMaxFilterInput | null > | null,
-  or?: Array< ModelActuationMinMaxFilterInput | null > | null,
-  not?: ModelActuationMinMaxFilterInput | null,
-};
-
-export type ModelActuationMinMaxConnection = {
-  __typename: "ModelActuationMinMaxConnection",
-  items:  Array<ActuationMinMax | null >,
-  nextToken?: string | null,
-};
-
 export type ModelSubscriptionActuationMaxFilterInput = {
   Max?: ModelSubscriptionFloatInput | null,
+  PesudoMax?: ModelSubscriptionFloatInput | null,
   Setup?: ModelSubscriptionStringInput | null,
   Variable?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionActuationMaxFilterInput | null > | null,
@@ -342,19 +302,11 @@ export type ModelSubscriptionStringInput = {
 
 export type ModelSubscriptionActuationMinFilterInput = {
   Min?: ModelSubscriptionFloatInput | null,
+  PesudoMin?: ModelSubscriptionFloatInput | null,
   Setup?: ModelSubscriptionStringInput | null,
   Variable?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionActuationMinFilterInput | null > | null,
   or?: Array< ModelSubscriptionActuationMinFilterInput | null > | null,
-};
-
-export type ModelSubscriptionActuationMinMaxFilterInput = {
-  Max?: ModelSubscriptionFloatInput | null,
-  Min?: ModelSubscriptionFloatInput | null,
-  Setup?: ModelSubscriptionStringInput | null,
-  Variable?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionActuationMinMaxFilterInput | null > | null,
-  or?: Array< ModelSubscriptionActuationMinMaxFilterInput | null > | null,
 };
 
 export type ModelSubscriptionRACSensorsFilterInput = {
@@ -441,6 +393,7 @@ export type UpdateActuationMinByVariableMutation = {
   updateActuationMinByVariable:  {
     __typename: "ActuationMin",
     Min?: number | null,
+    PesudoMin?: number | null,
     Setup: string,
     Variable: string,
   },
@@ -455,6 +408,7 @@ export type CreateActuationMaxMutation = {
   createActuationMax?:  {
     __typename: "ActuationMax",
     Max?: number | null,
+    PesudoMax?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -469,6 +423,7 @@ export type UpdateActuationMaxMutation = {
   updateActuationMax?:  {
     __typename: "ActuationMax",
     Max?: number | null,
+    PesudoMax?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -483,6 +438,7 @@ export type DeleteActuationMaxMutation = {
   deleteActuationMax?:  {
     __typename: "ActuationMax",
     Max?: number | null,
+    PesudoMax?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -497,6 +453,7 @@ export type CreateActuationMinMutation = {
   createActuationMin?:  {
     __typename: "ActuationMin",
     Min?: number | null,
+    PesudoMin?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -511,6 +468,7 @@ export type UpdateActuationMinMutation = {
   updateActuationMin?:  {
     __typename: "ActuationMin",
     Min?: number | null,
+    PesudoMin?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -525,51 +483,7 @@ export type DeleteActuationMinMutation = {
   deleteActuationMin?:  {
     __typename: "ActuationMin",
     Min?: number | null,
-    Setup: string,
-    Variable: string,
-  } | null,
-};
-
-export type CreateActuationMinMaxMutationVariables = {
-  input: CreateActuationMinMaxInput,
-  condition?: ModelActuationMinMaxConditionInput | null,
-};
-
-export type CreateActuationMinMaxMutation = {
-  createActuationMinMax?:  {
-    __typename: "ActuationMinMax",
-    Max?: number | null,
-    Min?: number | null,
-    Setup: string,
-    Variable: string,
-  } | null,
-};
-
-export type UpdateActuationMinMaxMutationVariables = {
-  input: UpdateActuationMinMaxInput,
-  condition?: ModelActuationMinMaxConditionInput | null,
-};
-
-export type UpdateActuationMinMaxMutation = {
-  updateActuationMinMax?:  {
-    __typename: "ActuationMinMax",
-    Max?: number | null,
-    Min?: number | null,
-    Setup: string,
-    Variable: string,
-  } | null,
-};
-
-export type DeleteActuationMinMaxMutationVariables = {
-  input: DeleteActuationMinMaxInput,
-  condition?: ModelActuationMinMaxConditionInput | null,
-};
-
-export type DeleteActuationMinMaxMutation = {
-  deleteActuationMinMax?:  {
-    __typename: "ActuationMinMax",
-    Max?: number | null,
-    Min?: number | null,
+    PesudoMin?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -644,6 +558,7 @@ export type GetActuationMaxQuery = {
   getActuationMax?:  {
     __typename: "ActuationMax",
     Max?: number | null,
+    PesudoMax?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -664,6 +579,7 @@ export type ListActuationMaxesQuery = {
     items:  Array< {
       __typename: "ActuationMax",
       Max?: number | null,
+      PesudoMax?: number | null,
       Setup: string,
       Variable: string,
     } | null >,
@@ -680,6 +596,7 @@ export type GetActuationMinQuery = {
   getActuationMin?:  {
     __typename: "ActuationMin",
     Min?: number | null,
+    PesudoMin?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -700,44 +617,7 @@ export type ListActuationMinsQuery = {
     items:  Array< {
       __typename: "ActuationMin",
       Min?: number | null,
-      Setup: string,
-      Variable: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type GetActuationMinMaxQueryVariables = {
-  Setup: string,
-  Variable: string,
-};
-
-export type GetActuationMinMaxQuery = {
-  getActuationMinMax?:  {
-    __typename: "ActuationMinMax",
-    Max?: number | null,
-    Min?: number | null,
-    Setup: string,
-    Variable: string,
-  } | null,
-};
-
-export type ListActuationMinMaxesQueryVariables = {
-  Setup?: string | null,
-  Variable?: ModelStringKeyConditionInput | null,
-  filter?: ModelActuationMinMaxFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
-};
-
-export type ListActuationMinMaxesQuery = {
-  listActuationMinMaxes?:  {
-    __typename: "ModelActuationMinMaxConnection",
-    items:  Array< {
-      __typename: "ActuationMinMax",
-      Max?: number | null,
-      Min?: number | null,
+      PesudoMin?: number | null,
       Setup: string,
       Variable: string,
     } | null >,
@@ -801,6 +681,7 @@ export type OnCreateActuationMaxSubscription = {
   onCreateActuationMax?:  {
     __typename: "ActuationMax",
     Max?: number | null,
+    PesudoMax?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -814,6 +695,7 @@ export type OnUpdateActuationMaxSubscription = {
   onUpdateActuationMax?:  {
     __typename: "ActuationMax",
     Max?: number | null,
+    PesudoMax?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -827,6 +709,7 @@ export type OnDeleteActuationMaxSubscription = {
   onDeleteActuationMax?:  {
     __typename: "ActuationMax",
     Max?: number | null,
+    PesudoMax?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -840,6 +723,7 @@ export type OnCreateActuationMinSubscription = {
   onCreateActuationMin?:  {
     __typename: "ActuationMin",
     Min?: number | null,
+    PesudoMin?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -853,6 +737,7 @@ export type OnUpdateActuationMinSubscription = {
   onUpdateActuationMin?:  {
     __typename: "ActuationMin",
     Min?: number | null,
+    PesudoMin?: number | null,
     Setup: string,
     Variable: string,
   } | null,
@@ -866,48 +751,7 @@ export type OnDeleteActuationMinSubscription = {
   onDeleteActuationMin?:  {
     __typename: "ActuationMin",
     Min?: number | null,
-    Setup: string,
-    Variable: string,
-  } | null,
-};
-
-export type OnCreateActuationMinMaxSubscriptionVariables = {
-  filter?: ModelSubscriptionActuationMinMaxFilterInput | null,
-};
-
-export type OnCreateActuationMinMaxSubscription = {
-  onCreateActuationMinMax?:  {
-    __typename: "ActuationMinMax",
-    Max?: number | null,
-    Min?: number | null,
-    Setup: string,
-    Variable: string,
-  } | null,
-};
-
-export type OnUpdateActuationMinMaxSubscriptionVariables = {
-  filter?: ModelSubscriptionActuationMinMaxFilterInput | null,
-};
-
-export type OnUpdateActuationMinMaxSubscription = {
-  onUpdateActuationMinMax?:  {
-    __typename: "ActuationMinMax",
-    Max?: number | null,
-    Min?: number | null,
-    Setup: string,
-    Variable: string,
-  } | null,
-};
-
-export type OnDeleteActuationMinMaxSubscriptionVariables = {
-  filter?: ModelSubscriptionActuationMinMaxFilterInput | null,
-};
-
-export type OnDeleteActuationMinMaxSubscription = {
-  onDeleteActuationMinMax?:  {
-    __typename: "ActuationMinMax",
-    Max?: number | null,
-    Min?: number | null,
+    PesudoMin?: number | null,
     Setup: string,
     Variable: string,
   } | null,

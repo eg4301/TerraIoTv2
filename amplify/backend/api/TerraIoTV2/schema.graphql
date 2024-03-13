@@ -1,20 +1,13 @@
 type ActuationMax @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   Max: Float
+  PesudoMax: Float
   Setup: String! @primaryKey(sortKeyFields: ["Variable"])
   Variable: String!
 }
 
 type ActuationMin @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   Min: Float
-  Setup: String! @primaryKey(sortKeyFields: ["Variable"])
-  Variable: String!
-}
-
-type ActuationMinMax
-  @model(timestamps: null)
-  @auth(rules: [{ allow: public }]) {
-  Max: Float
-  Min: Float
+  PesudoMin: Float
   Setup: String! @primaryKey(sortKeyFields: ["Variable"])
   Variable: String!
 }
