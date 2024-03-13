@@ -180,31 +180,21 @@ const PHChart = ({ series, height = '150', label }) => {
             <Baseline
               axis="ph"
               style={baselineStyleLite}
-              value={series.max()}
+              value={croppedSeries.max()}
               label="Max"
               position="right"
             />
             <Baseline
               axis="ph"
               style={baselineStyleLite}
-              value={series.min()}
+              value={croppedSeries.min()}
               label="Min"
               position="right"
             />
-            {/* <Baseline
-              axis="ph"
-              style={baselineStyleExtraLite}
-              value={series.avg() - series.stdev()}
-            />
-            <Baseline
-              axis="ph"
-              style={baselineStyleExtraLite}
-              value={series.avg() + series.stdev()}
-            /> */}
             <Baseline
               axis="ph"
               style={baselineStyle}
-              value={series.avg()}
+              value={croppedSeries.avg()}
               label="Avg"
               position="right"
             />

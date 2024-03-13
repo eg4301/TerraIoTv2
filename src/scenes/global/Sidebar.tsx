@@ -10,7 +10,6 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import DeviceThermostatOutlinedIcon from '@mui/icons-material/DeviceThermostatOutlined';
 import Co2OutlinedIcon from '@mui/icons-material/Co2Outlined';
 import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
-import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import AirOutlinedIcon from '@mui/icons-material/AirOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import WaterOutlinedIcon from '@mui/icons-material/WaterOutlined';
@@ -18,6 +17,7 @@ import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import BatterySaverOutlinedIcon from '@mui/icons-material/BatterySaverOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -128,13 +128,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            {/* <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            /> */}
             <Item
               title="Google Calendar"
               to="/google_calendar"
@@ -152,7 +145,7 @@ const Sidebar = () => {
             <Item
               title="Threshold Values"
               to="/actuation"
-              icon={<ChangeCircleOutlinedIcon />}
+              icon={<LockOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

@@ -189,31 +189,21 @@ const AirTempChart = ({ atmTemperatureSeries, height = '150', label }) => {
             <Baseline
               axis="airTemperature"
               style={baselineStyleLite}
-              value={atmTemperatureSeries.max()}
+              value={croppedSeries.max()}
               label="Max"
               position="right"
             />
             <Baseline
               axis="airTemperature"
               style={baselineStyleLite}
-              value={atmTemperatureSeries.min()}
+              value={croppedSeries.min()}
               label="Min"
               position="right"
             />
-            {/* <Baseline
-              axis="airTemperature"
-              style={baselineStyleExtraLite}
-              value={atmTemperatureSeries.avg() - atmTemperatureSeries.stdev()}
-            />
-            <Baseline
-              axis="airTemperature"
-              style={baselineStyleExtraLite}
-              value={atmTemperatureSeries.avg() + atmTemperatureSeries.stdev()}
-            /> */}
             <Baseline
               axis="airTemperature"
               style={baselineStyle}
-              value={atmTemperatureSeries.avg()}
+              value={croppedSeries.avg()}
               label="Avg"
               position="right"
             />
