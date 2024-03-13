@@ -143,7 +143,14 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Actuation"
+              title="Pseudo Values"
+              to="/actuation-pseudo"
+              icon={<ChangeCircleOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Threshold Values"
               to="/actuation"
               icon={<ChangeCircleOutlinedIcon />}
               selected={selected}

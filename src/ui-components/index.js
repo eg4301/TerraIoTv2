@@ -7,8 +7,6 @@
 export { default as ActuationMaxCreateForm } from "./ActuationMaxCreateForm";
 export { default as ActuationMaxUpdateForm } from "./ActuationMaxUpdateForm";
 export { default as ActuationMinCreateForm } from "./ActuationMinCreateForm";
-export { default as ActuationMinMaxCreateForm } from "./ActuationMinMaxCreateForm";
-export { default as ActuationMinMaxUpdateForm } from "./ActuationMinMaxUpdateForm";
 export { default as ActuationMinUpdateForm } from "./ActuationMinUpdateForm";
 export { default as RACSensorsCreateForm } from "./RACSensorsCreateForm";
 export { default as RACSensorsUpdateForm } from "./RACSensorsUpdateForm";

@@ -24,21 +24,25 @@ export default function ActuationMaxCreateForm(props) {
   } = props;
   const initialValues = {
     Max: "",
+    PesudoMax: "",
     Setup: "",
     Variable: "",
   };
   const [Max, setMax] = React.useState(initialValues.Max);
+  const [PesudoMax, setPesudoMax] = React.useState(initialValues.PesudoMax);
   const [Setup, setSetup] = React.useState(initialValues.Setup);
   const [Variable, setVariable] = React.useState(initialValues.Variable);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setMax(initialValues.Max);
+    setPesudoMax(initialValues.PesudoMax);
     setSetup(initialValues.Setup);
     setVariable(initialValues.Variable);
     setErrors({});
   };
   const validations = {
     Max: [],
+    PesudoMax: [],
     Setup: [{ type: "Required" }],
     Variable: [{ type: "Required" }],
   };
@@ -69,6 +73,7 @@ export default function ActuationMaxCreateForm(props) {
         event.preventDefault();
         let modelFields = {
           Max,
+          PesudoMax,
           Setup,
           Variable,
         };
@@ -138,6 +143,7 @@ export default function ActuationMaxCreateForm(props) {
           if (onChange) {
             const modelFields = {
               Max: value,
+              PesudoMax,
               Setup,
               Variable,
             };
@@ -155,6 +161,37 @@ export default function ActuationMaxCreateForm(props) {
         {...getOverrideProps(overrides, "Max")}
       ></TextField>
       <TextField
+        label="Pesudo max"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={PesudoMax}
+        onChange={(e) => {
+          let value = isNaN(parseFloat(e.target.value))
+            ? e.target.value
+            : parseFloat(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              Max,
+              PesudoMax: value,
+              Setup,
+              Variable,
+            };
+            const result = onChange(modelFields);
+            value = result?.PesudoMax ?? value;
+          }
+          if (errors.PesudoMax?.hasError) {
+            runValidationTasks("PesudoMax", value);
+          }
+          setPesudoMax(value);
+        }}
+        onBlur={() => runValidationTasks("PesudoMax", PesudoMax)}
+        errorMessage={errors.PesudoMax?.errorMessage}
+        hasError={errors.PesudoMax?.hasError}
+        {...getOverrideProps(overrides, "PesudoMax")}
+      ></TextField>
+      <TextField
         label="Setup"
         isRequired={true}
         isReadOnly={false}
@@ -164,6 +201,7 @@ export default function ActuationMaxCreateForm(props) {
           if (onChange) {
             const modelFields = {
               Max,
+              PesudoMax,
               Setup: value,
               Variable,
             };
@@ -190,6 +228,7 @@ export default function ActuationMaxCreateForm(props) {
           if (onChange) {
             const modelFields = {
               Max,
+              PesudoMax,
               Setup,
               Variable: value,
             };

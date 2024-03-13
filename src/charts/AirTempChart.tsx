@@ -115,7 +115,7 @@ const AirTempChart = ({ atmTemperatureSeries, height = '150', label }) => {
             fill: colors.grey[600],
           },
         }}
-        infoTimeFormat={(date) => format(date, 'MMM dd')}
+        infoTimeFormat={(date) => format(date, 'MMM dd HH:mm')}
         infoWidth={135}
         markerRadius={2}
         markerStyle={{

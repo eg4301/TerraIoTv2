@@ -1,20 +1,47 @@
+import { TokenResponse } from '@react-oauth/google';
 import React, { useContext, useState } from 'react';
 
+type GoogleSession = Omit<
+  TokenResponse,
+  'error_description' | 'error' | 'error_ui'
+>;
+
+type Event = {
+  start: Date;
+  end: Date;
+  title: string;
+  allDay: boolean;
+};
+
 type GoogleCalendarContextValueType = {
-  apiKey: string;
+  googleSession: GoogleSession | null;
+  events: Event[];
   calendarId: string;
-  display: boolean;
+  openCalendar: boolean;
+  openEventForm: boolean;
   displayEvents: () => void;
+  displayEventForm: () => void;
+  setGoogleSession: (credentials: GoogleSession) => void;
+  handleAddNewEvent: (event: Event) => void;
+  hideEventForm: () => void;
+  clearGoogleSession: () => void;
   handleOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const GoogleCalendarContext =
   React.createContext<GoogleCalendarContextValueType>({
-    apiKey: '',
     calendarId: '',
-    display: false,
+    events: [],
+    openCalendar: false,
+    openEventForm: false,
     displayEvents: () => {},
+    displayEventForm: () => {},
     handleOnChange: () => {},
+    setGoogleSession: () => {},
+    handleAddNewEvent: () => {},
+    hideEventForm: () => {},
+    clearGoogleSession: () => {},
+    googleSession: null,
   });
 
 export const GoogleCalendarProvider = ({
@@ -22,10 +49,21 @@ export const GoogleCalendarProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [state, setState] = useState({
-    apiKey: '',
-    calendarId: '',
-    display: false,
+  const [state, setState] = useState(() => {
+    const googleSession = localStorage.getItem('TerraIoT-Google-Session');
+    let parsedGoogleSession: null | GoogleSession = null;
+    if (googleSession) {
+      parsedGoogleSession = JSON.parse(googleSession) as GoogleSession;
+    }
+
+    return {
+      apiKey: '',
+      calendarId: '',
+      openCalendar: false,
+      openEventForm: false,
+      googleSession: parsedGoogleSession,
+      events: [],
+    };
   });
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,11 +74,86 @@ export const GoogleCalendarProvider = ({
     }));
   };
 
-  const displayEvents = () => {
-    if (state.calendarId && state.apiKey) {
+  const hideEventForm = () => {
+    if (state.openEventForm) {
       setState((prev) => ({
         ...prev,
-        display: true,
+        openEventForm: false,
+        openCalendar: true,
+      }));
+    }
+  };
+
+  const handleAddNewEvent = (event: Event) => {
+    setState((prev) => ({
+      ...prev,
+      events: [...prev.events, event],
+    }));
+  };
+
+  const displayEvents = async () => {
+    if (state.calendarId) {
+      try {
+        const response = await fetch(
+          `https://www.googleapis.com/calendar/v3/calendars/${state.calendarId}/events`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: 'Bearer ' + state.googleSession.access_token,
+            },
+          }
+        );
+        const result = await response.json();
+
+        if (
+          result?.error?.code === 401 &&
+          result?.error?.status === 'UNAUTHENTICATED'
+        ) {
+          clearGoogleSession();
+          return;
+        }
+        const events = result.items.map((item) => ({
+          title: item.summary,
+          start: new Date(item.start.dateTime),
+          end: new Date(item.end.dateTime),
+        }));
+        setState((prev) => ({
+          ...prev,
+          openCalendar: true,
+          openEventForm: false,
+          events,
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  const displayEventForm = () => {
+    if (state.calendarId && state.openCalendar) {
+      setState((prev) => ({
+        ...prev,
+        openEventForm: true,
+        openCalendar: false,
+      }));
+    }
+  };
+  const clearGoogleSession = () => {
+    localStorage.removeItem('TerraIoT-Google-Session');
+    setState((prev) => ({
+      ...prev,
+      googleSession: null,
+    }));
+  };
+
+  const setGoogleSession = (credentials: GoogleSession) => {
+    if (credentials) {
+      localStorage.setItem(
+        'TerraIoT-Google-Session',
+        JSON.stringify(credentials)
+      );
+      setState((prev) => ({
+        ...prev,
+        googleSession: credentials,
       }));
     }
   };
@@ -48,11 +161,18 @@ export const GoogleCalendarProvider = ({
   return (
     <GoogleCalendarContext.Provider
       value={{
-        apiKey: state.apiKey,
+        openEventForm: state.openEventForm,
         calendarId: state.calendarId,
-        display: state.display,
+        openCalendar: state.openCalendar,
         displayEvents,
+        displayEventForm,
         handleOnChange,
+        googleSession: state.googleSession,
+        setGoogleSession,
+        events: state.events,
+        handleAddNewEvent,
+        hideEventForm,
+        clearGoogleSession,
       }}
     >
       {children}

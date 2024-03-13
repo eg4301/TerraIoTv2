@@ -14,6 +14,7 @@ export const updateActuationMinByVariable = /* GraphQL */ `mutation UpdateActuat
 ) {
   updateActuationMinByVariable(input: $input, variable: $variable) {
     Min
+    PesudoMin
     Setup
     Variable
     __typename
@@ -29,6 +30,7 @@ export const createActuationMax = /* GraphQL */ `mutation CreateActuationMax(
 ) {
   createActuationMax(input: $input, condition: $condition) {
     Max
+    PesudoMax
     Setup
     Variable
     __typename
@@ -44,6 +46,7 @@ export const updateActuationMax = /* GraphQL */ `mutation UpdateActuationMax(
 ) {
   updateActuationMax(input: $input, condition: $condition) {
     Max
+    PesudoMax
     Setup
     Variable
     __typename
@@ -59,6 +62,7 @@ export const deleteActuationMax = /* GraphQL */ `mutation DeleteActuationMax(
 ) {
   deleteActuationMax(input: $input, condition: $condition) {
     Max
+    PesudoMax
     Setup
     Variable
     __typename
@@ -74,6 +78,7 @@ export const createActuationMin = /* GraphQL */ `mutation CreateActuationMin(
 ) {
   createActuationMin(input: $input, condition: $condition) {
     Min
+    PesudoMin
     Setup
     Variable
     __typename
@@ -89,6 +94,7 @@ export const updateActuationMin = /* GraphQL */ `mutation UpdateActuationMin(
 ) {
   updateActuationMin(input: $input, condition: $condition) {
     Min
+    PesudoMin
     Setup
     Variable
     __typename
@@ -104,6 +110,7 @@ export const deleteActuationMin = /* GraphQL */ `mutation DeleteActuationMin(
 ) {
   deleteActuationMin(input: $input, condition: $condition) {
     Min
+    PesudoMin
     Setup
     Variable
     __typename
@@ -112,54 +119,6 @@ export const deleteActuationMin = /* GraphQL */ `mutation DeleteActuationMin(
 ` as GeneratedMutation<
   APITypes.DeleteActuationMinMutationVariables,
   APITypes.DeleteActuationMinMutation
->;
-export const createActuationMinMax = /* GraphQL */ `mutation CreateActuationMinMax(
-  $input: CreateActuationMinMaxInput!
-  $condition: ModelActuationMinMaxConditionInput
-) {
-  createActuationMinMax(input: $input, condition: $condition) {
-    Max
-    Min
-    Setup
-    Variable
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreateActuationMinMaxMutationVariables,
-  APITypes.CreateActuationMinMaxMutation
->;
-export const updateActuationMinMax = /* GraphQL */ `mutation UpdateActuationMinMax(
-  $input: UpdateActuationMinMaxInput!
-  $condition: ModelActuationMinMaxConditionInput
-) {
-  updateActuationMinMax(input: $input, condition: $condition) {
-    Max
-    Min
-    Setup
-    Variable
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateActuationMinMaxMutationVariables,
-  APITypes.UpdateActuationMinMaxMutation
->;
-export const deleteActuationMinMax = /* GraphQL */ `mutation DeleteActuationMinMax(
-  $input: DeleteActuationMinMaxInput!
-  $condition: ModelActuationMinMaxConditionInput
-) {
-  deleteActuationMinMax(input: $input, condition: $condition) {
-    Max
-    Min
-    Setup
-    Variable
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteActuationMinMaxMutationVariables,
-  APITypes.DeleteActuationMinMaxMutation
 >;
 export const createRACSensors = /* GraphQL */ `mutation CreateRACSensors(
   $input: CreateRACSensorsInput!

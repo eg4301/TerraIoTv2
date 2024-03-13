@@ -24,11 +24,13 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type ActuationMaxUpdateFormInputValues = {
     Max?: number;
+    PesudoMax?: number;
     Setup?: string;
     Variable?: string;
 };
 export declare type ActuationMaxUpdateFormValidationValues = {
     Max?: ValidationFunction<number>;
+    PesudoMax?: ValidationFunction<number>;
     Setup?: ValidationFunction<string>;
     Variable?: ValidationFunction<string>;
 };
@@ -36,6 +38,7 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type ActuationMaxUpdateFormOverridesProps = {
     ActuationMaxUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     Max?: PrimitiveOverrideProps<TextFieldProps>;
+    PesudoMax?: PrimitiveOverrideProps<TextFieldProps>;
     Setup?: PrimitiveOverrideProps<TextFieldProps>;
     Variable?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
