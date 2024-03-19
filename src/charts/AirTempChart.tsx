@@ -15,6 +15,8 @@ import {
 } from 'react-timeseries-charts';
 import { tokens } from '../theme';
 import { format } from 'date-fns';
+import { useSearchParams } from 'react-router-dom';
+import { GraphTypeEnum } from '../shared/enums/graph-type.enum';
 
 const style = {
   value: {
@@ -46,17 +48,17 @@ const baselineStyleLite = {
   },
 };
 
-const baselineStyleExtraLite = {
-  line: {
-    stroke: '#fff',
-    strokeWidth: 1,
-    opacity: 0.2,
-    strokeDasharray: '1,1',
-  },
-  label: {
-    fill: '#fff',
-  },
-};
+// const baselineStyleExtraLite = {
+//   line: {
+//     stroke: '#fff',
+//     strokeWidth: 1,
+//     opacity: 0.2,
+//     strokeDasharray: '1,1',
+//   },
+//   label: {
+//     fill: '#fff',
+//   },
+// };
 
 const NullMarker = (props) => {
   return <g />;
@@ -72,6 +74,8 @@ const AirTempChart = ({ atmTemperatureSeries, height = '150', label }) => {
     trackerEvent: null,
   });
   const croppedSeries = atmTemperatureSeries.crop(timerange);
+  const [searcParams] = useSearchParams();
+  const graph = searcParams.get('graph') || GraphTypeEnum.SCATTER_LINE;
 
   const handleTimeRange = (timerange) => {
     setTimeRange(timerange);
@@ -125,6 +129,43 @@ const AirTempChart = ({ atmTemperatureSeries, height = '150', label }) => {
     );
   };
 
+  const renderGraphType = () => {
+    if ([GraphTypeEnum.LINE].includes(graph)) {
+      return [
+        <LineChart
+          axis="airTemperature"
+          series={atmTemperatureSeries}
+          style={style}
+        />,
+      ];
+    }
+
+    if ([GraphTypeEnum.SCATTER].includes(graph)) {
+      return [
+        <ScatterChart
+          axis="airTemperature"
+          series={atmTemperatureSeries}
+          columns={['value']}
+        />,
+      ];
+    }
+
+    if ([GraphTypeEnum.SCATTER_LINE].includes(graph)) {
+      return [
+        <LineChart
+          axis="airTemperature"
+          series={atmTemperatureSeries}
+          style={style}
+        />,
+        <ScatterChart
+          axis="airTemperature"
+          series={atmTemperatureSeries}
+          columns={['value']}
+        />,
+      ];
+    }
+  };
+
   return (
     <Resizable>
       <ChartContainer
@@ -176,16 +217,7 @@ const AirTempChart = ({ atmTemperatureSeries, height = '150', label }) => {
             format=",.2f"
           />
           <Charts>
-            <LineChart
-              axis="airTemperature"
-              series={atmTemperatureSeries}
-              style={style}
-            />
-            <ScatterChart
-              axis="airTemperature"
-              series={atmTemperatureSeries}
-              columns={['value']}
-            />
+            {renderGraphType()}
             <Baseline
               axis="airTemperature"
               style={baselineStyleLite}

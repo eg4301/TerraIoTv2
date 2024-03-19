@@ -1,10 +1,9 @@
 // @ts-nocheck
 
 // import Calendar from '@ericz1803/react-google-calendar';
-import { css } from '@emotion/react';
 import { Box, useTheme, TextField, Button, Typography } from '@mui/material';
 import Header from '../../components/Header';
-import { ColorModeContext, tokens } from '../../theme';
+import { tokens } from '../../theme';
 import { useGoogleCalendarContext } from '../../context/GoogleCalendarProvider';
 import { useGoogleLogin } from '@react-oauth/google';
 import { AddNewEventForm } from './components/AddNewEventForm';
@@ -15,6 +14,7 @@ import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import enUS from 'date-fns/locale/en-US';
+import { DeleteGoogleCalendarEventModal } from './components/DeleteGoogleCalendarEventModal';
 
 const locales = {
   'en-US': enUS,
@@ -27,21 +27,6 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales,
 });
-
-let styles = {
-  //you can use object styles
-  calendar: {
-    borderWidth: '3px',
-    color: 'white', //make outer edge of calendar thicker
-  },
-
-  //you can also use emotion's string styles (remember to add the line 'import { css } from "@emotion/react";')
-  today: css`
-    /* highlight today by making the text red and giving it a light blue border */
-    color: #42f5ec;
-    border: 1px solid #42f5ec;
-  `,
-};
 
 const GoogleCalendar = () => {
   const theme = useTheme();
@@ -65,6 +50,7 @@ const GoogleCalendar = () => {
     googleSession,
     displayEventForm,
     events,
+    handleSelectEvent,
   } = useGoogleCalendarContext();
 
   function handleGoogleCredentials(credentials) {
@@ -146,6 +132,7 @@ const GoogleCalendar = () => {
                     defaultView="month"
                     startAccessor="start"
                     endAccessor="end"
+                    onSelectEvent={handleSelectEvent}
                     step={10}
                     style={{ minHeight: 800 }}
                   />
@@ -188,6 +175,7 @@ const GoogleCalendar = () => {
           </Box>
         )}
       </Box>
+      <DeleteGoogleCalendarEventModal />
     </>
   );
 };

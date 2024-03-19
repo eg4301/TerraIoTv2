@@ -175,8 +175,14 @@ function App({ signOut, user }) {
                           },
                         },
                       }}
-                      transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                      transformOrigin={{
+                        horizontal: 'right',
+                        vertical: 'top',
+                      }}
+                      anchorOrigin={{
+                        horizontal: 'right',
+                        vertical: 'bottom',
+                      }}
                     >
                       <Paper sx={{ width: 150, maxWidth: '100%' }}>
                         <MenuItem

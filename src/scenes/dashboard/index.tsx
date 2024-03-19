@@ -2,6 +2,7 @@
 
 import {
   Box,
+  Button,
   CircularProgress,
   Grid,
   Typography,
@@ -18,6 +19,8 @@ import ConductivityChart from '../../charts/ConductivityChart';
 import PHChart from '../../charts/PHChart';
 import { useFetchSensorData } from './hooks/useFetchSensorData';
 import { DateRangeInput } from './components/DateRangePicker';
+import { useSearchParams } from 'react-router-dom';
+import { GraphTypeEnum } from '../../shared/enums/graph-type.enum';
 
 const Dashboard = () => {
   const {
@@ -33,6 +36,14 @@ const Dashboard = () => {
   } = useFetchSensorData();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const graph = searchParams.get('graph') || GraphTypeEnum.SCATTER_LINE;
+
+  const handleGraphTypeClick = (graph: GraphTypeEnum) => () => {
+    setSearchParams({
+      graph,
+    });
+  };
 
   const renderGraphs = () => {
     if (loading) {
@@ -107,7 +118,7 @@ const Dashboard = () => {
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
               <AirTempChart
                 atmTemperatureSeries={atmTemperatureSeries}
-                height = '200'
+                height="200"
               />
             </Box>
           </Box>
@@ -142,7 +153,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
-              <CO2Chart series={co2Series} height = '200'/>
+              <CO2Chart series={co2Series} height="200" />
             </Box>
           </Box>
         </Grid>
@@ -163,7 +174,7 @@ const Dashboard = () => {
                   fontWeight="600"
                   color={colors.grey[150]}
                 >
-                  O2 
+                  O2
                 </Typography>
                 <Typography
                   variant="h5"
@@ -176,7 +187,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
-              <O2Chart series={o2Series} height = '200' />
+              <O2Chart series={o2Series} height="200" />
             </Box>
           </Box>
         </Grid>
@@ -210,7 +221,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
-              <HumidityChart series={humiditySeries} height = '200' />
+              <HumidityChart series={humiditySeries} height="200" />
             </Box>
           </Box>
         </Grid>
@@ -244,7 +255,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
-              <WaterTempChart series={waterSeries} height = '200' />
+              <WaterTempChart series={waterSeries} height="200" />
             </Box>
           </Box>
         </Grid>
@@ -277,10 +288,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
-              <ConductivityChart
-                series={conductivitySeries}
-                height = '200'
-              />
+              <ConductivityChart series={conductivitySeries} height="200" />
             </Box>
           </Box>
         </Grid>
@@ -314,7 +322,7 @@ const Dashboard = () => {
               <Box></Box>
             </Box>
             <Box height="280px" m="-20px 0 0 0" p="10px" width="100%">
-              <PHChart series={pHSeries} height = '200' />
+              <PHChart series={pHSeries} height="200" />
             </Box>
           </Box>
         </Grid>
@@ -327,14 +335,69 @@ const Dashboard = () => {
       {/* HEADER */}
       <Box
         display="flex"
+        flexWrap="wrap"
         mb={1}
         flexDirection={{ xs: 'column', md: 'row' }}
         justifyContent="flex-start"
         alignItems={{ xs: 'flex-start', md: 'center' }}
-        gap={{ xs: 0, md: 5 }}
+        gap={{ xs: 2, md: 3, lg: 5 }}
       >
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
         <DateRangeInput onChange={handleOnDateRangeChange} />
+        <Box
+          color="white"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '7px',
+            border: `1px solid ${colors.grey[100]}`,
+            borderRadius: '10px',
+            padding: '5px 7px',
+            position: 'relative',
+            zIndex: -2,
+            top: '-10px',
+            fontSize: '15px',
+          }}
+        >
+          <Button
+            sx={{
+              fontSize: 'inherit',
+            }}
+            variant="text"
+            color={graph === GraphTypeEnum.SCATTER ? 'secondary' : 'inherit'}
+            onClick={handleGraphTypeClick(GraphTypeEnum.SCATTER)}
+          >
+            Scatter Plot
+          </Button>
+          <Box
+            sx={{ width: '2px', height: '25px', bgcolor: colors.grey[100] }}
+          />
+          <Button
+            sx={{
+              fontSize: 'inherit',
+            }}
+            variant="text"
+            color={graph === GraphTypeEnum.LINE ? 'secondary' : 'inherit'}
+            onClick={handleGraphTypeClick(GraphTypeEnum.LINE)}
+          >
+            Line Plot
+          </Button>
+          <Box
+            sx={{ width: '2px', height: '25px', bgcolor: colors.grey[100] }}
+          />
+          <Button
+            sx={{
+              fontSize: 'inherit',
+            }}
+            variant="text"
+            color={
+              graph === GraphTypeEnum.SCATTER_LINE ? 'secondary' : 'inherit'
+            }
+            onClick={handleGraphTypeClick(GraphTypeEnum.SCATTER_LINE)}
+          >
+            Scatter & Line Plot
+          </Button>
+        </Box>
       </Box>
 
       {/* GRID & CHARTS */}
