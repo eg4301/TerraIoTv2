@@ -15,6 +15,8 @@ import {
 } from 'react-timeseries-charts';
 import { tokens } from '../theme';
 import { format } from 'date-fns';
+import { GraphTypeEnum } from '../shared/enums/graph-type.enum';
+import { useSearchParams } from 'react-router-dom';
 
 const style = {
   value: {
@@ -46,17 +48,17 @@ const baselineStyleLite = {
   },
 };
 
-const baselineStyleExtraLite = {
-  line: {
-    stroke: '#fff',
-    strokeWidth: 1,
-    opacity: 0.2,
-    strokeDasharray: '1,1',
-  },
-  label: {
-    fill: '#fff',
-  },
-};
+// const baselineStyleExtraLite = {
+//   line: {
+//     stroke: '#fff',
+//     strokeWidth: 1,
+//     opacity: 0.2,
+//     strokeDasharray: '1,1',
+//   },
+//   label: {
+//     fill: '#fff',
+//   },
+// };
 
 const NullMarker = (props) => {
   return <g />;
@@ -72,6 +74,8 @@ const CO2Chart = ({ series, height = '150', label }) => {
     trackerEvent: null,
   });
   const croppedSeries = series.crop(timerange);
+  const [searcParams] = useSearchParams();
+  const graph = searcParams.get('graph') || GraphTypeEnum.SCATTER_LINE;
 
   const handleTimeRange = (timerange) => {
     setTimeRange(timerange);
@@ -125,6 +129,23 @@ const CO2Chart = ({ series, height = '150', label }) => {
     );
   };
 
+  const renderGraphType = () => {
+    if ([GraphTypeEnum.LINE].includes(graph)) {
+      return [<LineChart axis="co2" series={series} style={style} />];
+    }
+
+    if ([GraphTypeEnum.SCATTER].includes(graph)) {
+      return [<ScatterChart axis="co2" series={series} columns={['value']} />];
+    }
+
+    if ([GraphTypeEnum.SCATTER_LINE].includes(graph)) {
+      return [
+        <LineChart axis="co2" series={series} style={style} />,
+        <ScatterChart axis="co2" series={series} columns={['value']} />,
+      ];
+    }
+  };
+
   return (
     <Resizable>
       <ChartContainer
@@ -176,7 +197,7 @@ const CO2Chart = ({ series, height = '150', label }) => {
             format=",.2f"
           />
           <Charts>
-            <LineChart axis="co2" series={series} style={style} />
+            {renderGraphType()}
             <Baseline
               axis="co2"
               style={baselineStyleLite}
@@ -198,7 +219,6 @@ const CO2Chart = ({ series, height = '150', label }) => {
               label="Avg"
               position="right"
             />
-            <ScatterChart axis="co2" series={series} columns={['value']} />
             {renderMarker()}
           </Charts>
         </ChartRow>

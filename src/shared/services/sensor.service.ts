@@ -259,7 +259,11 @@ class SernsorService {
   }
   generateConductivitySeries(data: RACSensors[]) {
     if (data?.length) {
-      const points = data.map((obj) => [
+      const calculdatedData = data.map((record) => ({
+        ...record,
+        conductivity: record.conductivity * 1000,
+      }));
+      const points = calculdatedData.map((obj) => [
         new Date(obj.timestamp).getTime(),
         obj.conductivity,
       ]);

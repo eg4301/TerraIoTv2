@@ -29,7 +29,6 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = ({ onChange }) => {
 
   const setCustomDateRange = (e) => {
     if (e.selection) {
-      console.log('Custom date range selected:', e.selection);
       const { startDate, endDate, key } = e.selection;
       setDateRange({ startDate, endDate, key });
     }
@@ -41,7 +40,14 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = ({ onChange }) => {
   };
 
   return (
-    <Box display="flex" gap={3} position="relative" top={"-10px"} bgcolor="216, 216, 216" p={0.6}>
+    <Box
+      display="flex"
+      gap={3}
+      position="relative"
+      top={'-10px'}
+      bgcolor="216, 216, 216"
+      p={0.6}
+    >
       <Box
         display="flex"
         sx={{
