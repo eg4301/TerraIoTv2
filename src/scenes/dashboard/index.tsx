@@ -354,7 +354,6 @@ const Dashboard = () => {
             borderRadius: '10px',
             padding: '5px 7px',
             position: 'relative',
-            zIndex: -2,
             top: '-10px',
             fontSize: '15px',
           }}
