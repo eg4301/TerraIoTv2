@@ -2,7 +2,6 @@
 
 import {
   Box,
-  Button,
   CircularProgress,
   Grid,
   Typography,
@@ -19,8 +18,7 @@ import ConductivityChart from '../../charts/ConductivityChart';
 import PHChart from '../../charts/PHChart';
 import { useFetchSensorData } from './hooks/useFetchSensorData';
 import { DateRangeInput } from './components/DateRangePicker';
-import { useSearchParams } from 'react-router-dom';
-import { GraphTypeEnum } from '../../shared/enums/graph-type.enum';
+import { GraphTypesCTA } from '../../components/GraphTypesCTA';
 
 const Dashboard = () => {
   const {
@@ -36,14 +34,6 @@ const Dashboard = () => {
   } = useFetchSensorData();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const graph = searchParams.get('graph') || GraphTypeEnum.SCATTER_LINE;
-
-  const handleGraphTypeClick = (graph: GraphTypeEnum) => () => {
-    setSearchParams({
-      graph,
-    });
-  };
 
   const renderGraphs = () => {
     if (loading) {
@@ -344,59 +334,7 @@ const Dashboard = () => {
       >
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
         <DateRangeInput onChange={handleOnDateRangeChange} />
-        <Box
-          color="white"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '7px',
-            border: `1px solid ${colors.grey[100]}`,
-            borderRadius: '10px',
-            padding: '5px 7px',
-            position: 'relative',
-            top: '-10px',
-            fontSize: '15px',
-          }}
-        >
-          <Button
-            sx={{
-              fontSize: 'inherit',
-            }}
-            variant="text"
-            color={graph === GraphTypeEnum.SCATTER ? 'secondary' : 'inherit'}
-            onClick={handleGraphTypeClick(GraphTypeEnum.SCATTER)}
-          >
-            Scatter Plot
-          </Button>
-          <Box
-            sx={{ width: '2px', height: '25px', bgcolor: colors.grey[100] }}
-          />
-          <Button
-            sx={{
-              fontSize: 'inherit',
-            }}
-            variant="text"
-            color={graph === GraphTypeEnum.LINE ? 'secondary' : 'inherit'}
-            onClick={handleGraphTypeClick(GraphTypeEnum.LINE)}
-          >
-            Line Plot
-          </Button>
-          <Box
-            sx={{ width: '2px', height: '25px', bgcolor: colors.grey[100] }}
-          />
-          <Button
-            sx={{
-              fontSize: 'inherit',
-            }}
-            variant="text"
-            color={
-              graph === GraphTypeEnum.SCATTER_LINE ? 'secondary' : 'inherit'
-            }
-            onClick={handleGraphTypeClick(GraphTypeEnum.SCATTER_LINE)}
-          >
-            Scatter & Line Plot
-          </Button>
-        </Box>
+        <GraphTypesCTA />
       </Box>
 
       {/* GRID & CHARTS */}
