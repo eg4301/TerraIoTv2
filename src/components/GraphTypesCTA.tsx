@@ -26,7 +26,7 @@ export const GraphTypesCTA = () => {
         padding: '5px 7px',
         position: 'relative',
         top: '-10px',
-        fontSize: '15px',
+        fontSize: '12px',
       }}
     >
       <Button

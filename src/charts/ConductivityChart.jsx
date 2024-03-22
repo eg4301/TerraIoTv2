@@ -161,7 +161,7 @@ const ConductivityChart = ({ series, height = '150', label }) => {
       <ChartContainer
         showGrid={false}
         enablePanZoom
-        title="Conductivity (ms/cm)"
+        title="Conductivity (µs/cm)"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
           axis: {
