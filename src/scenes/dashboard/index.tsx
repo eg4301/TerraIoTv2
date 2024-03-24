@@ -332,7 +332,7 @@ const Dashboard = () => {
         alignItems={{ xs: 'flex-start', md: 'center' }}
         gap={{ xs: 2, md: 3, lg: 5 }}
       >
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header title="DashBoard" subtitle="Welcome to your dashboard" />
         <DateRangeInput onChange={handleOnDateRangeChange} />
         <GraphTypesCTA />
       </Box>

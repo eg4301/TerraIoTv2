@@ -86,7 +86,7 @@ const ActuationMinMax = () => {
         <Table
           sx={{
             margin: '0 auto',
-            width: 820,
+            width: 1000,
             tableLayout: 'fixed',
             '& th,td': {
               fontSize: '20px',
