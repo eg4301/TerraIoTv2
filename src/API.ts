@@ -232,6 +232,45 @@ export type DeleteRACSensorsInput = {
   timestamp: string,
 };
 
+export type CreateEventTemplateInput = {
+  userId?: string | null,
+  eventName: string,
+  description?: string | null,
+  duration: number,
+  id?: string | null,
+};
+
+export type ModelEventTemplateConditionInput = {
+  userId?: ModelStringInput | null,
+  eventName?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  duration?: ModelIntInput | null,
+  and?: Array< ModelEventTemplateConditionInput | null > | null,
+  or?: Array< ModelEventTemplateConditionInput | null > | null,
+  not?: ModelEventTemplateConditionInput | null,
+};
+
+export type EventTemplate = {
+  __typename: "EventTemplate",
+  userId?: string | null,
+  eventName: string,
+  description?: string | null,
+  duration: number,
+  id: string,
+};
+
+export type UpdateEventTemplateInput = {
+  userId?: string | null,
+  eventName?: string | null,
+  description?: string | null,
+  duration?: number | null,
+  id: string,
+};
+
+export type DeleteEventTemplateInput = {
+  id: string,
+};
+
 export type ModelActuationMaxFilterInput = {
   Max?: ModelFloatInput | null,
   PesudoMax?: ModelFloatInput | null,
@@ -261,6 +300,22 @@ export type ModelActuationMinFilterInput = {
 export type ModelActuationMinConnection = {
   __typename: "ModelActuationMinConnection",
   items:  Array<ActuationMin | null >,
+  nextToken?: string | null,
+};
+
+export type ModelEventTemplateFilterInput = {
+  userId?: ModelStringInput | null,
+  eventName?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  duration?: ModelIntInput | null,
+  and?: Array< ModelEventTemplateFilterInput | null > | null,
+  or?: Array< ModelEventTemplateFilterInput | null > | null,
+  not?: ModelEventTemplateFilterInput | null,
+};
+
+export type ModelEventTemplateConnection = {
+  __typename: "ModelEventTemplateConnection",
+  items:  Array<EventTemplate | null >,
   nextToken?: string | null,
 };
 
@@ -333,6 +388,15 @@ export type ModelSubscriptionIntInput = {
   between?: Array< number | null > | null,
   in?: Array< number | null > | null,
   notIn?: Array< number | null > | null,
+};
+
+export type ModelSubscriptionEventTemplateFilterInput = {
+  userId?: ModelSubscriptionStringInput | null,
+  eventName?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  duration?: ModelSubscriptionIntInput | null,
+  and?: Array< ModelSubscriptionEventTemplateFilterInput | null > | null,
+  or?: Array< ModelSubscriptionEventTemplateFilterInput | null > | null,
 };
 
 export type ListRACSensors2QueryVariables = {
@@ -549,6 +613,54 @@ export type DeleteRACSensorsMutation = {
   } | null,
 };
 
+export type CreateEventTemplateMutationVariables = {
+  input: CreateEventTemplateInput,
+  condition?: ModelEventTemplateConditionInput | null,
+};
+
+export type CreateEventTemplateMutation = {
+  createEventTemplate?:  {
+    __typename: "EventTemplate",
+    userId?: string | null,
+    eventName: string,
+    description?: string | null,
+    duration: number,
+    id: string,
+  } | null,
+};
+
+export type UpdateEventTemplateMutationVariables = {
+  input: UpdateEventTemplateInput,
+  condition?: ModelEventTemplateConditionInput | null,
+};
+
+export type UpdateEventTemplateMutation = {
+  updateEventTemplate?:  {
+    __typename: "EventTemplate",
+    userId?: string | null,
+    eventName: string,
+    description?: string | null,
+    duration: number,
+    id: string,
+  } | null,
+};
+
+export type DeleteEventTemplateMutationVariables = {
+  input: DeleteEventTemplateInput,
+  condition?: ModelEventTemplateConditionInput | null,
+};
+
+export type DeleteEventTemplateMutation = {
+  deleteEventTemplate?:  {
+    __typename: "EventTemplate",
+    userId?: string | null,
+    eventName: string,
+    description?: string | null,
+    duration: number,
+    id: string,
+  } | null,
+};
+
 export type GetActuationMaxQueryVariables = {
   Setup: string,
   Variable: string,
@@ -668,6 +780,65 @@ export type ListRACSensorsQuery = {
       pH?: number | null,
       temperature?: number | null,
       timestamp: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetEventTemplateQueryVariables = {
+  id: string,
+};
+
+export type GetEventTemplateQuery = {
+  getEventTemplate?:  {
+    __typename: "EventTemplate",
+    userId?: string | null,
+    eventName: string,
+    description?: string | null,
+    duration: number,
+    id: string,
+  } | null,
+};
+
+export type ListEventTemplatesQueryVariables = {
+  filter?: ModelEventTemplateFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListEventTemplatesQuery = {
+  listEventTemplates?:  {
+    __typename: "ModelEventTemplateConnection",
+    items:  Array< {
+      __typename: "EventTemplate",
+      userId?: string | null,
+      eventName: string,
+      description?: string | null,
+      duration: number,
+      id: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetUserEventTemplatesQueryVariables = {
+  userId: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelEventTemplateFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetUserEventTemplatesQuery = {
+  getUserEventTemplates?:  {
+    __typename: "ModelEventTemplateConnection",
+    items:  Array< {
+      __typename: "EventTemplate",
+      userId?: string | null,
+      eventName: string,
+      description?: string | null,
+      duration: number,
+      id: string,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -811,5 +982,50 @@ export type OnDeleteRACSensorsSubscription = {
     pH?: number | null,
     temperature?: number | null,
     timestamp: string,
+  } | null,
+};
+
+export type OnCreateEventTemplateSubscriptionVariables = {
+  filter?: ModelSubscriptionEventTemplateFilterInput | null,
+};
+
+export type OnCreateEventTemplateSubscription = {
+  onCreateEventTemplate?:  {
+    __typename: "EventTemplate",
+    userId?: string | null,
+    eventName: string,
+    description?: string | null,
+    duration: number,
+    id: string,
+  } | null,
+};
+
+export type OnUpdateEventTemplateSubscriptionVariables = {
+  filter?: ModelSubscriptionEventTemplateFilterInput | null,
+};
+
+export type OnUpdateEventTemplateSubscription = {
+  onUpdateEventTemplate?:  {
+    __typename: "EventTemplate",
+    userId?: string | null,
+    eventName: string,
+    description?: string | null,
+    duration: number,
+    id: string,
+  } | null,
+};
+
+export type OnDeleteEventTemplateSubscriptionVariables = {
+  filter?: ModelSubscriptionEventTemplateFilterInput | null,
+};
+
+export type OnDeleteEventTemplateSubscription = {
+  onDeleteEventTemplate?:  {
+    __typename: "EventTemplate",
+    userId?: string | null,
+    eventName: string,
+    description?: string | null,
+    duration: number,
+    id: string,
   } | null,
 };

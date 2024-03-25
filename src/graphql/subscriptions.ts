@@ -158,3 +158,51 @@ export const onDeleteRACSensors = /* GraphQL */ `subscription OnDeleteRACSensors
   APITypes.OnDeleteRACSensorsSubscriptionVariables,
   APITypes.OnDeleteRACSensorsSubscription
 >;
+export const onCreateEventTemplate = /* GraphQL */ `subscription OnCreateEventTemplate(
+  $filter: ModelSubscriptionEventTemplateFilterInput
+) {
+  onCreateEventTemplate(filter: $filter) {
+    userId
+    eventName
+    description
+    duration
+    id
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateEventTemplateSubscriptionVariables,
+  APITypes.OnCreateEventTemplateSubscription
+>;
+export const onUpdateEventTemplate = /* GraphQL */ `subscription OnUpdateEventTemplate(
+  $filter: ModelSubscriptionEventTemplateFilterInput
+) {
+  onUpdateEventTemplate(filter: $filter) {
+    userId
+    eventName
+    description
+    duration
+    id
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateEventTemplateSubscriptionVariables,
+  APITypes.OnUpdateEventTemplateSubscription
+>;
+export const onDeleteEventTemplate = /* GraphQL */ `subscription OnDeleteEventTemplate(
+  $filter: ModelSubscriptionEventTemplateFilterInput
+) {
+  onDeleteEventTemplate(filter: $filter) {
+    userId
+    eventName
+    description
+    duration
+    id
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteEventTemplateSubscriptionVariables,
+  APITypes.OnDeleteEventTemplateSubscription
+>;

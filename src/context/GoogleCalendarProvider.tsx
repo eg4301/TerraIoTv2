@@ -6,6 +6,12 @@ type GoogleSession = Omit<
   'error_description' | 'error' | 'error_ui'
 >;
 
+export enum EventForm {
+  NEW_EVENT = 'new_event',
+  EXISTING_EVENT = 'exiting_event',
+  NONE = 'none',
+}
+
 export type Event = {
   start: Date;
   end: Date;
@@ -17,12 +23,12 @@ export type Event = {
 type GoogleCalendarContextValueType = {
   googleSession: GoogleSession | null;
   events: Event[];
+  eventForm: EventForm;
   selectedEvent: Event | null;
   calendarId: string;
   openCalendar: boolean;
-  openEventForm: boolean;
   displayEvents: () => void;
-  displayEventForm: () => void;
+  displayEventForm: (eventForm: EventForm) => () => void;
   setGoogleSession: (credentials: GoogleSession) => void;
   handleAddNewEvent: (event: Event) => void;
   hideEventForm: () => void;
@@ -36,12 +42,12 @@ type GoogleCalendarContextValueType = {
 const GoogleCalendarContext =
   React.createContext<GoogleCalendarContextValueType>({
     calendarId: '',
+    eventForm: EventForm.NONE,
     selectedEvent: null,
     events: [],
     openCalendar: false,
-    openEventForm: false,
     displayEvents: () => {},
-    displayEventForm: () => {},
+    displayEventForm: () => () => {},
     handleOnChange: () => {},
     setGoogleSession: () => {},
     handleAddNewEvent: () => {},
@@ -69,7 +75,7 @@ export const GoogleCalendarProvider = ({
       apiKey: '',
       calendarId: '',
       openCalendar: false,
-      openEventForm: false,
+      eventForm: EventForm.NONE,
       googleSession: parsedGoogleSession,
       events: [],
       selectedEvent: null,
@@ -85,13 +91,11 @@ export const GoogleCalendarProvider = ({
   };
 
   const hideEventForm = () => {
-    if (state.openEventForm) {
-      setState((prev) => ({
-        ...prev,
-        openEventForm: false,
-        openCalendar: true,
-      }));
-    }
+    setState((prev) => ({
+      ...prev,
+      eventForm: EventForm.NONE,
+      openCalendar: true,
+    }));
   };
 
   const handleAddNewEvent = (event: Event) => {
@@ -139,15 +143,16 @@ export const GoogleCalendarProvider = ({
       }
     }
   };
-  const displayEventForm = () => {
+  const displayEventForm = (eventForm: EventForm) => () => {
     if (state.calendarId && state.openCalendar) {
       setState((prev) => ({
         ...prev,
-        openEventForm: true,
+        eventForm,
         openCalendar: false,
       }));
     }
   };
+
   const clearGoogleSession = () => {
     localStorage.removeItem('TerraIoT-Google-Session');
     setState((prev) => ({
@@ -214,10 +219,10 @@ export const GoogleCalendarProvider = ({
     <GoogleCalendarContext.Provider
       value={{
         selectedEvent: state.selectedEvent,
+        eventForm: state.eventForm,
         handleSelectEvent,
         handleDeleteEvent,
         handleCloseDeleteEventModal,
-        openEventForm: state.openEventForm,
         calendarId: state.calendarId,
         openCalendar: state.openCalendar,
         displayEvents,

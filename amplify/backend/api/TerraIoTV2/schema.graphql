@@ -24,6 +24,13 @@ type RACSensors @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   timestamp: AWSDateTime!
 }
 
+type EventTemplate @model(timestamps: null) @auth(rules: [{ allow: public }]) {
+  userId: String @index(name: "byUser", queryField: "getUserEventTemplates")
+  eventName: String!
+  description: String
+  duration: Int!
+}
+
 input UpdateActuationByVariableInput {
   Min: Float!
 }

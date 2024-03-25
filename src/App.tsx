@@ -223,6 +223,7 @@ function App({ signOut, user }) {
                       <Route path="/pH" element={<PhChartPage />} />
                       <Route
                         path="/google_calendar"
+                        // @ts-ignore
                         element={<GoogleCalendar />}
                       />
                       <Route path="/user-profile" element={<UserProfile />} />
