@@ -208,7 +208,12 @@ class SernsorService {
   }
   generateO2Series(data: RACSensors[]) {
     if (data?.length) {
-      const points = data.map((obj) => [
+      const calculatedData = data.map((record) => ({
+        ...record,
+        O2: record.O2 * 10000,
+      }));
+
+      const points = calculatedData.map((obj) => [
         new Date(obj.timestamp).getTime(),
         obj.O2,
       ]);

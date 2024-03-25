@@ -151,7 +151,7 @@ const O2Chart = ({ series, height = '150', label }) => {
       <ChartContainer
         showGrid={false}
         enablePanZoom
-        title="O2 (%)"
+        title="O2 (ppm)"
         titleStyle={{ fill: '#fff', fontWeight: 500 }}
         timeAxisStyle={{
           axis: {

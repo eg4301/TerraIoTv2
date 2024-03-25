@@ -49,7 +49,7 @@ const ActuationPesudo = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Actuation" subtitle="Manage Actuation Values" />
+        <Header title="Pseudo Values" subtitle="Manage Pseudo Actuation Values" />
       </Box>
 
       <Box
