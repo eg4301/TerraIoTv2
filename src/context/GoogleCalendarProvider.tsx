@@ -9,6 +9,7 @@ type GoogleSession = Omit<
 export enum EventForm {
   NEW_EVENT = 'new_event',
   EXISTING_EVENT = 'exiting_event',
+  ONCE_OFF_EVENT = 'once_off_event',
   NONE = 'none',
 }
 

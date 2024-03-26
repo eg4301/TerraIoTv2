@@ -20,6 +20,7 @@ import enUS from 'date-fns/locale/en-US';
 import { DeleteGoogleCalendarEventModal } from './components/DeleteGoogleCalendarEventModal';
 import { AddExistingEventForm } from './components/AddExistingEventForm';
 import { withAuthenticator } from '@aws-amplify/ui-react';
+import { AddOnceOffEventForm } from './components/AddOnceOffEvent';
 
 const locales = {
   'en-US': enUS,
@@ -116,6 +117,20 @@ const GoogleCalendar = () => {
                 <>
                   <Box display="flex" justifyContent="flex-end" my={2} gap={1}>
                     <Button
+                      onClick={displayEventForm(EventForm.ONCE_OFF_EVENT)}
+                      variant="contained"
+                      sx={{
+                        backgroundColor: colors.greenAccent[400],
+                        textTransform: 'unset',
+                        fontWeight: 500,
+                        '&:hover': {
+                          backgroundColor: colors.greenAccent[400],
+                        },
+                      }}
+                    >
+                      Add Once-Off Event
+                    </Button>
+                    <Button
                       onClick={displayEventForm(EventForm.EXISTING_EVENT)}
                       variant="contained"
                       sx={{
@@ -160,6 +175,9 @@ const GoogleCalendar = () => {
               {eventForm === EventForm.NEW_EVENT && <AddNewEventForm />}
               {eventForm === EventForm.EXISTING_EVENT && (
                 <AddExistingEventForm />
+              )}
+              {eventForm === EventForm.ONCE_OFF_EVENT && (
+                <AddOnceOffEventForm />
               )}
             </div>
           </>
