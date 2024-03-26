@@ -2,20 +2,20 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { v4 as uuid } from 'uuid';
+import { parseISO } from 'date-fns';
 import { Button, useTheme } from '@mui/material';
 import { tokens } from '../../../theme';
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import React, { useState } from 'react';
 import { useGoogleCalendarContext } from '../../../context/GoogleCalendarProvider';
-import { eventTemplateService } from '../../../shared/services/event-template.service';
-import { useAuthenticator } from '@aws-amplify/ui-react';
 
-export const AddNewEventForm = () => {
-  const { user } = useAuthenticator();
+export const AddOnceOffEventForm = () => {
   const {
     calendarId,
-
+    googleSession,
+    handleAddNewEvent,
     hideEventForm,
+    clearGoogleSession,
   } = useGoogleCalendarContext();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -23,7 +23,8 @@ export const AddNewEventForm = () => {
     eventName: '',
     description: '',
     duration: '',
-
+    startDate: new Date(),
+    endDate: new Date(),
     calendarId,
   });
 
@@ -35,19 +36,56 @@ export const AddNewEventForm = () => {
     }));
   };
 
+  const handleDateChange = (field: string) => (newValue) => {
+    setFormState((prev) => ({
+      ...prev,
+      [field]: newValue,
+    }));
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!formState.eventName) {
       return;
     }
     try {
-      await eventTemplateService.createEventTemplate({
-        duration: +formState.duration,
-        eventName: formState.eventName,
-        description: formState.description,
-        id: uuid(),
-        userId: user.userId,
+      const response = await fetch(
+        `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: 'Bearer ' + googleSession.access_token,
+          },
+          body: JSON.stringify({
+            summary: formState.eventName,
+            description: formState.description,
+            end: {
+              dateTime: formState.endDate.toISOString(),
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            },
+            start: {
+              dateTime: formState.startDate.toISOString(),
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            },
+          }),
+        }
+      );
+
+      const event = await response.json();
+      if (
+        event?.error?.code === 401 &&
+        event?.error?.status === 'UNAUTHENTICATED'
+      ) {
+        clearGoogleSession();
+        return;
+      }
+      handleAddNewEvent({
+        title: event.summary,
+        start: parseISO(event.start.dateTime),
+        end: parseISO(event.end.dateTime),
+        allDay: false,
       });
+
       hideEventForm();
     } catch (error) {
       console.error(error);
@@ -57,7 +95,7 @@ export const AddNewEventForm = () => {
   return (
     <Box>
       <Typography variant="h3" mb={2}>
-        Add New Event
+        Add Once-Off Event
       </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
@@ -123,22 +161,13 @@ export const AddNewEventForm = () => {
               }}
             />
           </Grid>
+
           <Grid item xs={12} md={6}>
-            <TextField
-              autoComplete="off"
-              required
-              id="duration"
-              name="duration"
-              fullWidth
-              type="number"
-              InputProps={{
-                inputProps: { min: 1 },
-              }}
-              label="Duration"
-              variant="outlined"
-              onChange={handleOnChange}
-              value={formState.duration}
+            <MobileDateTimePicker
+              name="startDate"
+              label="Start Date"
               sx={{
+                width: '100%',
                 '& fieldset': {
                   border: `1px solid ${colors.grey[100]} !important`,
                 },
@@ -146,6 +175,26 @@ export const AddNewEventForm = () => {
                   color: `${colors.grey[100]} !important`,
                 },
               }}
+              value={formState.startDate}
+              onChange={handleDateChange('startDate')}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <MobileDateTimePicker
+              label="End Date"
+              name="endDate"
+              sx={{
+                width: '100%',
+
+                '& fieldset': {
+                  border: `1px solid ${colors.grey[100]} !important`,
+                },
+                '& label': {
+                  color: `${colors.grey[100]} !important`,
+                },
+              }}
+              value={formState.endDate}
+              onChange={handleDateChange('endDate')}
             />
           </Grid>
 
