@@ -150,3 +150,69 @@ export const listRACSensors = /* GraphQL */ `query ListRACSensors(
   APITypes.ListRACSensorsQueryVariables,
   APITypes.ListRACSensorsQuery
 >;
+export const getEventTemplate = /* GraphQL */ `query GetEventTemplate($id: ID!) {
+  getEventTemplate(id: $id) {
+    userId
+    eventName
+    description
+    duration
+    id
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetEventTemplateQueryVariables,
+  APITypes.GetEventTemplateQuery
+>;
+export const listEventTemplates = /* GraphQL */ `query ListEventTemplates(
+  $filter: ModelEventTemplateFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listEventTemplates(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      userId
+      eventName
+      description
+      duration
+      id
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListEventTemplatesQueryVariables,
+  APITypes.ListEventTemplatesQuery
+>;
+export const getUserEventTemplates = /* GraphQL */ `query GetUserEventTemplates(
+  $userId: String!
+  $sortDirection: ModelSortDirection
+  $filter: ModelEventTemplateFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  getUserEventTemplates(
+    userId: $userId
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      userId
+      eventName
+      description
+      duration
+      id
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetUserEventTemplatesQueryVariables,
+  APITypes.GetUserEventTemplatesQuery
+>;

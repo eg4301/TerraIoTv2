@@ -2,14 +2,18 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { Button, useTheme } from '@mui/material';
+import { parseISO, addDays } from 'date-fns';
+import { v4 as uuid } from 'uuid';
+import { Button, Checkbox, FormControlLabel, useTheme } from '@mui/material';
 import { tokens } from '../../../theme';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import React, { useState } from 'react';
 import { useGoogleCalendarContext } from '../../../context/GoogleCalendarProvider';
-import { parseISO } from 'date-fns';
+import { eventTemplateService } from '../../../shared/services/event-template.service';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 export const AddNewEventForm = () => {
+  const { user } = useAuthenticator();
   const {
     calendarId,
     googleSession,
@@ -22,9 +26,11 @@ export const AddNewEventForm = () => {
   const [formState, setFormState] = useState({
     eventName: '',
     description: '',
+    duration: '',
     startDate: new Date(),
     endDate: new Date(),
     calendarId,
+    isTemplate: false,
   });
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +65,10 @@ export const AddNewEventForm = () => {
             summary: formState.eventName,
             description: formState.description,
             end: {
-              dateTime: formState.endDate.toISOString(),
+              dateTime: addDays(
+                formState.startDate,
+                +formState.duration
+              ).toISOString(),
               timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
             },
             start: {
@@ -84,10 +93,28 @@ export const AddNewEventForm = () => {
         end: parseISO(event.end.dateTime),
         allDay: false,
       });
+      if (formState.isTemplate) {
+        await eventTemplateService.createEventTemplate({
+          duration: +formState.duration,
+          eventName: event.summary,
+          description: event.description,
+          id: uuid(),
+          userId: user.userId,
+        });
+      }
       hideEventForm();
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleTemplateChecbox = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setFormState((prev) => ({
+      ...prev,
+      isTemplate: event.target.checked,
+    }));
   };
 
   return (
@@ -160,6 +187,31 @@ export const AddNewEventForm = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
+            <TextField
+              autoComplete="off"
+              required
+              id="duration"
+              name="duration"
+              fullWidth
+              type="number"
+              InputProps={{
+                inputProps: { min: 1 },
+              }}
+              label="Duration"
+              variant="outlined"
+              onChange={handleOnChange}
+              value={formState.duration}
+              sx={{
+                '& fieldset': {
+                  border: `1px solid ${colors.grey[100]} !important`,
+                },
+                '& label': {
+                  color: `${colors.grey[100]} !important`,
+                },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
             <MobileDateTimePicker
               name="startDate"
               label="Start Date"
@@ -176,7 +228,7 @@ export const AddNewEventForm = () => {
               onChange={handleDateChange('startDate')}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          {/* <Grid item xs={12} md={6}>
             <MobileDateTimePicker
               label="End Date"
               name="endDate"
@@ -192,6 +244,14 @@ export const AddNewEventForm = () => {
               }}
               value={formState.endDate}
               onChange={handleDateChange('endDate')}
+            />
+          </Grid> */}
+
+          <Grid item xs={12}>
+            <FormControlLabel
+              onChange={handleTemplateChecbox}
+              control={<Checkbox color="secondary" />}
+              label="Create Event Template"
             />
           </Grid>
 

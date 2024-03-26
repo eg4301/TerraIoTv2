@@ -4,7 +4,10 @@
 import { Box, useTheme, TextField, Button, Typography } from '@mui/material';
 import Header from '../../components/Header';
 import { tokens } from '../../theme';
-import { useGoogleCalendarContext } from '../../context/GoogleCalendarProvider';
+import {
+  EventForm,
+  useGoogleCalendarContext,
+} from '../../context/GoogleCalendarProvider';
 import { useGoogleLogin } from '@react-oauth/google';
 import { AddNewEventForm } from './components/AddNewEventForm';
 
@@ -15,6 +18,8 @@ import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import enUS from 'date-fns/locale/en-US';
 import { DeleteGoogleCalendarEventModal } from './components/DeleteGoogleCalendarEventModal';
+import { AddExistingEventForm } from './components/AddExistingEventForm';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 const locales = {
   'en-US': enUS,
@@ -43,7 +48,6 @@ const GoogleCalendar = () => {
   const {
     calendarId,
     openCalendar,
-    openEventForm,
     displayEvents,
     handleOnChange,
     setGoogleSession,
@@ -51,6 +55,7 @@ const GoogleCalendar = () => {
     displayEventForm,
     events,
     handleSelectEvent,
+    eventForm,
   } = useGoogleCalendarContext();
 
   function handleGoogleCredentials(credentials) {
@@ -63,7 +68,7 @@ const GoogleCalendar = () => {
         <Header title="Google Calendar" subtitle="Events at a Glance" />
         {googleSession ? (
           <>
-            {!openEventForm && (
+            {eventForm === EventForm.NONE && (
               <Box display="flex" justifyContent="center" gap="10px" mt={2}>
                 <TextField
                   autoComplete="off"
@@ -109,9 +114,23 @@ const GoogleCalendar = () => {
             >
               {openCalendar && (
                 <>
-                  <Box display="flex" justifyContent="flex-end" my={2}>
+                  <Box display="flex" justifyContent="flex-end" my={2} gap={1}>
                     <Button
-                      onClick={displayEventForm}
+                      onClick={displayEventForm(EventForm.EXISTING_EVENT)}
+                      variant="contained"
+                      sx={{
+                        backgroundColor: colors.greenAccent[400],
+                        textTransform: 'unset',
+                        fontWeight: 500,
+                        '&:hover': {
+                          backgroundColor: colors.greenAccent[400],
+                        },
+                      }}
+                    >
+                      Add Existing Event
+                    </Button>
+                    <Button
+                      onClick={displayEventForm(EventForm.NEW_EVENT)}
                       variant="contained"
                       sx={{
                         backgroundColor: colors.greenAccent[400],
@@ -138,7 +157,10 @@ const GoogleCalendar = () => {
                   />
                 </>
               )}
-              {openEventForm && <AddNewEventForm />}
+              {eventForm === EventForm.NEW_EVENT && <AddNewEventForm />}
+              {eventForm === EventForm.EXISTING_EVENT && (
+                <AddExistingEventForm />
+              )}
             </div>
           </>
         ) : (
@@ -180,4 +202,4 @@ const GoogleCalendar = () => {
   );
 };
 
-export default GoogleCalendar;
+export default withAuthenticator(GoogleCalendar);

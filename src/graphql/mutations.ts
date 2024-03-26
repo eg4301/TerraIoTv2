@@ -183,3 +183,54 @@ export const deleteRACSensors = /* GraphQL */ `mutation DeleteRACSensors(
   APITypes.DeleteRACSensorsMutationVariables,
   APITypes.DeleteRACSensorsMutation
 >;
+export const createEventTemplate = /* GraphQL */ `mutation CreateEventTemplate(
+  $input: CreateEventTemplateInput!
+  $condition: ModelEventTemplateConditionInput
+) {
+  createEventTemplate(input: $input, condition: $condition) {
+    userId
+    eventName
+    description
+    duration
+    id
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateEventTemplateMutationVariables,
+  APITypes.CreateEventTemplateMutation
+>;
+export const updateEventTemplate = /* GraphQL */ `mutation UpdateEventTemplate(
+  $input: UpdateEventTemplateInput!
+  $condition: ModelEventTemplateConditionInput
+) {
+  updateEventTemplate(input: $input, condition: $condition) {
+    userId
+    eventName
+    description
+    duration
+    id
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateEventTemplateMutationVariables,
+  APITypes.UpdateEventTemplateMutation
+>;
+export const deleteEventTemplate = /* GraphQL */ `mutation DeleteEventTemplate(
+  $input: DeleteEventTemplateInput!
+  $condition: ModelEventTemplateConditionInput
+) {
+  deleteEventTemplate(input: $input, condition: $condition) {
+    userId
+    eventName
+    description
+    duration
+    id
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteEventTemplateMutationVariables,
+  APITypes.DeleteEventTemplateMutation
+>;
