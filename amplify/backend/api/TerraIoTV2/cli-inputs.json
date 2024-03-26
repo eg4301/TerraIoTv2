@@ -6,13 +6,14 @@
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 365,
-      "apiKeyExpirationDate": "2025-02-24T14:00:19.522Z",
-      "keyDescription": ""
+      "apiKeyExpirationDate": "2025-03-26T05:17:31.314Z",
+      "keyDescription": "api key"
     },
     "additionalAuthTypes": [
       {
         "mode": "AWS_IAM"
       }
-    ]
+    ],
+    "conflictResolution": {}
   }
 }

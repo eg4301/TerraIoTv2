@@ -24,6 +24,20 @@ type RACSensors @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   timestamp: AWSDateTime!
 }
 
+type SoilSensors @model(timestamps: null) @auth(rules: [{ allow: public }]) {
+  CO2: Float
+  MAC: Int! @primaryKey(sortKeyFields: ["timestamp"])
+  O2: Float
+  atm_temperature: Float
+  conductivity: Float
+  humidity: Float
+  Nitrogen: Float
+  Phosphorous: Float
+  pH: Float
+  temperature: Float
+  timestamp: AWSDateTime!
+}
+
 type EventTemplate @model(timestamps: null) @auth(rules: [{ allow: public }]) {
   userId: String @index(name: "byUser", queryField: "getUserEventTemplates")
   eventName: String!

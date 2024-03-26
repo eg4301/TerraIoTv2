@@ -12,4 +12,6 @@ export { default as EventTemplateCreateForm } from "./EventTemplateCreateForm";
 export { default as EventTemplateUpdateForm } from "./EventTemplateUpdateForm";
 export { default as RACSensorsCreateForm } from "./RACSensorsCreateForm";
 export { default as RACSensorsUpdateForm } from "./RACSensorsUpdateForm";
+export { default as SoilSensorsCreateForm } from "./SoilSensorsCreateForm";
+export { default as SoilSensorsUpdateForm } from "./SoilSensorsUpdateForm";
 export { default as studioTheme } from "./studioTheme";
