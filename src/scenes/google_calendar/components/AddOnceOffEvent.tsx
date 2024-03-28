@@ -215,6 +215,17 @@ export const AddOnceOffEventForm = () => {
               Submit
             </Button>
           </Grid>
+          <Grid item xs={12}>
+            <Button
+              onClick={hideEventForm}
+              fullWidth
+              type="button"
+              variant="contained"
+              color="info"
+            >
+              Back
+            </Button>
+          </Grid>
         </Grid>
       </form>
     </Box>
